@@ -3,10 +3,9 @@
 *
 * donate.php [English]
 *
-* @package language
-* @version $Id: $
-* @copyright (c) 2007 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @package Paypal Donation MOD
+* @copyright (c) 2012 Skouat
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
 
@@ -40,41 +39,44 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'DONATION_DISABLED'				=> 'Sorry, the Donation page is currently unavailable',
-	'DONATION_NOT_INSTALLED'		=> 'Donation MOD database entries are missing.<br />Please run the %sinstaller%s to make the database changes for the modification.',
-	'DONATION_NOT_INSTALLED_USER'	=> 'The Donation page is not installed.  Please notify the board founder.',
+// Notice
+	'DONATION_DISABLED'				=> 'Sorry, the Donation page is currently unavailable.',
+	'DONATION_NOT_INSTALLED'		=> 'Paypal Donation MOD database entries are missing.<br />Please run the %sinstaller%s to make the database changes for the MOD.',
+	'DONATION_NOT_INSTALLED_USER'	=> 'The Donation page is not installed. Please notify the board founder.',
 	'SANDBOX_ADDRESS_MISSING'		=> 'Sorry, Paypal Sandbox is enabled but some settings are missing. Please notify the board founder.',
 
+// Image alternative text
+	'IMG_DONATE'					=> 'donate',
+	'IMG_LOADER'					=> 'loading',
+
 // Default Currency
-	'CURRENCY_DEFAULT'		=> 'USD', // Note : If you remove from ACP ALL currency, this value will be define as the default currency
+	'CURRENCY_DEFAULT'		=> 'USD', // Note : If you remove from ACP ALL currencies, this value will be defined as the default currency.
 
 // Stats
-	'DONATION_RECEIVED'			=> 'We have received',
-	'DONATION_RECEIVED_IN'		=> 'in donations.',
-	'DONATION_NOT_RECEIVED'		=> 'We haven’t received any donations.',
-	'DONATION_USED'				=> 'We have used',
-	'DONATION_USED_FROM'		=> 'from the',
-	'DONATION_ALREADY_RECEIVE'	=> 'already received.',
-	'DONATION_NOT_USED'			=> 'We haven’t used any donations.',
-	'DONATION_GOAL_RAISE'		=> 'Our goal is to raise',
-	'DONATION_GOAL_REACHED'		=> 'Our goal donation was reached.',
-	'DONATION_NO_GOAL'			=> 'We haven’t defined a donation goal.',
-	'DONATION_USED_EXCEEDED'	=> 'All your donations have been used.',
-	'DONATION_USED_OF'			=> 'of your donations',
+	'DONATE_RECEIVED'			=> 'We received',
+	'DONATE_RECEIVED_IN'		=> 'in donations.',
+	'DONATE_NOT_RECEIVED'		=> 'We haven’t received any donations.',
+	'DONATE_USED'				=> 'We used',
+	'DONATE_ALREADY_RECEIVE'	=> 'already received.',
+	'DONATE_NOT_USED'			=> 'We haven’t used any donations.',
+	'DONATE_GOAL_RAISE'			=> 'Our goal is to raise',
+	'DONATE_GOAL_REACHED'		=> 'Our goal donation was reached.',
+	'DONATE_NO_GOAL'			=> 'We haven’t defined a donation goal.',
+	'DONATE_USED_EXCEEDED'		=> 'All your donations have been used.',
+	'DONATE_USED_OF'			=> 'of your donations on',
 
 // Pages
 	'DONATION_TITLE'			=> 'Make a Donation',
 	'DONATION_TITLE_HEAD'		=> 'Make a Donation to',
-	'DONATION_CANCEL_TITLE'		=> 'Donation Cancelled',
+	'DONATION_CANCEL_TITLE'		=> 'Donation Canceled',
 	'DONATION_SUCCESS_TITLE'	=> 'Donation Successfull',
 	'DONATION_CONTACT_PAYPAL'	=> 'Connecting to Paypal - Please Wait...',
 	'SANDBOX_TITLE'				=> 'Test Paypal Donation with Paypal Sandbox',
 
 	'DONATION_INDEX'			=> 'Donations',
-
-	'DONATION_SAMPLE_LANG_KEY'	=> '<h2>This is a sample of text Language key</h2><br /><p> Edit <strong>DONATION_SAMPLE_LANG_KEY</strong> or create your own Language key from <strong>/language/en/mods/donate.php</strong>.<br /> Write text you want display in your custom pages.<br />You can use HTML code.</p>',
 ));
 
+// UMIL
 $lang = array_merge($lang, array(
 	'INSTALL_DONATION_MOD'				=> 'Install Donation Mod',
 	'INSTALL_DONATION_MOD_CONFIRM'		=> 'Are you ready to install the Donation Mod?',
@@ -84,6 +86,13 @@ $lang = array_merge($lang, array(
 	'UNINSTALL_DONATION_MOD_CONFIRM'	=> 'Are you ready to uninstall the Donation Mod? All settings and data saved by this mod will be removed!',
 	'UPDATE_DONATION_MOD'				=> 'Update Donation Mod',
 	'UPDATE_DONATION_MOD_CONFIRM'		=> 'Are you ready to update the Donation Mod?',
+));
+
+// Custom language key for Pages Donations personnalisation
+$lang = array_merge($lang, array(
+	'CUSTOM_DONATION_BODY'		=> '<h2>This is an example of text based on the language keys</h2><br /><p> Edit <strong>CUSTOM_DONATION_BODY</strong> Language Key in <strong>/language/en/mods/donate.php</strong>.<br /> Write the text you want displayed in your custom pages.</p>',
+	'CUSTOM_DONATION_SUCCESS'	=> '<h2>This is an example of text based on the language keys</h2><br /><p> Edit <strong>CUSTOM_DONATION_SUCCESS</strong> Language Key in <strong>/language/en/mods/donate.php</strong>.<br /> Write the text you want displayed in your custom pages.</p>',
+	'CUSTOM_DONATION_CANCEL'	=> '<h2>This is an example of text based on the language keys</h2><br /><p> Edit <strong>CUSTOM_DONATION_CANCEL</strong> Language Key in <strong>/language/en/mods/donate.php</strong>.<br /> Write the text you want displayed in your custom pages.</p>',
 ));
 
 ?>

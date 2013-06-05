@@ -4,7 +4,7 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod]]></title>
+		<title lang="en"><![CDATA[Paypal Donation Mod - Update 1.0.0-RC1 to 1.0.0-RC2]]></title>
 		<description lang="en"><![CDATA[This MOD add a Paypal Donation page to your site. 
 
 Features :
@@ -125,9 +125,7 @@ Voir les instructions dans le dossier /contrib]]>
 			</entry>
 		</history>
 		<link-group>
-			<link type="contrib" href="./contrib/update_100-RC1_100-RC2.xml" lang="en">Paypal Donation Mod update 1.0.0-RC1 to 1.0.0-RC2</link>
-			<link type="contrib" href="./contrib/update_Stoker-4.0-Paypal-Donation-MOD-103_Paypal-Donation-MOD-100.xml" lang="en">update from Stoker 4.0's Paypal Donation MOD 1.0.3 to Paypal Donation MOD 1.0.0-RC2</link>
-			<link type="language" href="./contrib/language_fr.xml" lang="en">fr_FR</link>
+			<link type="parent" href="../install.xml" lang="en">Parent MOD installation</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -144,10 +142,37 @@ Voir les instructions dans le dossier /contrib]]>
 			<file from="root/styles/prosilver/theme/donation.css" to="styles/prosilver/theme/donation.css" />
 			<file from="root/umil/*.*" to="umil/*.*" />
 		</copy>
+		<delete>
+			<file name="images/donation/yourlogohere.png"/>
+		</delete>
 		<open src="index.php">
 			<edit>
-				<find><![CDATA[$user->setup('viewforum');]]></find>
-				<action type="after-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+				<find><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+//-- add
+
+// Check for MOD installed
+if (!isset($config['donation_enable']) || !isset($config['donation_mod_version']))
+{
+	$user->setup('mods/donate');
+	if($user->data['user_type'] == USER_FOUNDER)
+	{
+		$installer =  append_sid("{$phpbb_root_path}install_donation_mod.$phpEx");
+		$message = sprintf($user->lang['DONATION_NOT_INSTALLED'], '<a href="' . $installer . '">', '</a>');
+	}
+	else
+	{
+		$message = $user->lang['DONATION_NOT_INSTALLED_USER'];
+	}
+	trigger_error ($message);
+}
+elseif ($config['donation_enable'] && $config['donation_stats_index_enable'])
+{
+
+	include($phpbb_root_path . 'includes/functions_donation.' . $phpEx);
+}
+//-- end : Paypal donation --------------------------------------------------------
+]]></find>
+				<action type="replace-with"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
 //-- add
 if ($config['donation_enable'] && $config['donation_stats_index_enable'])
 {
@@ -158,12 +183,29 @@ if ($config['donation_enable'] && $config['donation_stats_index_enable'])
 ]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[// Output page]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
-//-- add
-if ($config['donation_enable'] && $config['donation_stats_index_enable'])
-{
+				<find><![CDATA[	$user->add_lang('mods/donate');
 	$template->assign_vars(array(
+		'DONATION_STATS_INDEX_ENABLE'	=> $config['donation_stats_index_enable'],
+		'DONATION_RAISED_ENABLE'		=> $config['donation_raised_enable'],
+		'DONATION_RAISED'				=> $config['donation_raised'],
+		'DONATION_GOAL_ENABLE'			=> $config['donation_goal_enable'],
+		'DONATION_GOAL'					=> $config['donation_goal'],
+		'DONATION_USED_ENABLE'			=> $config['donation_used_enable'],
+		'DONATION_USED'					=> $config['donation_used'],
+		'DONATION_CURRENCY_ENABLE'		=> $config['donation_currency_enable'],
+		'DONATION_CURRENCY'				=> donation_item_list($config['donation_default_currency'], 'currency', 'default_currency', $user->lang['CURRENCY_DEFAULT']),
+	));
+
+		if ($config['donation_goal_enable'])
+		{
+			donation_goal_number();
+		}
+
+		if ($config['donation_used_enable'])
+		{
+			donation_used_number();
+		}]]></find>
+				<action type="replace-with"><![CDATA[	$template->assign_vars(array(
 		'DONATION_STATS_INDEX_ENABLE'	=> (!empty($config['donation_stats_index_enable'])) ? true : false,
 		'DONATION_RAISED_ENABLE'		=> (!empty($config['donation_raised_enable'])) ? true : false,
 		'DONATION_RAISED'				=> (!empty($config['donation_raised'])) ? $config['donation_raised'] : 0,
@@ -183,91 +225,25 @@ if ($config['donation_enable'] && $config['donation_stats_index_enable'])
 	if ($config['donation_used_enable'] && (int) $config['donation_raised'] > 0 && (int) $config['donation_used'] > 0)
 	{
 		donation_percent_stats('USED_NUMBER', (int) $config['donation_used'], (int) $config['donation_raised']);
-	}
-}
-//-- end : Paypal donation --------------------------------------------------------
-]]></action>
-			</edit>
-		</open>
-		<open src="viewonline.php">
-			<edit>
-				<find><![CDATA[		default:
-			$location = $user->lang['INDEX'];
-			$location_url = append_sid("{$phpbb_root_path}index.$phpEx");
-		break;]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
-//-- add
-		case 'donate':
-			$location = $user->lang['VIEWING_DONATE'];
-			$location_url = append_sid("{$phpbb_root_path}donate.$phpEx");
-		break;
-//-- end : Paypal Donation --------------------------------------------------------
-]]></action>
-			</edit>
-		</open>
-		<open src="includes/constants.php">
-			<edit>
-				<find><![CDATA[// Additional tables]]></find>
-				<action type="after-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
-//-- add
-define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
-//-- end : Paypal Donation --------------------------------------------------------
-]]></action>
+	}]]></action>
 			</edit>
 		</open>
 		<open src="includes/functions.php">
 			<edit>
-				<find><![CDATA[		'A_COOKIE_SETTINGS'		=> addslashes('; path=' . $config['cookie_path'] . ((!$config['cookie_domain'] || $config['cookie_domain'] == 'localhost' || $config['cookie_domain'] == '127.0.0.1') ? '' : '; domain=' . $config['cookie_domain']) . ((!$config['cookie_secure']) ? '' : '; secure')),
-	));
-]]></find>
-				<action type="after-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
-//-- add
-	$template->assign_vars(array(
-		'U_DONATE'				=> append_sid("{$phpbb_root_path}donate.$phpEx"),
-		'S_DONATE_ENABLED'		=> ((!empty($config['donation_enable']) && !empty($config['donation_account_id'])) || (!empty($config['paypal_sandbox_enable']) && !empty($config['paypal_sandbox_address']))) ? true : false,
-	));
-//-- end : Paypal Donation --------------------------------------------------------
-]]></action>
-			</edit>
-		</open>
-		<open src="language/en/common.php">
-			<edit>
-				<find><![CDATA[?>]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
-//-- add
-$lang = array_merge($lang, array(
-	'DONATEINDEX'				=> 'Donate',
-	'VIEWING_DONATE'			=> 'Viewing Donation page',
-));
-//-- end : Paypal Donation --------------------------------------------------------
-]]></action>
+				<find><![CDATA[		'S_DONATE_ENABLED'		=> (!empty($config['donation_enable'])) ? true : false,]]></find>
+				<action type="replace-with"><![CDATA[		'S_DONATE_ENABLED'		=> ((!empty($config['donation_enable']) && !empty($config['donation_account_id'])) || (!empty($config['paypal_sandbox_enable']) && !empty($config['paypal_sandbox_address']))) ? true : false,]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/index_body.html">
 			<edit>
-				<find><![CDATA[<!-- IF NEWEST_USER -->]]></find>
-				<action type="before-add"><![CDATA[<!-- IF DONATION_STATS_INDEX_ENABLE and (DONATION_RAISED_ENABLE or DONATION_GOAL_ENABLE or DONATION_USED_ENABLE) -->
-	<!-- INCLUDE donate/donate_stats.html -->
-<!-- ENDIF -->
-]]></action>
-			</edit>
-		</open>
-		<open src="styles/prosilver/template/overall_header.html">
-			<edit>
-				<find><![CDATA[				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
-				<action type="before-add"><![CDATA[				<!-- IF S_DONATE_ENABLED --><li class="icon-bump"><a href="{U_DONATE}">{L_DONATEINDEX}</a></li><!-- ENDIF -->]]></action>
-			</edit>
-		</open>
-		<open src="styles/prosilver/theme/stylesheet.css">
-			<edit>
-				<find><![CDATA[@import url("colours.css");]]></find>
-				<action type="after-add"><![CDATA[@import url("donation.css");
-]]></action>
+				<find><![CDATA[<!-- IF DONATION_STATS_INDEX_ENABLE and (DONATION_RAISED_ENABLE or DONATION_GOAL_ENABLE) -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF DONATION_STATS_INDEX_ENABLE and (DONATION_RAISED_ENABLE or DONATION_GOAL_ENABLE or DONATION_USED_ENABLE) -->]]></action>
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_donation_mod.php]]></php-installer>
 
-		<diy-instructions lang="en"><![CDATA[Upload all included files.
+		<diy-instructions lang="en"><![CDATA[--------- Update instructions ---------
+Upload all included files.
 Run the installer.
 Set the Paypal Donation Mod settings under the .MOD tab.]]></diy-instructions>
 	</action-group>

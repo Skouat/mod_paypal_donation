@@ -3,10 +3,9 @@
 *
 * donate.php [French]
 *
-* @package language
-* @version $Id: $
-* @copyright (c) 2007 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @package Paypal Donation MOD
+* @copyright (c) 2012 Skouat
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
 
@@ -40,50 +39,60 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'DONATION_DISABLED'				=> 'Désolé, la page des Dons n’est pas disponible',
+// Notice
+	'DONATION_DISABLED'				=> 'Désolé, la page des Dons n’est pas disponible.',
 	'DONATION_NOT_INSTALLED'		=> 'Des entrées dans la base de données pour le MOD <strong>Paypal Donation</strong> sont manquantes.<br />Merci de lancer à nouveau le %sfichier d’installation%s pour corriger le problème.',
 	'DONATION_NOT_INSTALLED_USER'	=> 'La page des Dons n’est pas installée. Merci de contacter l’administrateur du forum.',
 	'SANDBOX_ADDRESS_MISSING'		=> 'Désolé, Paypal Sandbox est activé mais certains paramètres sont manquants. Merci de contacter l’administrateur du forum.',
+
+// Image alternative text
+	'IMG_DONATE'					=> 'donation',
+	'IMG_LOADER'					=> 'chargement',
 
 // Default Currency
 	'CURRENCY_DEFAULT'		=> 'EUR', // Note : Si depuis l’ACP vous supprimez toutes les devises, cette valeur sera définie comme valeur par défaut.
 
 // Stats
-	'DONATION_RECEIVED'			=> 'Nous avons reçu',
-	'DONATION_RECEIVED_IN'		=> 'de dons.',
-	'DONATION_NOT_RECEIVED'		=> 'Nous n’avons pas encore reçu de dons.',
-	'DONATION_USED'				=> 'Les dons ont été utilisé à hautre de ',
-	'DONATION_USED_FROM'		=> 'sur les',
-	'DONATION_ALREADY_RECEIVE'	=> 'déjà reçus.',
-	'DONATION_NOT_USED'			=> 'Les dons n’ont pas été utilisés.',
-	'DONATION_GOAL_RAISE'		=> 'Notre objectif est d’obtenir',
-	'DONATION_GOAL_REACHED'		=> 'L’objectif de don a été atteint.',
-	'DONATION_NO_GOAL'			=> 'Nous n’avons pas défini d’objectif de dons à atteindre.',
-	'DONATION_USED_EXCEEDED'	=> 'Tous les dons ont été utilisés.',
-	'DONATION_USED_OF'			=> 'de vos dons',
+	'DONATE_RECEIVED'			=> 'Nous avons reçu',
+	'DONATE_RECEIVED_IN'		=> 'de dons.',
+	'DONATE_NOT_RECEIVED'		=> 'Nous n’avons pas encore reçu de dons.',
+	'DONATE_USED'				=> 'Les dons ont été utilisé à hauteur de ',
+	'DONATE_ALREADY_RECEIVE'	=> 'déjà reçus.',
+	'DONATE_NOT_USED'			=> 'Les dons n’ont pas été utilisés.',
+	'DONATE_GOAL_RAISE'			=> 'Notre objectif est d’obtenir',
+	'DONATE_GOAL_REACHED'		=> 'L’objectif de don a été atteint.',
+	'DONATE_NO_GOAL'			=> 'Nous n’avons pas défini d’objectif de dons à atteindre.',
+	'DONATE_USED_EXCEEDED'		=> 'Tous les dons ont été utilisés.',
+	'DONATE_USED_OF'			=> 'de vos dons sur les',
 
 // Pages
 	'DONATION_TITLE'			=> 'Faire un don',
 	'DONATION_TITLE_HEAD'		=> 'Faire un don à',
-	'DONATION_CANCEL_TITLE'		=> 'Dons Annulé',
-	'DONATION_SUCCESS_TITLE'	=> 'Dons Validé',
+	'DONATION_CANCEL_TITLE'		=> 'Dons Annulés',
+	'DONATION_SUCCESS_TITLE'	=> 'Dons Validés',
 	'DONATION_CONTACT_PAYPAL'	=> 'Connexion à Paypal - Merci de patienter...',
 	'SANDBOX_TITLE'				=> 'Tester Paypal Donation avec Paypal Sandbox',
 
 	'DONATION_INDEX'			=> 'Faire un don',
-
-	'DONATION_SAMPLE_LANG_KEY'	=> '<h2>Ceci est un example de texte basé sur les clés de langues</h2><br /><p> Editez la clé de langue <strong>DONATION_SAMPLE_LANG_KEY</strong> ou créez vos propres clés de langues depuis le fichier <strong>/language/fr/mods/donate.php</strong>.<br /> Saisir le texte que vous souhaitez voir apparaitre sur vos pages personnalisées<br />Vous pouvez utiliser du code HTML</p>',
 ));
 
+// UMIL
 $lang = array_merge($lang, array(
 	'INSTALL_DONATION_MOD'				=> 'Installer Donation Mod',
-	'INSTALL_DONATION_MOD_CONFIRM'		=> 'Êtes-vous prêt à installer Paypal Donation Mod?',
+	'INSTALL_DONATION_MOD_CONFIRM'		=> 'Êtes-vous prêt à installer Paypal Donation Mod ?',
 	'DONATION_MOD'						=> 'Paypal Donation Mod',
 	'DONATION_MOD_EXPLAIN'				=> 'UMIL effectuera automatiquement, dans la base de données, tous les changements nécessaires pour le MOD Paypal Donation.',
 	'UNINSTALL_DONATION_MOD'			=> 'Désinstaller Paypal Donation Mod',
 	'UNINSTALL_DONATION_MOD_CONFIRM'	=> 'Êtes-vous prêt à désinstaller Paypal Donation Mod? Tous les réglages et données sauvegardées par ce MOD seront supprimés !',
 	'UPDATE_DONATION_MOD'				=> 'Mettre à jour Paypal Donation Mod',
-	'UPDATE_DONATION_MOD_CONFIRM'		=> 'Êtes-vous prêt à mettre à jour Paypal Donation Mod?',
+	'UPDATE_DONATION_MOD_CONFIRM'		=> 'Êtes-vous prêt à mettre à jour Paypal Donation Mod ?',
+));
+
+// Custom language key
+$lang = array_merge($lang, array(
+	'CUSTOM_DONATION_BODY'		=> '<h2>Ceci est un exemple de texte basé sur les clés de langues</h2><br /><p> Editez la clé de langue <strong>CUSTOM_DONATION_BODY</strong> depuis le fichier <strong>/language/fr/mods/donate.php</strong>.<br /> Saisir le texte que vous souhaitez voir apparaitre sur vos pages personnalisées.</p>',
+	'CUSTOM_DONATION_SUCCESS'	=> '<h2>Ceci est un exemple de texte basé sur les clés de langues</h2><br /><p> Editez la clé de langue <strong>CUSTOM_DONATION_SUCCESS</strong> depuis le fichier <strong>/language/fr/mods/donate.php</strong>.<br /> Saisir le texte que vous souhaitez voir apparaitre sur vos pages personnalisées.</p>',
+	'CUSTOM_DONATION_CANCEL'	=> '<h2>Ceci est un exemple de texte basé sur les clés de langues</h2><br /><p> Editez la clé de langue <strong>CUSTOM_DONATION_CANCEL</strong> depuis le fichier <strong>/language/fr/mods/donate.php</strong>.<br /> Saisir le texte que vous souhaitez voir apparaitre sur vos pages personnalisées.</p>',
 ));
 
 ?>

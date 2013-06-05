@@ -3,10 +3,9 @@
 *
 * info_acp_donation.php [English]
 *
-* @package language
-* @version $Id: $
-* @copyright (c) 2007 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @package Paypal Donation MOD
+* @copyright (c) 2012 Skouat
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
 
@@ -53,51 +52,68 @@ $lang = array_merge($lang, array(
 	'DONATION_ACCOUNT_ID_EXPLAIN'			=> 'Enter your Paypal email address or Marchant account ID',
 	'DONATION_DEFAULT_CURRENCY'				=> 'Default currency',
 	'DONATION_DEFAULT_CURRENCY_EXPLAIN'		=> 'Define which currency will be selected by default',
+	'DONATION_DEFAULT_VALUE'				=> 'Default donation value',
+	'DONATION_DEFAULT_VALUE_EXPLAIN'		=> 'Define which donation value will be suggested by default',
+	'DONATION_DROPBOX_ENABLE'				=> 'Enable drop-down list',
+	'DONATION_DROPBOX_ENABLE_EXPLAIN'		=> 'If enabled, it will replace the Textbox by a drop-down list.',
+	'DONATION_DROPBOX_VALUE'				=> 'Drop-down value',
+	'DONATION_DROPBOX_VALUE_EXPLAIN'		=> 'Define the numbers you want to see in the drop-down list.<br />Use <strong>comma</strong> (",") <strong>with no space</strong> to separate each values.',
 
 // Paypal sandbox settings
-	'SANDBOX_SETTINGS'						=> 'Paypal Sandbox Settings',
-	'SANDBOX_ENABLE'						=> 'Sandbox Testing',
-	'SANDBOX_ADDRESS'						=> 'PayPal Sandbox Address',
+	'SANDBOX_SETTINGS'						=> 'Paypal sandbox settings',
+	'SANDBOX_ENABLE'						=> 'Sandbox testing',
+	'SANDBOX_ENABLE_EXPLAIN'				=> 'Enable this option if you want use Paypal Sandbox instead of Paypal Services.<br />Useful for developers/testers. All the transactions are fictitious.',
+	'SANDBOX_FOUNDER_ENABLE'				=> 'Sandbox only for founder',
+	'SANDBOX_FOUNDER_ENABLE_EXPLAIN'		=> 'If enabled, Paypal Sandbox will be displayed only by the board founders.',
+	'SANDBOX_ADDRESS'						=> 'PayPal sandbox address',
 	'SANDBOX_ADDRESS_EXPLAIN'				=> 'Define here your Paypal Sandbox Sellers e-mail address',
 
 // Stats Donation settings
-	'DONATION_STATS_SETTINGS'				=> 'Stats Donation Config',
-	'DONATION_STATS_INDEX_ENABLE'			=> 'Display Donation Stats on index',
+	'DONATION_STATS_SETTINGS'				=> 'Stats donation config',
+	'DONATION_STATS_INDEX_ENABLE'			=> 'Display donation stats on index',
 	'DONATION_STATS_INDEX_ENABLE_EXPLAIN'	=> 'Enable this if you want to display the donation stats on index',
-	'DONATION_RAISED_ENABLE'				=> 'Enable Donation Raised',
-	'DONATION_RAISED'						=> 'Donation Raised',
+	'DONATION_RAISED_ENABLE'				=> 'Enable donation raised',
+	'DONATION_RAISED'						=> 'Donation raised',
 	'DONATION_RAISED_EXPLAIN'				=> 'The current amount raised through donations',
-	'DONATION_GOAL_ENABLE'					=> 'Enable Donation Goal',
-	'DONATION_GOAL'							=> 'Donation Goal',
-	'DONATION_GOAL_EXPLAIN'					=> 'The amount you want to raise in total',
-	'DONATION_USED_ENABLE'					=> 'Enable Donation Used',
-	'DONATION_USED'							=> 'Donation Used',
+	'DONATION_GOAL_ENABLE'					=> 'Enable donation goal',
+	'DONATION_GOAL'							=> 'Donation goal',
+	'DONATION_GOAL_EXPLAIN'					=> 'The total amount that you want to raise',
+	'DONATION_USED_ENABLE'					=> 'Enable donation used',
+	'DONATION_USED'							=> 'Donation used',
 	'DONATION_USED_EXPLAIN'					=> 'The amount of donation that you have already used',
 
-	'DONATION_CURRENCY_ENABLE'				=> 'Enable Donation Currency',
-	'DONATION_CURRENCY_ENABLE_EXPLAIN'		=> 'Enable Donation Currency must be enabled if you want to display it',
+	'DONATION_CURRENCY_ENABLE'				=> 'Enable donation currency',
+	'DONATION_CURRENCY_ENABLE_EXPLAIN'		=> 'Enable this option if you want to display the ISO 4217 code of default currency in Stats.',
 
 // Donation Page settings
-	'DONATION_DONATION_PAGES_CONFIG'			=> 'Donation Pages',
+	'DONATION_DONATION_PAGES_CONFIG'			=> 'Donation pages',
 	'DONATION_DONATION_PAGES_CONFIG_EXPLAIN'	=> 'Permit to improve the rendering of customizable pages of the MOD',
 
+// Donation Page Draft settings
+	'DONATION_DRAFT_PREVIEW'				=> 'Draft Donation pages preview',
+	'DONATION_DRAFT_SETTINGS'				=> 'Donation page draft',
+	'DONATION_DRAFT_EXPLAIN'				=> 'Draft here your Donation page text',
+
 // Donation Page Body settings
-	'DONATION_BODY_SETTINGS'				=> 'Donation Page Config',
+	'DONATION_BODY_SETTINGS'				=> 'Donation page config',
 	'DONATION_BODY'							=> 'Donation page text',
-	'DONATION_BODY_EXPLAIN'					=> 'Enter the text you want displayed on the main Donation page.<br /><br />HTML or Language Keys is allowed.<br />You can use either HTML code or Language Keys, but not both in the same time',
+	'DONATION_BODY_EXPLAIN'					=> 'Enter the text you want displayed on the main donation page.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />Use this Language Key: <strong>CUSTOM_DONATION_BODY</strong>',
+	'COPY_TO_DONATION_BODY'					=> 'Copy text to Donation body',
 
 // Donation Success settings
-	'DONATION_SUCCESS_SETTINGS'				=> 'Donation Success Config',
+	'DONATION_SUCCESS_SETTINGS'				=> 'Donation success config',
 	'DONATION_SUCCESS'						=> 'Donation success text',
-	'DONATION_SUCCESS_EXPLAIN'				=> 'Enter the text you want displayed on the success page<br />This is the page users are redirected to after a successfull donation.<br /><br />HTML or Language Keys is allowed.<br />You can use either HTML code or Language Keys, but not both in the same time',
+	'DONATION_SUCCESS_EXPLAIN'				=> 'Enter the text you want displayed on the success page<br />This is the page users are redirected to after a successfull donation.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />Use this Language Key: <strong>CUSTOM_DONATION_SUCCESS</strong>',
+	'COPY_TO_DONATION_SUCCESS'				=> 'Copy text to Donation success',
 
 // Donation Cancel settings
-	'DONATION_CANCEL_SETTINGS'				=> 'Donation Cancel Config',
+	'DONATION_CANCEL_SETTINGS'				=> 'Donation cancel config',
 	'DONATION_CANCEL'						=> 'Donation cancel text',
-	'DONATION_CANCEL_EXPLAIN'				=> 'Enter the text you want displayed on the cancel page<br />This is the page users are redirected to after they cancel a donation.<br /><br />HTML or Language Keys is allowed.<br />You can use either HTML code or Language Keys, but not both in the same time',
+	'DONATION_CANCEL_EXPLAIN'				=> 'Enter the text you want displayed on the cancel page<br />This is the page users are redirected to after they cancel a donation.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />Use this Language Key: <strong>CUSTOM_DONATION_CANCEL</strong>',
+	'COPY_TO_DONATION_CANCEL'				=> 'Copy text to Donation cancel',
 
 // Currency Management
-	'DONATION_CURRENCY_CONFIG'				=> 'Currency Management',
+	'DONATION_CURRENCY_CONFIG'				=> 'Currency management',
 	'DONATION_CURRENCY_CONFIG_EXPLAIN'		=> 'Here you can manage currency',
 	'DONATION_CURRENCY_NAME'				=> 'Currency name',
 	'DONATION_CURRENCY_NAME_EXPLAIN'		=> 'Name of the currency.<br />(i.e. Euro)',
@@ -110,14 +126,15 @@ $lang = array_merge($lang, array(
 	'DONATION_CREATE_CURRENCY'				=> 'Add new currency',
 
 //logs
-	'LOG_DONATION_UPDATED'	=> '<strong>Paypal Donation settings updated.</strong>',
-	'LOG_ITEM_ADDED'		=> '<strong>Paypal Donation: %1$s added</strong><br />» %2$s',
-	'LOG_ITEM_UPDATED'		=> '<strong>Paypal Donation: %1$s updated</strong><br />» %2$s',
-	'LOG_ITEM_REMOVED'		=> '<strong>Paypal Donation: %1$s deleted</strong>',
-	'LOG_ITEM_MOVE_DOWN'	=> '<strong>Paypal Donation: Moved a %1$s. </strong> %2$s <strong>below</strong> %3$s',
-	'LOG_ITEM_MOVE_UP'		=> '<strong>Paypal Donation: Moved a %1$s. </strong> %2$s <strong>above</strong> %3$s',
-	'LOG_ITEM_ENABLED'		=> '<strong>Paypal Donation: %1$s enabled</strong><br />» %2$s',
-	'LOG_ITEM_DISABLED'		=> '<strong>Paypal Donation: %1$s disabled</strong><br />» %2$s',
+	'LOG_DONATION_UPDATED'			=> '<strong>Paypal Donation: Settings updated.</strong>',
+	'LOG_DONATION_PAGES_UPDATED'	=> '<strong>Paypal Donation: Donation Pages updated.</strong>',
+	'LOG_ITEM_ADDED'				=> '<strong>Paypal Donation: %1$s added</strong><br />» %2$s',
+	'LOG_ITEM_UPDATED'				=> '<strong>Paypal Donation: %1$s updated</strong><br />» %2$s',
+	'LOG_ITEM_REMOVED'				=> '<strong>Paypal Donation: %1$s deleted</strong>',
+	'LOG_ITEM_MOVE_DOWN'			=> '<strong>Paypal Donation: Moved a %1$s. </strong> %2$s <strong>below</strong> %3$s',
+	'LOG_ITEM_MOVE_UP'				=> '<strong>Paypal Donation: Moved a %1$s. </strong> %2$s <strong>above</strong> %3$s',
+	'LOG_ITEM_ENABLED'				=> '<strong>Paypal Donation: %1$s enabled</strong><br />» %2$s',
+	'LOG_ITEM_DISABLED'				=> '<strong>Paypal Donation: %1$s disabled</strong><br />» %2$s',
 
 //Confirm box
 	'CURRENCY_ENABLED'		=> 'A currency has been enabled',

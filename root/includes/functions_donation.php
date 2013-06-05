@@ -1,10 +1,9 @@
 <?php
 /**
 *
-* @package phpBB3
-* @version $Id: $
-* @copyright (c) 2007 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @package Paypal Donation MOD
+* @copyright (c) 2012 Skouat
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
 
@@ -17,129 +16,87 @@ if (!defined('IN_PHPBB'))
 }
 
 /**
-* Calculate donation percent goal number.
+* Calculate donations stats percent number
 *
+* @param str $type = ''
+* @param int $multiplicand
+* @param int $dividend
 */
-function donation_goal_number ()
+function donation_percent_stats ($type = '', $multiplicand, $dividend)
 {
-	global $config, $template;
+	global $template;
 
-	if ($config['donation_goal'] > 0)
-		{
-		$donation_goal_number = ($config['donation_raised'] * 100) / $config['donation_goal'];
-		$template->assign_vars(array(
-			'DONATION_GOAL_NUMBER' => round($donation_goal_number, 2),
-		));
-	}
+	$donation_percent_stats = ($multiplicand * 100) / $dividend;
+	$template->assign_vars(array(
+		'DONATION_' . $type	=> round($donation_percent_stats, 2),
+		'S_' . $type 		=> !empty($type) ? true : false,
+	));
 }
 
-/**
-* Calculate donation percent used number.
-*
-*/
-function donation_used_number ()
-{
-	global $config, $template;
-
-	if ($config['donation_raised'] > 0 && $config['donation_used'] > 0)
-		{
-		$donation_used_number = ($config['donation_used'] * 100) / $config['donation_raised'];
-		$template->assign_vars(array(
-			'DONATION_USED_NUMBER' => round($donation_used_number, 2),
-		));
-	}
-}
 /**
 * Generate currency list.
 *
-* @param int $default = 1
-* @param str $type
-* @param str $format = ''
-* @param str $Lang_key = 'USD'
+* @param int $default = 4		ID of the default currency
+* @param str $type				Corresponds to 'item_type' value. Can be 'device' or 'donation_pages'
+* @param str $format = ''		Determine the output format. Can be 'acp', 'default_currency' or empty
+* @param str $lang_key = 'USD'	Retreive from language key file the language key nammed 'CURRENCY_DEFAULT'. If it doesn't exist, USD will be the default value.
 */
-function donation_item_list($default = 1, $type, $format = '', $Lang_key = 'USD')
+function donation_item_list($default = 4, $type, $format = '', $lang_key = 'USD')
 {
 	global $db;
 
-	// Build SQL_AND for determine the default currency
-	$sql = 'SELECT item_id
-	FROM ' . DONATION_ITEM_TABLE . '
-	WHERE item_id = ' . $default;
-	$default_currency_check = get_info($sql);
+	// Build $default_currency_check to determine the default currency
+	$sql = 'SELECT item_id FROM ' . DONATION_ITEM_TABLE . ' WHERE item_id = ' . (int) $default;
+	$result = $db->sql_query($sql);
+	$default_currency_check = $db->sql_fetchrow($result);
+	$db->sql_freeresult($result);
 
-	$sql_and = '';
-
+	$sql = 'SELECT item_id, item_name, item_iso_code, item_symbol
+		FROM ' . DONATION_ITEM_TABLE . "
+		WHERE item_type = '" . $db->sql_escape($type) . "'
+			AND item_enable = 1
+		ORDER BY left_id";
 	if ($format == 'default_currency' && $default_currency_check)
 	{
-		$sql_and = 'AND di.item_id = ' . $default;
+		$sql = str_replace('ORDER BY left_id', 'AND item_id = ' . (int) $default . ' ORDER BY left_id', $sql);
 	}
-
-	// SQL Build array
-	$sql_ary = array(
-		'SELECT'	=> 'di.item_id, di.item_name, di.item_iso_code, di.item_symbol',
-		'FROM'		=> array(DONATION_ITEM_TABLE => 'di'),
-		'WHERE'		=> 'di.item_type = "' . $type . '"
-			AND di.item_enable = 1 '
-			. $sql_and,
-		'ORDER_BY'	=> 'di.left_id',
-	);
-	$sql = $db->sql_build_query('SELECT', $sql_ary);
 	$result = $db->sql_query($sql);
 
 	$item_list_options = '';
 
+	// Build output
 	while ($row = $db->sql_fetchrow($result))
 	{
-		$selected = ($row['item_id'] == $default) ? ' selected="selected"' : '' ;
+		$selected = ((int) $row['item_id'] == (int) $default) ? ' selected="selected"' : '' ;
 
 		if ($format == 'acp')
 		{
 			// Build ACP list
-			$item_list_options .= '<option value="' . $row['item_id'] . '"' . $selected . '>' . $row['item_name'] . '</option>';
+			$item_list_options .= '<option value="' . (int) $row['item_id'] . '"' . $selected . '>' . $row['item_name'] . '</option>';
 		}
 		elseif ($format == 'default_currency')
 		{
-			// Build tats default currency
+			// Build stats default currency
 			$item_list_options .= $row['item_iso_code'];
 		}
 		else
 		{
-			//Build main list
+			//Build main donation list
 			$item_list_options .= '<option value="' . $row['item_iso_code'] . '"' . $selected . '>' . $row['item_symbol'] . ' ' . $row['item_iso_code'] . '</option>';
 		}
 	};
 
-	// Assign default value if SQL result is empty 
-	if (empty($item_list_options) && $format == 'default_currency')
+	$db->sql_freeresult($result);
+
+	// Assign default value if SQL result is empty and if is a currency type
+	if (empty($item_list_options) && $format == 'default_currency' && $type =='currency')
 	{
-		$item_list_options = $Lang_key;
+		$item_list_options = $lang_key;
 	}
-	elseif (empty($item_list_options))
+	elseif (empty($item_list_options) && $type =='currency')
 	{
-		$item_list_options = '<option value="' . $Lang_key . '" selected="selected">' . $Lang_key . '</option>';
+		$item_list_options = '<option value="' . $lang_key . '" selected="selected">' . $lang_key . '</option>';
 	}
 	return $item_list_options;
-	$db->sql_freeresult($result);
-}
-
-/**
-* Get table details
-*
-* @param  str $sql
-*/
-function get_info($sql)
-{
-	global $db;
-
-	$result = $db->sql_query($sql);
-	$row = $db->sql_fetchrow($result);
-	$db->sql_freeresult($result);
-
-	if (!$row)
-	{
-		$row = false;
-	}
-
-	return $row;
 }
 ?>

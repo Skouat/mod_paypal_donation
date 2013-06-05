@@ -4,40 +4,10 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod]]></title>
-		<description lang="en"><![CDATA[This MOD add a Paypal Donation page to your site. 
-
-Features :
-=> Safely test this MOD with Paypal Sandbox
-=> Displaying donation statistics on the Donation page and on the bottom of the forum index page
-- Progress bar
-- Donation received
-- Donation used
-- Goal to reach
-=> Advanced currencies management : Add/remove/enable/disable
-=> Backup currency: I hope no, but if you remove or disable all currencies, a Language Key is defined to provide a backup currency. If the language key does not exist, U.S Dollar will be defined as the default currency.
-=> Customize the main donation page, success page and cancel page. You can use BBcode and Language keys.
-=> Automatic redirection to the forum after a successfull/cancelled donations.
-=> Define and suggest a default donation value
-
-All options are manageable from ACP]]></description>
-		<description lang="fr"><![CDATA[Ce MOD ajoute une page de don Paypal à votre forum
-
-Fonctionnalitées :
-=> Paypal Sandbox: Tester le MOD en toute tranquilité
-=> Affichage des Statistiques de don sur la page des dons ainsi qu'en bas de page de l'index du forum.
-- Bar de progression
-- Dons reçus
-- Dons utilisés
-- Objectif des dons à atteindre
-=> Gestion avancées des devises : Ajout/suppression/activation/désactivation
-=> Devise de secours : En cas de désactivation/suppression de toutes les devises, une clé de langue permet de définir une devise de secours par défaut.
-=> Personnaliser les pages des dons, ainsi que les pages de retour au forum (Validation/annulation de dons). Vous pouvez utiliser les BBcode et les clés de langues.
-=> Retourner automatiquement vers le forum si la soumission du don a été validé avec succès ou abondonnée.
-=> Définir et suggérer une valeur de don par défaut.
-
-Toutes les options sont administrables depuis l'ACP]]></description>
-		<author-notes lang="en"><![CDATA[
+		<title lang="en"><![CDATA[Update from Stoker 4.0's Paypal Donation MOD 1.0.3 to Paypal Donation MOD 1.0.0]]></title>
+		<description lang="en"><![CDATA[Those update instructions help you to migrate from Stoker 4.0's MOD to this Paypal Donation version..]]></description>
+		<description lang="fr"><![CDATA[Ces instructions de mise à jour vous aiderons à migrer de Paypal Donation MOD de Stoker 4.0 vers cette version de Paypal Donation MOD]]></description>
+				<author-notes lang="en"><![CDATA[
 This MOD is inspired by the Stoker 4.0's "Paypal Donation MOD 1.0.3".
 By wanting to add to his MOD the management of the currencies, I met to re-code it completely.
 Some displayed features have been kept and improved:
@@ -80,7 +50,7 @@ Voir les instructions dans le dossier /contrib]]>
 			</author>
 		</author-group>
 
-		<mod-version>1.0.0-RC2</mod-version>
+		<mod-version>1.0.0</mod-version>
 
 		<installation>
 			<level>easy</level>
@@ -90,47 +60,44 @@ Voir les instructions dans le dossier /contrib]]>
 
 		<history>
 			<entry>
-				<date>2012-04-11</date>
-				<rev-version>1.0.0-RC2</rev-version>
+				<date>2012-02-04</date>
+				<rev-version>1.0.0</rev-version>
 				<changelog lang="en">
-					<change>Fix: Change code according to the phpBB coding guidelines.</change>
-					<change>Fix: If all currencies are disabled, the first currency that is enabled becomes the default currency.</change>
-					<change>Fix: Characters with accents are not supported in ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
-					<change>Change: HTML usage is replaced by BBcode usage.</change>
-					<change>Add: Possibility to define a default donation value.</change>
-					<change>Add: Ability to set Paypal Sandbox only for board founder.</change>
-					<change>Add: Ability to replace the paypal textbox by a paypal drop-list.</change>
-					<change>Some changed code.</change>
+					<change>Too many change... All the code was rewritten.</change>
 				</changelog>
 				<changelog lang="fr">
-					<change>Correction : Changement du code selon les directive de codage de phpBB.</change>
-					<change>Correction : Si toutes les devises sont désactivées, la première devise qui est activée ne devient pas la devise par défaut.</change>
-					<change>Correction : Les caractères accentués ne sont pas supportés dans ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
-					<change>Modification: L’utilisation du HTML est remplacé par l’utilisation des BBcode.</change>
-					<change>Ajout : Il est possible de définir une valeur de dons par défaut.</change>
-					<change>Ajout : Possibilité d'autoriser Paypal Sandbox seulement pour les foundateurs du forum.</change>
-					<change>Ajout : Possibilité de remplacer la zone de saisie de donation libre par une liste déroulante.</change>
-					<change>Divers changement dans le code.</change>
+					<change>Trop de changement... Tout le code a été récrit.</change>
 				</changelog>
 			</entry>
 			<entry>
-				<date>2012-01-24</date>
-				<rev-version>1.0.0-RC1</rev-version>
+				<date>2011-11-23</date>
+				<rev-version>1.0.3 of Stoker 4.0's MOD</rev-version>
 				<changelog lang="en">
-					<change>First public version...</change>
+					<change>Last version of Stoker 4.0's MOD.</change>
 				</changelog>
 				<changelog lang="fr">
-					<change>Première version public...</change>
+					<change>Dernière version du MOD de Stoker 4.0.</change>
 				</changelog>
 			</entry>
 		</history>
 		<link-group>
-			<link type="contrib" href="./contrib/update_100-RC1_100-RC2.xml" lang="en">Paypal Donation Mod update 1.0.0-RC1 to 1.0.0-RC2</link>
-			<link type="contrib" href="./contrib/update_Stoker-4.0-Paypal-Donation-MOD-103_Paypal-Donation-MOD-100.xml" lang="en">update from Stoker 4.0's Paypal Donation MOD 1.0.3 to Paypal Donation MOD 1.0.0-RC2</link>
-			<link type="language" href="./contrib/language_fr.xml" lang="en">fr_FR</link>
+			<link type="parent" href="../install.xml" lang="en">Parent MOD installation</link>
 		</link-group>
 	</header>
 	<action-group>
+		<sql><![CDATA[DROP TABLE  `phpbb_donation`]]></sql>
+		<sql><![CDATA[DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_achievement';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_achievement_enable';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_email';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_enable';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_goal';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_goal_currency';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_goal_currency_enable';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_goal_enable';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_index_enable';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_mod_version';]]></sql>
+		<sql><![CDATA[DELETE FROM `phpbb_modules` WHERE `phpbb_modules`.`module_langname` = 'ACP_DONATION_MOD';
+DELETE FROM `phpbb_modules` WHERE `phpbb_modules`.`module_langname` = 'DONATION_CONFIG';]]></sql>
 		<copy>
 			<file from="root/donate.php" to="donate.php" />
 			<file from="root/install_donation_mod.php" to="install_donation_mod.php" />
@@ -144,6 +111,13 @@ Voir les instructions dans le dossier /contrib]]>
 			<file from="root/styles/prosilver/theme/donation.css" to="styles/prosilver/theme/donation.css" />
 			<file from="root/umil/*.*" to="umil/*.*" />
 		</copy>
+		<delete>
+			<file name="images/loader.gif" />
+			<file name="images/prog_green.png" />
+			<file name="images/prog_grey.png" />
+			<file name="styles/prosilver/theme/donate/cancel_body.html" />
+			<file name="styles/prosilver/theme/donate/success_body.html" />
+		</delete>
 		<open src="index.php">
 			<edit>
 				<find><![CDATA[$user->setup('viewforum');]]></find>
@@ -158,8 +132,28 @@ if ($config['donation_enable'] && $config['donation_stats_index_enable'])
 ]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[// Output page]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+				<find><![CDATA[if (!empty($config['donation_index_enable']) && $config['donation_index_enable'] == 1)
+{
+$user->add_lang('mods/donate');
+$template->assign_vars(array(	
+	'DONATION_ACHIEVEMENT_ENABLE'		=> (isset($config['donation_achievement_enable'])) ? $config['donation_achievement_enable']:false,
+	'DONATION_ACHIEVEMENT'				=> (isset($config['donation_achievement'])) ? $config['donation_achievement']:false,
+	'DONATION_INDEX_ENABLE'				=> (isset($config['donation_index_enable'])) ? $config['donation_index_enable']:false,
+	'DONATION_GOAL_ENABLE'				=> (isset($config['donation_goal_enable'])) ? $config['donation_goal_enable']:false,
+	'DONATION_GOAL'						=> (isset($config['donation_goal'])) ? $config['donation_goal']:false,
+	'DONATION_GOAL_CURRENCY_ENABLE'		=> (isset($config['donation_goal_currency_enable'])) ? $config['donation_goal_currency_enable']:false,
+	'DONATION_GOAL_CURRENCY'			=> (isset($config['donation_goal_currency'])) ? $config['donation_goal_currency']:false,
+));
+}
+
+if (!empty($config['donation_goal_enable']) &&  $config['donation_goal'] > 0)
+{
+$donation_goal_number = ($config['donation_achievement'] * 100) / $config['donation_goal'];
+$template->assign_vars(array(
+   'DONATION_GOAL_NUMBER'            => $donation_goal_number,
+));
+}]]></find>
+				<action type="replace-with"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
 //-- add
 if ($config['donation_enable'] && $config['donation_stats_index_enable'])
 {
@@ -191,10 +185,15 @@ if ($config['donation_enable'] && $config['donation_stats_index_enable'])
 		</open>
 		<open src="viewonline.php">
 			<edit>
+				<remove><![CDATA[		case 'donate':
+			$location = $user->lang['VIEWING_DONATE'];
+			$location_url = append_sid("{$phpbb_root_path}donate.$phpEx");
+		break;
+]]></remove>
+			</edit>
+			<edit>
 				<find><![CDATA[		default:
-			$location = $user->lang['INDEX'];
-			$location_url = append_sid("{$phpbb_root_path}index.$phpEx");
-		break;]]></find>
+			$location = $user->lang['INDEX'];]]></find>
 				<action type="before-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
 //-- add
 		case 'donate':
@@ -207,8 +206,11 @@ if ($config['donation_enable'] && $config['donation_stats_index_enable'])
 		</open>
 		<open src="includes/constants.php">
 			<edit>
-				<find><![CDATA[// Additional tables]]></find>
-				<action type="after-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
+				<find><![CDATA[// BEGIN Donation MOD
+define('DONATION_TABLE',			$table_prefix . 'donation');
+// END Donation MOD
+]]></find>
+				<action type="replace-with"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
 //-- add
 define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
 //-- end : Paypal Donation --------------------------------------------------------
@@ -216,6 +218,12 @@ define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
 			</edit>
 		</open>
 		<open src="includes/functions.php">
+			<edit>
+				<remove><![CDATA[// BEGIN Donation Mod
+		'U_DONATE'				=> append_sid("{$phpbb_root_path}donate.$phpEx"),
+		'S_DONATE_ENABLED'		=> (!empty($config['donation_enable'])) ? true : false,
+// END Donation Mod]]></remove>
+			</edit>
 			<edit>
 				<find><![CDATA[		'A_COOKIE_SETTINGS'		=> addslashes('; path=' . $config['cookie_path'] . ((!$config['cookie_domain'] || $config['cookie_domain'] == 'localhost' || $config['cookie_domain'] == '127.0.0.1') ? '' : '; domain=' . $config['cookie_domain']) . ((!$config['cookie_secure']) ? '' : '; secure')),
 	));
@@ -232,30 +240,33 @@ define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
 		</open>
 		<open src="language/en/common.php">
 			<edit>
-				<find><![CDATA[?>]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
+				<find><![CDATA[// BEGIN Donation MOD
+$lang = array_merge($lang, array(
+	'DONATEINDEX'				=> 'Donate',
+	'VIEWING_DONATE'			=> 'Viewing Donation page',
+));
+// Donation MOD]]></find>
+				<action type="replace-with"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
 //-- add
 $lang = array_merge($lang, array(
 	'DONATEINDEX'				=> 'Donate',
 	'VIEWING_DONATE'			=> 'Viewing Donation page',
 ));
-//-- end : Paypal Donation --------------------------------------------------------
-]]></action>
+//-- end : Paypal Donation --------------------------------------------------------]]></action>
 			</edit>
 		</open>
-		<open src="styles/prosilver/template/index_body.html">
+			<open src="styles/prosilver/template/index_body.html">
 			<edit>
-				<find><![CDATA[<!-- IF NEWEST_USER -->]]></find>
-				<action type="before-add"><![CDATA[<!-- IF DONATION_STATS_INDEX_ENABLE and (DONATION_RAISED_ENABLE or DONATION_GOAL_ENABLE or DONATION_USED_ENABLE) -->
+				<find><![CDATA[<!-- IF DONATION_INDEX_ENABLE and (DONATION_ACHIEVEMENT_ENABLE or DONATION_GOAL_ENABLE) -->
+	<h3><a href="{U_DONATE}">{L_DONATIONS_INDEX}</a></h3>
+	<!-- IF DONATION_GOAL_ENABLE and DONATION_ACHIEVEMENT_ENABLE and DONATION_GOAL > 0 -->
+	<div style="background:url('{ROOT_PATH}images/prog_grey.png') repeat-x; background-color: #cccccc; border: 1px solid black; width:100%; margin-top: 2px;"><div style="background:url('{ROOT_PATH}images/prog_green.png') repeat-x;background-color: #008040; color: white; font-weight:bold; max-width:100%;  width:{DONATION_GOAL_NUMBER}%; height:24px;"><span style="padding-left:25px; font-size:18px;">{DONATION_GOAL_NUMBER}%</span></div></div>
+	<!-- ENDIF -->
+	<p style="text-align:center;"><!-- IF DONATION_ACHIEVEMENT_ENABLE -->{L_WE_HAVE_ACHIEVED} <strong><!-- IF DONATION_ACHIEVEMENT > 0 -->{DONATION_ACHIEVEMENT}<!-- ELSE -->{DONATION_GOAL_NUMBER}<!-- ENDIF --></strong><!-- IF DONATION_GOAL_CURRENCY_ENABLE --> {DONATION_GOAL_CURRENCY}<!-- ENDIF --> {L_WE_HAVE_ACHIEVED_IN}<!-- ENDIF --><!-- IF DONATION_GOAL_ENABLE and DONATION_GOAL > 0 --> {L_OUR_DONATION_GOAL} <strong>{DONATION_GOAL}</strong><!-- IF DONATION_GOAL_CURRENCY_ENABLE --> {DONATION_GOAL_CURRENCY}<!-- ENDIF -->.<!-- ENDIF --></p>
+<!-- ENDIF -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF DONATION_STATS_INDEX_ENABLE and (DONATION_RAISED_ENABLE or DONATION_GOAL_ENABLE or DONATION_USED_ENABLE) -->
 	<!-- INCLUDE donate/donate_stats.html -->
-<!-- ENDIF -->
-]]></action>
-			</edit>
-		</open>
-		<open src="styles/prosilver/template/overall_header.html">
-			<edit>
-				<find><![CDATA[				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
-				<action type="before-add"><![CDATA[				<!-- IF S_DONATE_ENABLED --><li class="icon-bump"><a href="{U_DONATE}">{L_DONATEINDEX}</a></li><!-- ENDIF -->]]></action>
+<!-- ENDIF -->]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/theme/stylesheet.css">
@@ -267,8 +278,11 @@ $lang = array_merge($lang, array(
 		</open>
 		<php-installer><![CDATA[install_donation_mod.php]]></php-installer>
 
-		<diy-instructions lang="en"><![CDATA[Upload all included files.
-Run the installer.
-Set the Paypal Donation Mod settings under the .MOD tab.]]></diy-instructions>
+		<diy-instructions lang="en"><![CDATA[--------- Update instructions ---------
+- Upload all included files.
+- If you haven't already do it, now execute SQL instructions.
+- Go to ACP, refresh your style and purge your cache
+- Run the installer
+- Set the Paypal Donation Mod settings under the .MOD tab.]]></diy-instructions>
 	</action-group>
 </mod>
