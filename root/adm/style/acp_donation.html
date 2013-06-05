@@ -1,0 +1,125 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF S_MODE == 'donation_pages' -->
+	<h1>{L_TITLE}</h1>
+
+	<p>{L_TITLE_EXPLAIN}</p>
+
+	<form id="acp_donation" method="post" action="{U_ACTION}">
+		<!-- BEGIN donation_pages -->
+		<fieldset>
+			<legend>{donation_pages.L_ITEM_NAME}</legend>
+			<dl>
+					<dt><label for="pages[{donation_pages.S_DONATION_TYPE}]">{donation_pages.L_DONATION_PAGES_TITLE}:</label><br />
+					<span>{donation_pages.L_DONATION_PAGES_TITLE_EXPLAIN}</span></dt>
+					<dd><textarea id="pages[{donation_pages.S_DONATION_TYPE}]" name="pages[{donation_pages.S_DONATION_TYPE}]" rows="8" cols="45">{donation_pages.DONATION_BODY}</textarea></dd>
+				</dl>
+		</fieldset>
+		<!-- END donation_pages -->
+
+		<p class="submit-buttons">
+				<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+		{S_FORM_TOKEN}
+	</form>
+
+<!-- ELSE -->
+	<!-- IF S_EDIT -->
+
+		<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+
+		<h1>{L_TITLE}</h1>
+
+		<p>{L_TITLE_EXPLAIN}</p>
+
+		<form id="acp_donation" method="post" action="{U_ACTION}">
+
+			<fieldset>
+				<legend>{L_GENERAL_OPTIONS}</legend>
+				<dl>
+					<dt><label for="item_name">{L_ITEM_NAME}:</label><br /><span>{L_ITEM_NAME_EXPLAIN}</span></dt>
+					<dd><input id="item_name" name="item_name" type="text" class="text medium" value="{ITEM_NAME}" /></dd>
+				</dl>
+				<dl>
+					<dt><label for="item_iso_code">{L_ITEM_ISO_CODE}:</label><br /><span>{L_ITEM_ISO_CODE_EXPLAIN}</span></dt>
+					<dd><input id="item_iso_code" name="item_iso_code" type="text" class="text medium" value="{ITEM_ISO_CODE}" /></dd>
+				</dl>
+				<dl>
+					<dt><label for="item_symbol">{L_ITEM_SYMBOL}:</label><br /><span>{L_ITEM_SYMBOL_EXPLAIN}</span></dt>
+					<dd><input id="item_symbol" name="item_symbol" type="text" class="text medium" value="{ITEM_SYMBOL}" /></dd>
+				</dl>
+				<hr />
+				<div id="itemoptions">
+					<dl>
+						<dt><label for="item_enable">{L_ACP_ITEM_ENABLED}:</label><br /><span>{L_ACP_ITEM_ENABLED_EXPLAIN}</span></dt>
+						<dd><label><input id="item_enable" name="item_enable" type="radio" class="radio" value="1"<!-- IF ITEM_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+							<label><input  name="item_enable" type="radio" class="radio" value="0"<!-- IF not ITEM_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+					</dl>
+				</div>
+
+				<p class="submit-buttons">
+					<input type="hidden" name="action" value="save" />
+					{S_HIDDEN_FIELDS}
+
+					<input class="button1" type="submit" id="submit" name="update" value="{L_SUBMIT}" />&nbsp;
+					<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+				</p>
+			</fieldset>
+		</form>
+
+	<!-- ELSE -->
+		<!-- IF U_BACK --><span style="float: {S_CONTENT_FLOW_END};">&laquo; <a href="{U_BACK}">{L_BACK}</a></span><!-- ENDIF -->
+		<form id="acp_donation" method="post" action="{U_ACTION}">
+		<h1>{L_TITLE}</h1>
+
+		<p>{L_TITLE_EXPLAIN}</p>
+
+		<table cellspacing="1">
+			<thead>
+				<tr>
+					<th colspan="1">{L_NAME}</th>
+					<th colspan="2">{L_OPTIONS}</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN items -->
+				<!-- IF items.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+					<td>{items.ITEM_NAME}</td>
+					<td style="width: 15%; white-space: nowrap; text-align: center; vertical-align: middle;">&nbsp;<!-- IF items.ITEM_ENABLED --><a href="{items.U_DISABLE}">{L_DISABLE}</a><!-- ELSE --><a href="{items.U_ENABLE}">{L_ENABLE}</a><!-- ENDIF -->&nbsp;</td>
+					<td style="width:90px; white-space: nowrap; text-align: right; vertical-align: middle;">
+						<!-- IF items.S_FIRST_ROW && not items.S_LAST_ROW && not S_MODE -->
+							{ICON_MOVE_UP_DISABLED}
+							<a href="{items.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+						<!-- ELSEIF not items.S_FIRST_ROW && not items.S_LAST_ROW && not S_MODE -->
+							<a href="{items.U_MOVE_UP}">{ICON_MOVE_UP}</a> 
+							<a href="{items.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a> 
+						<!-- ELSEIF items.S_LAST_ROW && not items.S_FIRST_ROW && not S_MODE -->
+							<a href="{items.U_MOVE_UP}">{ICON_MOVE_UP}</a>	
+							{ICON_MOVE_DOWN_DISABLED}
+						<!-- ELSE -->
+							{ICON_MOVE_UP_DISABLED}
+							{ICON_MOVE_DOWN_DISABLED}
+						<!-- ENDIF -->
+						<a id="{ACTION}_id_{items.ID}" href="{items.U_EDIT}">{ICON_EDIT}</a> 
+						<a href="{items.U_DELETE}">{ICON_DELETE}</a>
+					</td>
+				</tr>
+			<!-- END items -->
+			</tbody>
+		</table>
+
+		<div class="clearfix">&nbsp;</div>
+
+			<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+				{S_HIDDEN_FIELDS}
+				<input class="button2" name="add" type="submit" value="{L_CREATE_ITEM}" />
+				{S_FORM_TOKEN}
+			</fieldset>
+		</form>
+
+		<div class="clearfix">&nbsp;</div><br style="clear: both;" />
+
+	<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

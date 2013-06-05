@@ -1,0 +1,38 @@
+<!-- IF DONATION_STATS_INDEX_ENABLE -->
+<h3><a href="{U_DONATE}">{L_DONATION_INDEX}</a></h3>
+<!-- ENDIF -->
+
+<!-- IF DONATION_GOAL_ENABLE and DONATION_RAISED_ENABLE and DONATION_GOAL > 0 -->
+	<div class="prog_grey"><div class="prog_green" style="width:{DONATION_GOAL_NUMBER}%;"><span class="progress">{DONATION_GOAL_NUMBER}%</span></div></div>
+<!-- ENDIF -->
+
+<p class="donation_stats">
+<!-- IF DONATION_GOAL_ENABLE or DONATION_RAISED_ENABLE -->
+		<!-- IF DONATION_RAISED_ENABLE -->
+			<!-- IF DONATION_RAISED <= 0 -->{L_DONATION_NOT_RECEIVED}<br /><!-- ELSE -->{L_DONATION_RECEIVED} <strong>{DONATION_RAISED}</strong><!-- IF DONATION_CURRENCY_ENABLE --> {DONATION_CURRENCY}<!-- ENDIF --> {L_DONATION_RECEIVED_IN}<!-- IF DONATION_USED_ENABLE --><br /><!-- ENDIF --><!-- ENDIF -->
+		<!-- ENDIF -->
+		<!-- IF DONATION_GOAL_ENABLE -->
+			<!-- IF DONATION_GOAL <= 0 -->
+				{L_DONATION_NO_GOAL}<br />
+			<!-- ELSEIF DONATION_GOAL_ENABLE and DONATION_GOAL > 0 -->
+				<!-- IF DONATION_RAISED < DONATION_GOAL --> {L_DONATION_GOAL_RAISE} <strong>{DONATION_GOAL}</strong><!-- IF DONATION_CURRENCY_ENABLE --> {DONATION_CURRENCY}<!-- ENDIF -->.<br /><!-- ELSE --> {L_DONATION_GOAL_REACHED}<br /><!-- ENDIF -->
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF DONATION_USED_ENABLE and DONATION_RAISED_ENABLE and DONATION_RAISED > 0 and DONATION_USED > 0 -->
+</p>
+<div class="prog_grey"><div class="prog_red" style="width:{DONATION_USED_NUMBER}%;"><span class="progress">{DONATION_USED_NUMBER}%</span></div></div>
+<p class="donation_stats">
+<!-- ENDIF -->
+
+<!-- IF DONATION_USED_ENABLE -->
+		<!-- IF DONATION_USED <= 0 -->
+			{L_DONATION_NOT_USED}
+		<!-- ELSE -->
+			{L_DONATION_USED} <strong>{DONATION_USED}</strong>
+			<!-- IF DONATION_CURRENCY_ENABLE --> {DONATION_CURRENCY}<!-- ENDIF -->
+			<!-- IF DONATION_RAISED > DONATION_USED --> {L_DONATION_USED_OF} {L_DONATION_USED_FROM} <strong>{DONATION_RAISED}</strong><!-- IF DONATION_CURRENCY_ENABLE --> {DONATION_CURRENCY}<!-- ENDIF --> {L_DONATION_ALREADY_RECEIVE}<!-- ELSE -->. {L_DONATION_USED_EXCEEDED}<!-- ENDIF -->
+		<!-- ENDIF -->
+	<!-- ENDIF -->
+</p>

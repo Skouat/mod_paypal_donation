@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Paypal Donation Mod]]></title>
+		<description lang="en"><![CDATA[With this MOD you can : 
+- Enable/disable stats about donations (progress bar, donation received, goal to reach) on the Donation Page. In addtion, can be displayed on the bottom of the forum index page.
+- Manage currency you want to active.
+- Automatic redirection to the forum after a successfull/cancelled donations.
+- Customize with a text or HTML code the main donation page, success page and cancel page. Also you can define Language keys.
+
+All options are manageable from ACP]]></description>
+		<description lang="fr"><![CDATA[Avec ce MOD vous pouvez :
+- Activer/désactiver les statistisques des dons (Bar de progression, dons reçus, objectif des dons à atteindre) de la page des Dons. En option, il est possible d'afficher les stats en bas de l'index du forum.
+- Gérer les devises que vous souhaiter activer
+- Retourner automatiquement vers le forum si la soumission du don a été validé avec succès ou abondonné.
+- Personnaliser avec un texte ou du code HTML la page des dons, ainsi que les pages de retour au forum (Validation/annulation de dons).
+
+Toutes les options sont administrables depuis l'ACP]]></description>
+		<author-notes lang="en"><![CDATA[
+This MOD is inspired by the Stocker 4.0 Donation MOD.
+Some displayed features have been kept :
+- Stats
+- Customizable pages with text]]>
+		</author-notes>
+		<author-notes lang="fr"><![CDATA[
+Ce MOD est inspiré de "Paypal Donation" de Stocker 4.0.
+Certaines fonctionnalités ont été gardées :
+- Visualisation des statistiques
+- Personalisation des pages avec du texte]]>
+		</author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Skouat]]></realname>
+				<username><![CDATA[Skouat]]></username>
+				<homepage><![CDATA[http://www.ultima-flyff.com]]></homepage>
+				<contributions-group>
+					<contributions status="current" from="2012-01-14" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+
+		<mod-version>1.0.0-RC1</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.10</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2012-01-15</date>
+				<rev-version>1.0.0-RC1</rev-version>
+				<changelog lang="en">
+					<change>First public version..</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">Parent MOD installation</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/language/fr/mods/*.*" to="language/fr/mods/*.*" />
+			<file from="root/styles/prosilver/imageset/fr/donate.gif" to="styles/prosilver/imageset/fr/donate.gif" />
+		</copy>
+		<open src="language/fr/common.php">
+			<edit>
+				<find><![CDATA[?>]]></find>
+				<action type="before-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+//-- add
+$lang = array_merge($lang, array(
+	'DONATEINDEX'				=> 'Faire un don',
+	'VIEWING_DONATE'			=> 'Consulte la page des dons',
+));
+//-- end : Paypal donation --------------------------------------------------------
+]]></action>
+			</edit>
+		</open>
+
+		<diy-instructions lang="en"><![CDATA[Upload included language files.
+Go to ACP, refresh your style and purge your cache.]]></diy-instructions>
+	</action-group>
+</mod>
