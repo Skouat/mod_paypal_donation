@@ -4,69 +4,9 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod]]></title>
-		<description lang="en"><![CDATA[This MOD add a Paypal Donation page to your site. 
-
-Features :
-=> Safely test this MOD with Paypal Sandbox
-=> Displaying donation statistics on the Donation page and on the bottom of the forum index page
-- Progress bar
-- Donation received
-- Donation used
-- Goal to reach
-=> Advanced currencies management : Add/remove/enable/disable
-=> Backup currency: I hope no, but if you remove or disable all currencies, a Language Key is defined to provide a backup currency. If the language key does not exist, U.S Dollar will be defined as the default currency.
-=> Customize the main donation page, success page and cancel page. You can use BBcode and Language keys.
-=> Automatic redirection to the forum after a successfull/cancelled donations.
-=> Define and suggest a default donation value, or use a drop-down list.
-
-Styles :
-=> Prosilver
-=> Subsilver2
-
-All options are manageable from ACP]]></description>
-		<description lang="fr"><![CDATA[Ce MOD ajoute une page de don Paypal à votre forum
-
-Fonctionnalitées :
-=> Paypal Sandbox: Tester le MOD en toute tranquilité
-=> Affichage des Statistiques de don sur la page des dons ainsi qu'en bas de page de l'index du forum.
-- Bar de progression
-- Dons reçus
-- Dons utilisés
-- Objectif des dons à atteindre
-=> Gestion avancées des devises : Ajout/suppression/activation/désactivation
-=> Devise de secours : En cas de désactivation/suppression de toutes les devises, une clé de langue permet de définir une devise de secours par défaut.
-=> Personnaliser les pages des dons, ainsi que les pages de retour au forum (Validation/annulation de dons). Vous pouvez utiliser les BBcode et les clés de langues.
-=> Retourner automatiquement vers le forum si la soumission du don a été validé avec succès ou abondonnée.
-=> Définir et suggérer une valeur de don par défaut, ou utiliser une liste déroulante.
-
-Styles :
-=> Prosilver
-=> Subsilver2
-
-Toutes les options sont administrables depuis l'ACP]]></description>
-		<author-notes lang="en"><![CDATA[
-This MOD is inspired by the Stoker 4.0's "Paypal Donation MOD 1.0.3".
-By wanting to add to his MOD the management of the currencies, I met to re-code it completely.
-Some displayed features have been kept and improved:
-- Stats displaying
-- Customizable pages with text
-Thanks to Stoker 4.0 to have accepted that I publish this new version of Paypal Donation.
-
-Caution !!!
-To avoid possible conflict with another Paypal Donation MOD, please backup your files and remove-it before to install this MOD.]]>
-		</author-notes>
-		<author-notes lang="fr"><![CDATA[
-Ce module est inspiré de "Paypal Donation MOD 1.0.3" de Stoker 4.0.
-En voulant ajouter à son MOD la gestion des devises, je me suis retrouvé à entièrement le recoder.
-Certaines fonctionnalitées ont été gardées et améliorées:
-- Visualisation des statistiques
-- Personalisation des pages avec du texte
-Merci à Stoker 4.0 d'avoir accepté que je publie cette nouvelle mouture de Paypal Donation.
-
-Attention !!!
-Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichiers et désintallez-le avant d'installer ce MOD.]]>
-		</author-notes>
+		<title lang="en"><![CDATA[Paypal Donation Mod - Update from 1.0.1 to 1.0.2]]></title>
+		<description lang="en"><![CDATA[Allows to update the MOD from 1.0.1 to 1.0.2]]></description>
+		<description lang="fr"><![CDATA[Permet de mettre à jour le MOD de la version 1.0.1 à la version 1.0.2]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Skouat]]></realname>
@@ -76,29 +16,13 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 					<contributions status="current" from="2009-08-02" position="Developer"/>
 				</contributions-group>
 			</author>
-			<author>
-				<realname><![CDATA[Stoker 4.0]]></realname>
-				<username><![CDATA[Stoker 4.0]]></username>
-				<homepage><![CDATA[http://www.phpbb3bbcodes.com]]></homepage>
-				<contributions-group>
-					<contributions status="past" position="Initial MOD Developer"/>
-				</contributions-group>
-			</author>
-			<author>
-				<realname><![CDATA[Adrien BONNEL]]></realname>
-				<username><![CDATA[ABDev]]></username>
-				<homepage><![CDATA[http://www.phpbb-forge.com]]></homepage>
-				<contributions-group>
-					<contributions status="current" from="2012-01-24" position="Debugger"/>
-				</contributions-group>
-			</author>
 		</author-group>
 
 		<mod-version>1.0.2</mod-version>
 
 		<installation>
 			<level>easy</level>
-			<time>300</time>
+			<time>60</time>
 			<target-version>3.0.10</target-version>
 		</installation>
 
@@ -193,16 +117,7 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 			</entry>
 		</history>
 		<link-group>
-			<link type="language" href="./contrib/languages/fr.xml" lang="fr">fr_FR</link>
-			<link type="contrib" href="./contrib/updates/update_101_to_102.xml" lang="en">Paypal Donation Mod update 1.0.1 to 1.0.2</link>
-			<link type="contrib" href="./contrib/updates/update_100-RC2_to_101.xml" lang="en">Paypal Donation Mod update 1.0.0-RC2 to 1.0.1</link>
-			<link type="contrib" href="./contrib/updates/update_100-RC1_to_100-RC2.xml" lang="en">Paypal Donation Mod update 1.0.0-RC1 to 1.0.0-RC2</link>
-			<link type="contrib" href="./contrib/updates/update_Stoker-4.0-Paypal-Donation-MOD-103_to_Paypal-Donation-MOD-101.xml" lang="en">Update from “Stoker 4.0's Paypal Donation MOD 1.0.3” to “Paypal Donation MOD 1.0.1”</link>
-			<link type="contrib" href="./contrib/updates/update_Stoker-4.0-Paypal-Donation-MOD-104_to_Paypal-Donation-MOD-101.xml" lang="en">Update from “Stoker 4.0's Paypal Donation MOD 1.0.4” to “Paypal Donation MOD 1.0.1”</link>
-			<link type="contrib" href="./contrib/add-ons/addon_mod_check_version/mod_version_check.xml" lang="en">Add-on for “MOD Version Check” MOD</link>
-			<link type="contrib" href="./contrib/add-ons/addon_advanced_bbcode_box_3/advanced_bbcode_box_3.xml" lang="en">Add-on for “Advanced BBCode Box 3” MOD</link>
-			<link type="template" href="./contrib/template/subsilver2/subsilver2.xml" lang="en">Subsilver2</link>
-			<link type="template-lang" href="./contrib/template-lang/subsilver2/fr-subsilver2.xml" lang="fr">Subsilver2 FR</link>
+			<link type="parent" href="../../install.xml" lang="en">Parent MOD installation</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -222,19 +137,38 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 		</copy>
 		<open src="index.php">
 			<edit>
-				<find><![CDATA[$user->setup('viewforum');]]></find>
-				<action type="after-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
-//-- add
-if (!empty($config['donation_enable']) && !empty($config['donation_stats_index_enable']))
-{
-	$user->add_lang('mods/donate');
-	include($phpbb_root_path . 'includes/functions_donation.' . $phpEx);
-}
-//-- end : Paypal donation --------------------------------------------------------]]></action>
+				<find><![CDATA[if ($config['donation_enable'] && $config['donation_stats_index_enable'])]]></find>
+				<action type="replace-with"><![CDATA[if (!empty($config['donation_enable']) && !empty($config['donation_stats_index_enable']))]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[// Output page]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+				<find><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+//-- add
+if ($config['donation_enable'] && $config['donation_stats_index_enable'])
+{
+	$template->assign_vars(array(
+		'DONATION_STATS_INDEX_ENABLE'	=> (!empty($config['donation_stats_index_enable'])) ? true : false,
+		'DONATION_RAISED_ENABLE'		=> (!empty($config['donation_raised_enable'])) ? true : false,
+		'DONATION_RAISED'				=> (!empty($config['donation_raised'])) ? $config['donation_raised'] : 0,
+		'DONATION_GOAL_ENABLE'			=> (!empty($config['donation_goal_enable'])) ? true : false,
+		'DONATION_GOAL'					=> (!empty($config['donation_goal'])) ? $config['donation_goal'] : 0,
+		'DONATION_USED_ENABLE'			=> (!empty($config['donation_used_enable'])) ? true : false,
+		'DONATION_USED'					=> (!empty($config['donation_used'])) ? $config['donation_used'] : 0,
+		'DONATION_CURRENCY_ENABLE'		=> (!empty($config['donation_currency_enable'])) ? true : false,
+		'DONATION_CURRENCY'				=> donation_item_list((int) $config['donation_default_currency'], 'currency', 'default_currency', $user->lang['CURRENCY_DEFAULT']),
+	));
+
+	if ($config['donation_goal_enable'] && (int) $config['donation_goal'] > 0)
+	{
+		donation_percent_stats('GOAL_NUMBER', (int) $config['donation_raised'], (int) $config['donation_goal']);
+	}
+
+	if ($config['donation_used_enable'] && (int) $config['donation_raised'] > 0 && (int) $config['donation_used'] > 0)
+	{
+		donation_percent_stats('USED_NUMBER', (int) $config['donation_used'], (int) $config['donation_raised']);
+	}
+}
+//-- end : Paypal donation --------------------------------------------------------]]></find>
+				<action type="replace-with"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
 //-- add
 if (!empty($config['donation_enable']) && !empty($config['donation_stats_index_enable']))
 {
@@ -265,87 +199,19 @@ if (!empty($config['donation_enable']) && !empty($config['donation_stats_index_e
 //-- end : Paypal donation --------------------------------------------------------]]></action>
 			</edit>
 		</open>
-		<open src="viewonline.php">
-			<edit>
-				<find><![CDATA[		default:
-			$location = $user->lang['INDEX'];
-			$location_url = append_sid("{$phpbb_root_path}index.$phpEx");
-		break;]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
-//-- add
-		case 'donate':
-			$location = $user->lang['VIEWING_DONATE'];
-			$location_url = append_sid("{$phpbb_root_path}donate.$phpEx");
-		break;
-//-- end : Paypal Donation --------------------------------------------------------]]></action>
-			</edit>
-		</open>
-		<open src="includes/constants.php">
-			<edit>
-				<find><![CDATA[// Additional tables]]></find>
-				<action type="after-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
-//-- add
-define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
-//-- end : Paypal Donation --------------------------------------------------------]]></action>
-			</edit>
-		</open>
-		<open src="includes/functions.php">
-			<edit>
-				<find><![CDATA[		'A_COOKIE_SETTINGS'		=> addslashes('; path=' . $config['cookie_path'] . ((!$config['cookie_domain'] || $config['cookie_domain'] == 'localhost' || $config['cookie_domain'] == '127.0.0.1') ? '' : '; domain=' . $config['cookie_domain']) . ((!$config['cookie_secure']) ? '' : '; secure')),
-	));
-]]></find>
-				<action type="after-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
-//-- add
-	if ((!empty($config['donation_enable']) && !empty($config['donation_account_id'])) || (!empty($config['paypal_sandbox_enable']) && !empty($config['paypal_sandbox_address'])))
-	{
-		$template->assign_vars(array(
-			'U_DONATE'			=> append_sid("{$phpbb_root_path}donate.$phpEx"),
-			'S_DONATE_ENABLED'	=> true,
-		));
-	}
-//-- end : Paypal Donation --------------------------------------------------------]]></action>
-			</edit>
-		</open>
-		<open src="language/en/common.php">
-			<edit>
-				<find><![CDATA[?>]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
-//-- add
-$lang = array_merge($lang, array(
-	'DONATEINDEX'				=> 'Donate',
-	'VIEWING_DONATE'			=> 'Viewing Donation page',
-));
-//-- end : Paypal Donation --------------------------------------------------------]]></action>
-			</edit>
-		</open>
-		<open src="styles/prosilver/template/index_body.html">
-			<edit>
-				<find><![CDATA[<!-- IF NEWEST_USER -->]]></find>
-				<action type="before-add"><![CDATA[<!-- IF DONATION_STATS_INDEX_ENABLE and (DONATION_RAISED_ENABLE or DONATION_GOAL_ENABLE or DONATION_USED_ENABLE) -->
-	<!-- INCLUDE donate/donate_stats.html -->
-<!-- ENDIF -->
-]]></action>
-			</edit>
-		</open>
 		<open src="styles/prosilver/template/overall_header.html">
 			<edit>
-				<find><![CDATA[				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
-				<action type="before-add"><![CDATA[				<!-- IF S_DONATE_ENABLED --><li class="icon-donate"><a href="{U_DONATE}">{L_DONATEINDEX}</a></li><!-- ENDIF -->]]></action>
-			</edit>
-		</open>
-		<open src="styles/prosilver/theme/stylesheet.css">
-			<edit>
-				<find><![CDATA[@import url("colours.css");]]></find>
-				<action type="after-add"><![CDATA[@import url("donation.css");]]></action>
+				<find><![CDATA[				<!-- IF S_DONATE_ENABLED --><li class="icon-bump"><a href="{U_DONATE}">{L_DONATEINDEX}</a></li><!-- ENDIF -->]]></find>
+				<action type="replace-with"><![CDATA[				<!-- IF S_DONATE_ENABLED --><li class="icon-donate"><a href="{U_DONATE}">{L_DONATEINDEX}</a></li><!-- ENDIF -->]]></action>
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_donation_mod.php]]></php-installer>
 
-		<diy-instructions lang="en"><![CDATA[Upload all included files.
-Run the installer.
-Set the Paypal Donation Mod settings under the .MOD tab.]]></diy-instructions>
-		<diy-instructions lang="fr"><![CDATA[Transféer tous les fichiers.
-Executer le fichier d'installation.
-Définir les paramètres de Paypal Donation Mod depuis l'ACP dans l'onglet ".MOD".]]></diy-instructions>
+		<diy-instructions lang="en"><![CDATA[--------- Update instructions ---------
+Upload all included files.
+Run the installer.]]></diy-instructions>
+		<diy-instructions lang="fr"><![CDATA[--------- Instructions de mise à jour ---------
+Transférer tous les fichiers.
+Executer le fichier d'installation.]]></diy-instructions>
 	</action-group>
 </mod>

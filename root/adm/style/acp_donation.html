@@ -1,10 +1,9 @@
 <!-- INCLUDE overall_header.html -->
 
-<!-- IF S_MODE == 'donation_pages' -->
+<!-- IF S_DONATION_PAGES -->
 
 	<script type="text/javascript">
 	// <![CDATA[
-
 		var form_name = 'acp_donation';
 		var text_name = 'pages[donation_draft]';
 
@@ -33,8 +32,8 @@
 				,cb_{custom_tags.BBCODE_ID}: '{custom_tags.A_BBCODE_HELPLINE}'
 			<!-- END custom_tags -->
 		}
-
 	// ]]>
+
 	<!-- BEGIN donation_pages -->
 		function move_draft_{donation_pages.S_DONATION_TYPE}()
 		{
@@ -134,10 +133,10 @@
 			{S_FORM_TOKEN}
 		</fieldset>
 	</form>
+<!-- ENDIF -->
 
-<!-- ELSE -->
+<!-- IF S_CURRENCY -->
 	<!-- IF S_EDIT -->
-
 		<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
 
 		<h1>{L_TITLE}</h1>
@@ -145,25 +144,24 @@
 		<p>{L_TITLE_EXPLAIN}</p>
 
 		<form id="acp_donation" method="post" action="{U_ACTION}">
-
 			<fieldset>
 				<legend>{L_GENERAL_OPTIONS}</legend>
 				<dl>
-					<dt><label for="item_name">{L_ITEM_NAME}:</label><br /><span>{L_ITEM_NAME_EXPLAIN}</span></dt>
+					<dt><label for="item_name">{L_DONATION_DC_NAME}:</label><br /><span>{L_DONATION_DC_NAME_EXPLAIN}</span></dt>
 					<dd><input id="item_name" name="item_name" type="text" class="text medium" value="{ITEM_NAME}" /></dd>
 				</dl>
 				<dl>
-					<dt><label for="item_iso_code">{L_ITEM_ISO_CODE}:</label><br /><span>{L_ITEM_ISO_CODE_EXPLAIN}</span></dt>
+					<dt><label for="item_iso_code">{L_DONATION_DC_ISO_CODE}:</label><br /><span>{L_DONATION_DC_ISO_CODE_EXPLAIN}</span></dt>
 					<dd><input id="item_iso_code" name="item_iso_code" type="text" class="text medium" value="{ITEM_ISO_CODE}" /></dd>
 				</dl>
 				<dl>
-					<dt><label for="item_symbol">{L_ITEM_SYMBOL}:</label><br /><span>{L_ITEM_SYMBOL_EXPLAIN}</span></dt>
+					<dt><label for="item_symbol">{L_DONATION_DC_SYMBOL}:</label><br /><span>{L_DONATION_DC_SYMBOL_EXPLAIN}</span></dt>
 					<dd><input id="item_symbol" name="item_symbol" type="text" class="text medium" value="{ITEM_SYMBOL}" /></dd>
 				</dl>
 				<hr />
 				<div id="itemoptions">
 					<dl>
-						<dt><label for="item_enable">{L_ACP_ITEM_ENABLED}:</label><br /><span>{L_ACP_ITEM_ENABLED_EXPLAIN}</span></dt>
+						<dt><label for="item_enable">{L_DONATION_DC_ENABLED}:</label><br /><span>{L_DONATION_DC_ENABLED_EXPLAIN}</span></dt>
 						<dd><label><input id="item_enable" name="item_enable" type="radio" class="radio" value="1"<!-- IF ITEM_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
 							<label><input  name="item_enable" type="radio" class="radio" value="0"<!-- IF not ITEM_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
 					</dl>
@@ -172,7 +170,6 @@
 			</fieldset>
 			<fieldset>
 				<p class="submit-buttons">
-					<input type="hidden" name="action" value="save" />
 					{S_HIDDEN_FIELDS}
 					<input class="button1" type="submit" id="submit" name="update" value="{L_SUBMIT}" />&nbsp;
 					<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
@@ -182,12 +179,11 @@
 		</form>
 
 	<!-- ELSE -->
-		<!-- IF U_BACK --><span style="float: {S_CONTENT_FLOW_END};">&laquo; <a href="{U_BACK}">{L_BACK}</a></span><!-- ENDIF -->
+		<h1>{L_TITLE}</h1>
+
+		<p>{L_TITLE_EXPLAIN}</p>
+
 		<form id="acp_donation" method="post" action="{U_ACTION}">
-			<h1>{L_TITLE}</h1>
-
-			<p>{L_TITLE_EXPLAIN}</p>
-
 			<table cellspacing="1">
 				<thead>
 					<tr>
@@ -198,7 +194,7 @@
 				<tbody>
 				<!-- BEGIN items -->
 					<!-- IF items.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
-						<td>{items.ITEM_NAME}</td>
+						<td><a href="{items.U_EDIT}">{items.ITEM_NAME}</a></td>
 						<td style="width: 15%; white-space: nowrap; text-align: center; vertical-align: middle;">&nbsp;<!-- IF items.ITEM_ENABLED --><a href="{items.U_DISABLE}">{L_DISABLE}</a><!-- ELSE --><a href="{items.U_ENABLE}">{L_ENABLE}</a><!-- ENDIF -->&nbsp;</td>
 						<td style="width:90px; white-space: nowrap; text-align: right; vertical-align: middle;">
 							<!-- IF items.S_FIRST_ROW && not items.S_LAST_ROW && not S_MODE -->

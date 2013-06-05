@@ -4,10 +4,9 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Add-on for “MOD Version Check” MOD]]></title>
-		<title lang="fr"><![CDATA[Contribution pour le MOD “MOD Version Check”]]></title>
-		<description lang="en"><![CDATA[Allows to check the updates of “Paypal Donation MOD”]]></description>
-		<description lang="fr"><![CDATA[Permet de vérifier les mises à jour de MOD “Paypal Donation MOD”]]></description>
+		<title lang="en"><![CDATA[Paypal Donation Mod - Subsilver2 FR]]></title>
+		<description lang="en"><![CDATA[French modifications for Subsilver2]]></description>
+		<description lang="fr"><![CDATA[Modifications française pour Subsilver2]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Skouat]]></realname>
@@ -18,20 +17,41 @@
 				</contributions-group>
 			</author>
 		</author-group>
+
 		<mod-version>1.0.2</mod-version>
+
 		<installation>
 			<level>easy</level>
 			<time>60</time>
 			<target-version>3.0.10</target-version>
 		</installation>
+
+		<history>
+			<entry>
+				<date>2012-07-05</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change>First version...</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Première version...</change>
+				</changelog>
+			</entry>
+		</history>
 		<link-group>
-			<link type="dependency" href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod" lang="en">Paypal Donation MOD</link>
-			<link type="dependency" href="http://www.phpbb.com/customise/db/mod/mod_version_check" lang="en">MOD Version Check</link>
+			<link type="parent" href="../../../install.xml" lang="en">Parent MOD installation</link>
 		</link-group>
 	</header>
 	<action-group>
 		<copy>
-			<file from="root/adm/mods/paypal_donation_version.php" to="adm/mods/paypal_donation_version.php" />
+			<file from="root/styles/subsilver2/imageset/fr/donate.gif" to="styles/subsilver2/imageset/fr/donate.gif" />
 		</copy>
+
+		<diy-instructions lang="en"><![CDATA[--------- Subsilver2-FR ---------
+Upload included language files.
+Go to ACP, refresh your style and purge your cache.]]></diy-instructions>
+		<diy-instructions lang="fr"><![CDATA[--------- Subsilver2-FR ---------
+Transférez tous les fichiers.
+Rafraichissez les styles et purgez le cache du forum.]]></diy-instructions>
 	</action-group>
 </mod>

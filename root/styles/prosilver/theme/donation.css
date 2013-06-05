@@ -56,3 +56,12 @@ img.loader {
 	height: 16px;
 	width: 16px;
 }
+
+/* icon */
+.icon-donate {
+	background-position: 0 50%;
+	background-repeat: no-repeat;
+	background-image: none;
+	padding: 1px 0 0 17px;
+	background-image: url("{T_THEME_PATH}/images/icon_donate.gif");
+}

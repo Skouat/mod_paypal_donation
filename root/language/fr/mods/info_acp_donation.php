@@ -38,6 +38,10 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
+
+/**
+* mode: configuration
+*/
 $lang = array_merge($lang, array(
 	'ACP_DONATION_MOD'				=> 'Paypal Donation',
 	'DONATION_CONFIG'				=> 'Configuration',
@@ -45,7 +49,7 @@ $lang = array_merge($lang, array(
 	'DONATION_SAVED'				=> 'Les paramètres de Paypal Donation ont été sauvegardés',
 	'MODE_CURRENCY'					=> 'devise',
 
-// Global Donation settings
+	// Global Donation settings
 	'DONATION_ENABLE'						=> 'Activer Paypal Donation',
 	'DONATION_ENABLE_EXPLAIN'				=> 'Active ou désactive le MOD Paypal Donation.',
 	'DONATION_ACCOUNT_ID'					=> 'ID du compte Paypal',
@@ -59,7 +63,7 @@ $lang = array_merge($lang, array(
 	'DONATION_DROPBOX_VALUE'				=> 'Valeurs de la liste déroulante',
 	'DONATION_DROPBOX_VALUE_EXPLAIN'		=> 'Définissez les nombres que vous voulez voir dans la liste déroulante.<br />Séparez chaques valeurs par une virgule (",") et sans espaces.',
 
-// Paypal sandbox settings
+	// Paypal sandbox settings
 	'SANDBOX_SETTINGS'						=> 'Paramètres Paypal Sandbox',
 	'SANDBOX_ENABLE'						=> 'Tester avec Paypal',
 	'SANDBOX_ENABLE_EXPLAIN'				=> 'Activez cette option si vous voulez utiliser Paypal Sandbox au lieu des Services Paypal.<br />Pratique pour les développeurs/testeurs. Toutes les transactions sont fictives.',
@@ -68,7 +72,7 @@ $lang = array_merge($lang, array(
 	'SANDBOX_ADDRESS'						=> 'Addresse PayPal Sandbox',
 	'SANDBOX_ADDRESS_EXPLAIN'				=> 'Inscrire votre addresse e-mail de vendeur Paypal Sandbox',
 
-// Stats Donation settings
+	// Stats Donation settings
 	'DONATION_STATS_SETTINGS'				=> 'Paramètres des statistiques',
 	'DONATION_STATS_INDEX_ENABLE'			=> 'Statistiques des dons sur l’index',
 	'DONATION_STATS_INDEX_ENABLE_EXPLAIN'	=> 'Activez cette option si vous voulez afficher les statistiques des dons sur l’index du forum',
@@ -84,48 +88,65 @@ $lang = array_merge($lang, array(
 
 	'DONATION_CURRENCY_ENABLE'				=> 'Activer Devise des dons',
 	'DONATION_CURRENCY_ENABLE_EXPLAIN'		=> 'Activez cette option, pour rendre visible le Code ISO 4217 de la devise défini par défaut dans les statistiques des dons',
+));
 
-// Donation Page settings
-	'DONATION_DONATION_PAGES_CONFIG'			=> 'Donation pages',
-	'DONATION_DONATION_PAGES_CONFIG_EXPLAIN'	=> 'Permet d’améliorer le rendu des pages personalisables du MOD',
+/**
+* mode: donation pages
+* Info: language keys are prefixed with 'DONATION_DP_' for 'DONATION_DONATION_PAGES_'
+*/
+$lang = array_merge($lang, array(
+	// Donation Page settings
+	'DONATION_DP_CONFIG'			=> 'Donation pages',
+	'DONATION_DP_CONFIG_EXPLAIN'	=> 'Permet d’améliorer le rendu des pages personalisables du MOD.<br />En savoir plus sur “<a href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod/faq/f_749" title="Comment utiliser les clés de langues?">Comment utiliser les clés de langues ?</a>” (lien externe en anglais).',
 
-// Donation Page Draft settings
-	'DONATION_DRAFT_PREVIEW'				=> 'Aperçu de la pages de dons',
-	'DONATION_DRAFT_SETTINGS'				=> 'Simulation de page de dons',
-	'DONATION_DRAFT_EXPLAIN'				=> 'Rédiger ici votre texte pour la Page des dons',
+	// Donation Page Draft settings
+	'DONATION_DRAFT_PREVIEW'	=> 'Aperçu de la pages de dons',
+	'DONATION_DRAFT_SETTINGS'	=> 'Simulation de page de dons',
+	'DONATION_DRAFT_EXPLAIN'	=> 'Rédiger ici votre texte pour la Page des dons',
 
-// Donation Page Body settings
-	'DONATION_BODY_SETTINGS'				=> 'Paramètres de la Page des dons',
-	'DONATION_BODY'							=> 'Texte de la page des dons',
-	'DONATION_BODY_EXPLAIN'					=> 'Saisir le texte que vous souhaitez afficher sur la page des dons.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langue, mais pas les deux en même temps.<br />Si besoin, Clé de langues à utiliser : <strong>CUSTOM_DONATION_BODY</strong>',
-	'COPY_TO_DONATION_BODY'					=> 'Copier vers Page des dons',
+	// Donation Page Body settings
+	'DONATION_BODY_SETTINGS'	=> 'Paramètres de la Page des dons',
+	'DONATION_BODY'				=> 'Texte de la page des dons',
+	'DONATION_BODY_EXPLAIN'		=> 'Saisir le texte que vous souhaitez afficher sur la page des dons.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langue, mais pas les deux en même temps.<br />Si besoin, Clé de langues à utiliser : <strong>CUSTOM_DONATION_BODY</strong>',
+	'COPY_TO_DONATION_BODY'		=> 'Copier vers Page des dons',
 
-// Donation Success settings
-	'DONATION_SUCCESS_SETTINGS'				=> 'Paramètres de la page des dons validés',
-	'DONATION_SUCCESS'						=> 'Texte de la page des dons validés',
-	'DONATION_SUCCESS_EXPLAIN'				=> 'Saisir le texte que vous souhaitez afficher sur la page des dons validés<br />Après avoir reçus un dons avec succès, les membres seront redirigés sur cette page.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Si besoin, Clé de langue à utiliser : <strong>CUSTOM_DONATION_SUCCESS</strong>',
-	'COPY_TO_DONATION_SUCCESS'				=> 'Copier vers Dons validés',
+	// Donation Success settings
+	'DONATION_SUCCESS_SETTINGS'	=> 'Paramètres de la page des dons validés',
+	'DONATION_SUCCESS'			=> 'Texte de la page des dons validés',
+	'DONATION_SUCCESS_EXPLAIN'	=> 'Saisir le texte que vous souhaitez afficher sur la page des dons validés<br />Après avoir reçus un dons avec succès, les membres seront redirigés sur cette page.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Si besoin, Clé de langue à utiliser : <strong>CUSTOM_DONATION_SUCCESS</strong>',
+	'COPY_TO_DONATION_SUCCESS'	=> 'Copier vers Dons validés',
 
-// Donation Cancel settings
-	'DONATION_CANCEL_SETTINGS'				=> 'Paramètres de la page des dons annulés',
-	'DONATION_CANCEL'						=> 'Texte de la page des dons annulés',
-	'DONATION_CANCEL_EXPLAIN'				=> 'Saisir le texte que vous souhaitez afficher sur la page des dons annulés<br />les membres seront redirigés sur cette page s’ils abandonnent une donnation depuis le site Paypal.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Si besoin, Clé de langue à utiliser : <strong>CUSTOM_DONATION_CANCEL</strong>',
-	'COPY_TO_DONATION_CANCEL'				=> 'Copier vers Dons annulés',
+	// Donation Cancel settings
+	'DONATION_CANCEL_SETTINGS'	=> 'Paramètres de la page des dons annulés',
+	'DONATION_CANCEL'			=> 'Texte de la page des dons annulés',
+	'DONATION_CANCEL_EXPLAIN'	=> 'Saisir le texte que vous souhaitez afficher sur la page des dons annulés<br />les membres seront redirigés sur cette page s’ils abandonnent une donnation depuis le site Paypal.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Si besoin, Clé de langue à utiliser : <strong>CUSTOM_DONATION_CANCEL</strong>',
+	'COPY_TO_DONATION_CANCEL'	=> 'Copier vers Dons annulés',
+));
 
-// Currency Management
-	'DONATION_CURRENCY_CONFIG'				=> 'Gestion des devises',
-	'DONATION_CURRENCY_CONFIG_EXPLAIN'		=> 'Permet de gérer les devises pour faire un don',
-	'DONATION_CURRENCY_NAME'				=> 'Nom de la devise',
-	'DONATION_CURRENCY_NAME_EXPLAIN'		=> 'Exemple : Euro',
-	'DONATION_CURRENCY_ISO_CODE'			=> 'Code ISO 4217',
-	'DONATION_CURRENCY_ISO_CODE_EXPLAIN'	=> 'Code alpabetique de la devise.<br />Consulter le <a href="http://www.iso.org/iso/support/faqs/faqs_widely_used_standards/widely_used_standards_other/currency_codes/currency_codes_list-1.htm" title="official website">site web officiel</a> pour connaitre le code ISO 4217',
-	'DONATION_CURRENCY_SYMBOL'				=> 'Symbole de la devise',
-	'DONATION_CURRENCY_SYMBOL_EXPLAIN'		=> 'Inscire le symbole de la devise.<br />Exemple : <strong>€</strong> pour Euro',
-	'DONATION_CURRENCY_ENABLED'				=> 'Activer la devise',
-	'DONATION_CURRENCY_ENABLED_EXPLAIN'		=> 'Si activée, la devise sera disponible dans les listes de sélection',
-	'DONATION_CREATE_CURRENCY'				=> 'Ajouter une nouvelle devise',
+/**
+* mode: currency
+* Info: language keys are prefixed with 'DONATION_DC_' for 'DONATION_DONATION_CURRENCY_'
+*/
+$lang = array_merge($lang, array(
+	// Currency Management
+	'DONATION_DC_CONFIG'			=> 'Gestion des devises',
+	'DONATION_DC_CONFIG_EXPLAIN'	=> 'Permet de gérer les devises pour faire un don',
+	'DONATION_DC_NAME'				=> 'Nom de la devise',
+	'DONATION_DC_NAME_EXPLAIN'		=> 'Exemple : Euro',
+	'DONATION_DC_ISO_CODE'			=> 'Code ISO 4217',
+	'DONATION_DC_ISO_CODE_EXPLAIN'	=> 'Code alpabetique de la devise.<br />En savoir plus sur la norme ISO 4217… reportez-vous à la <a href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod/faq/f_746" title="FAQ du MOD Paypal Donation">FAQ du MOD Paypal Donation</a> (lien externe en anglais)',
+	'DONATION_DC_SYMBOL'			=> 'Symbole de la devise',
+	'DONATION_DC_SYMBOL_EXPLAIN'	=> 'Inscire le symbole de la devise.<br />Exemple : <strong>€</strong> pour Euro',
+	'DONATION_DC_ENABLED'			=> 'Activer la devise',
+	'DONATION_DC_ENABLED_EXPLAIN'	=> 'Si activée, la devise sera disponible dans les listes de sélection',
+	'DONATION_DC_CREATE_CURRENCY'	=> 'Ajouter une nouvelle devise',
+));
 
-//logs
+/**
+* logs
+*/
+$lang = array_merge($lang, array(
+	//logs
 	'LOG_DONATION_UPDATED'			=> '<strong>Paypal Donation: Configuration mise à jour.</strong>',
 	'LOG_DONATION_PAGES_UPDATED'	=> '<strong>Paypal Donation: Pages de dons mises à jour.</strong>',
 	'LOG_ITEM_ADDED'				=> '<strong>Paypal Donation: %1$s ajouté(e)</strong><br />» %2$s',
@@ -136,14 +157,14 @@ $lang = array_merge($lang, array(
 	'LOG_ITEM_ENABLED'				=> '<strong>Paypal Donation: %1$s activé(e)</strong><br />» %2$s',
 	'LOG_ITEM_DISABLED'				=> '<strong>Paypal Donation: %1$s désactivé(e)</strong><br />» %2$s',
 
-//Confirm box
+	// Confirm box
 	'CURRENCY_ENABLED'		=> 'Une devise a été activée',
 	'CURRENCY_DISABLED'		=> 'Une devise a été désactivée.',
 	'CURRENCY_ADDED'		=> 'Une nouvelle devise a été ajoutée.',
 	'CURRENCY_UPDATED'		=> 'Une devise a été mise à jour.',
 	'CURRENCY_REMOVED'		=> 'Une devise a été supprimée.',
 
-// Errors
+	// Errors
 	'MUST_SELECT_ITEM'		=> 'L’objet sélectionné n’existe pas',
 	'ENTER_CURRENCY_NAME'	=> 'Entrez un nom de devise',
 ));

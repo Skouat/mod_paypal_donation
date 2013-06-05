@@ -22,15 +22,79 @@ if (!defined('IN_PHPBB'))
 * @param int $multiplicand
 * @param int $dividend
 */
-function donation_percent_stats ($type = '', $multiplicand, $dividend)
+function donation_stats_percent($type = '', $multiplicand, $dividend)
 {
 	global $template;
 
-	$donation_percent_stats = ($multiplicand * 100) / $dividend;
+	$donation_stats_percent = ($multiplicand * 100) / $dividend;
 	$template->assign_vars(array(
-		'DONATION_' . $type	=> round($donation_percent_stats, 2),
+		'DONATION_' . $type	=> round($donation_stats_percent, 2),
 		'S_' . $type 		=> !empty($type) ? true : false,
 	));
+}
+
+/**
+* Paypal donation installation check.
+*
+* @param bool $is_founder = false
+*/
+
+function donation_check_install($is_founder = false)
+{
+	global $user;
+
+	if ($is_founder)
+	{
+		global $config;
+
+		// init var
+		$error = false;
+
+		// let's check if the install is good !
+		$check_vars = array(
+			'donation_account_id',
+			'donation_default_currency',
+			'donation_default_value',
+			'donation_dropbox_enable',
+			'donation_dropbox_value',
+			'donation_enable',
+			'donation_goal',
+			'donation_goal_enable',
+			'donation_raised',
+			'donation_raised_enable',
+			'donation_stats_index_enable',
+			'donation_used',
+			'donation_used_enable',
+			'paypal_sandbox_address',
+			'paypal_sandbox_enable',
+			'paypal_sandbox_founder_enable',
+			);
+
+		foreach ($check_vars as $check_var)
+		{
+			if (!isset($config[$check_var]))
+			{
+				$error = true;
+			}
+		}
+		unset($check_var);
+
+		if ($error)
+		{
+			global $phpbb_root_path, $phpEx;
+
+			// load language file
+			$user->add_lang('mods/donate');
+
+			$installer = "{$phpbb_root_path}install_donation_mod.$phpEx";
+			if (!file_exists($installer))
+			{
+				trigger_error($user->lang['DONATION_INSTALL_MISSING'], E_USER_ERROR);
+			}
+
+			trigger_error($user->lang('DONATION_NOT_INSTALLED', '<a href="' . append_sid($installer) . '">', '</a>'), E_USER_ERROR);
+		}
+	}
 }
 
 /**

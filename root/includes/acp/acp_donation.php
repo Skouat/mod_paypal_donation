@@ -46,29 +46,28 @@ class acp_donation
 					'title'	=> 'DONATION_CONFIG',
 					'vars'	=> array(
 						'legend1'						=> 'GENERAL_SETTINGS',
-						'donation_enable'				=> array('lang' => 'DONATION_ENABLE',				'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true,),
-						'donation_account_id'			=> array('lang' => 'DONATION_ACCOUNT_ID',			'validate' => 'string',		'type' => 'text:40:255', 'explain' => true,),
-						'donation_default_currency'		=> array('lang' => 'DONATION_DEFAULT_CURRENCY',		'validate' => 'int',		'type' => 'select', 'function' => 'donation_item_list', 'params' => array('{CONFIG_VALUE}', 'currency', 'acp',  $user->lang['CURRENCY_DEFAULT']), 'explain' => true,),
-						'donation_default_value'		=> array('lang' => 'DONATION_DEFAULT_VALUE',		'validate' => 'int:0',		'type' => 'text:10:50', 'explain' => true,),
-						'donation_dropbox_enable'		=> array('lang' => 'DONATION_DROPBOX_ENABLE',		'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true,),
-						'donation_dropbox_value'		=> array('lang' => 'DONATION_DROPBOX_VALUE',		'validate' => 'string',		'type' => 'text:40:255', 'explain' => true),
+						'donation_enable'				=> array('lang' => 'DONATION_ENABLE',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true,),
+						'donation_account_id'			=> array('lang' => 'DONATION_ACCOUNT_ID',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true,),
+						'donation_default_currency'		=> array('lang' => 'DONATION_DEFAULT_CURRENCY',		'validate' => 'int',	'type' => 'select', 'function' => 'donation_item_list', 'params' => array('{CONFIG_VALUE}', 'currency', 'acp',  $user->lang['CURRENCY_DEFAULT']), 'explain' => true,),
+						'donation_default_value'		=> array('lang' => 'DONATION_DEFAULT_VALUE',		'validate' => 'int:0',	'type' => 'text:10:50', 'explain' => true,),
+						'donation_dropbox_enable'		=> array('lang' => 'DONATION_DROPBOX_ENABLE',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true,),
+						'donation_dropbox_value'		=> array('lang' => 'DONATION_DROPBOX_VALUE',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 
 						'legend2'						=> 'SANDBOX_SETTINGS',
-						'paypal_sandbox_enable'			=> array('lang' => 'SANDBOX_ENABLE',				'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true),
-						'paypal_sandbox_founder_enable'	=> array('lang' => 'SANDBOX_FOUNDER_ENABLE',		'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true),
-						'paypal_sandbox_address'		=> array('lang' => 'SANDBOX_ADDRESS',				'validate' => 'string',		'type' => 'text:40:255', 'explain' => true),
+						'paypal_sandbox_enable'			=> array('lang' => 'SANDBOX_ENABLE',				'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'paypal_sandbox_founder_enable'	=> array('lang' => 'SANDBOX_FOUNDER_ENABLE',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'paypal_sandbox_address'		=> array('lang' => 'SANDBOX_ADDRESS',				'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 
 						'legend3'						=> 'DONATION_STATS_SETTINGS',
-						'donation_stats_index_enable'	=> array('lang' => 'DONATION_STATS_INDEX_ENABLE',	'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true,),
-						'donation_raised_enable'		=> array('lang' => 'DONATION_RAISED_ENABLE',		'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => false,),
-						'donation_raised'				=> array('lang' => 'DONATION_RAISED',				'validate' => 'int:0',		'type' => 'text:10:50', 'explain' => true,),
-						'donation_goal_enable'			=> array('lang' => 'DONATION_GOAL_ENABLE',			'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => false,),
-						'donation_goal'					=> array('lang' => 'DONATION_GOAL',					'validate' => 'int:0',		'type' => 'text:10:50', 'explain' => true,),
-						'donation_used_enable'			=> array('lang' => 'DONATION_USED_ENABLE',			'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => false,),
-						'donation_used'					=> array('lang' => 'DONATION_USED',					'validate' => 'int:0',		'type' => 'text:10:50', 'explain' => true,),
-						'donation_currency_enable'		=> array('lang' => 'DONATION_CURRENCY_ENABLE',		'validate' => 'bool',		'type' => 'radio:yes_no', 'explain' => true,),
+						'donation_stats_index_enable'	=> array('lang' => 'DONATION_STATS_INDEX_ENABLE',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true,),
+						'donation_raised_enable'		=> array('lang' => 'DONATION_RAISED_ENABLE',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false,),
+						'donation_raised'				=> array('lang' => 'DONATION_RAISED',				'validate' => 'int:0',	'type' => 'text:10:50', 'explain' => true,),
+						'donation_goal_enable'			=> array('lang' => 'DONATION_GOAL_ENABLE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false,),
+						'donation_goal'					=> array('lang' => 'DONATION_GOAL',					'validate' => 'int:0',	'type' => 'text:10:50', 'explain' => true,),
+						'donation_used_enable'			=> array('lang' => 'DONATION_USED_ENABLE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false,),
+						'donation_used'					=> array('lang' => 'DONATION_USED',					'validate' => 'int:0',	'type' => 'text:10:50', 'explain' => true,),
 
-						'legend4'				=> 'ACP_SUBMIT_CHANGES',
+						'legend4'						=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
 				if (isset($display_vars['lang']))
@@ -111,7 +110,7 @@ class acp_donation
 							$donation_arr_value = explode(',', $config_value);
 							if (!empty($donation_arr_value))
 							{
-								$donation_merge_value = '';
+								$donation_merge_value = array();
 
 								foreach ($donation_arr_value as $value)
 								{
@@ -207,6 +206,8 @@ class acp_donation
 			break;
 
 			case 'donation_pages':
+				$user->add_lang('mods/donate_custom');
+
 				if (!function_exists('generate_smilies'))
 				{
 					include_once($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
@@ -274,11 +275,12 @@ class acp_donation
 				{
 					if (array_key_exists($donation_draft, $donation_pages_vars))
 					{
-						$draft_preview = $this->preview_announcement($donation_pages_vars[$donation_draft]);
+						$draft_preview = isset($user->lang[strtoupper($donation_pages_vars[$donation_draft])]) ? $user->lang[strtoupper($donation_pages_vars[$donation_draft])] : $donation_pages_vars[$donation_draft];
+						$draft_preview = $this->preview_announcement($draft_preview);
 					}
 				}
 
-				$this->page_title = 'DONATION_DONATION_PAGES_CONFIG';
+				$this->page_title = 'DONATION_DP_CONFIG';
 
 				// Build sql query with alias field
 				$sql = 'SELECT item_name AS donation_title, item_text AS donation_content, item_text_bbcode_uid, item_text_bbcode_bitfield, item_text_bbcode_options
@@ -291,7 +293,7 @@ class acp_donation
 
 					if ($row['donation_title'] == 'donation_draft')
 					{
-						$donation_draft_preview = $row['donation_content'];
+						$donation_draft_preview = isset($user->lang[strtoupper($row['donation_content'])]) ? $user->lang[strtoupper($row['donation_content'])] : $row['donation_content'];
 						$donation_draft_preview = generate_text_for_display($donation_draft_preview, $row['item_text_bbcode_uid'], $row['item_text_bbcode_bitfield'], $row['item_text_bbcode_options']);
 
 						decode_message($row['donation_content'], $row['item_text_bbcode_uid']);
@@ -326,37 +328,65 @@ class acp_donation
 				display_custom_bbcodes();
 
 				$template->assign_vars(array(
-					'U_ACTION'			=> append_sid($this->u_action),
-
 					'L_TITLE'			=> $user->lang[$this->page_title],
 					'L_TITLE_EXPLAIN'	=> $user->lang[$this->page_title . '_EXPLAIN'],
 
-					'S_MODE'			=> $mode,
+					'S_DONATION_PAGES'	=> $mode,
+
+					'U_ACTION'			=> $this->u_action,
 				));
 			break;
 
 			case 'currency':
-				$this->page_title = 'DONATION_CURRENCY_CONFIG';
-
-				$action = isset($_POST['add']) ? 'add' : (isset($_POST['save']) ? 'save' : $action);
-				$item_id = request_var('id', 0);
-
-				$s_hidden_fields = '';
-
 				if ($submit && !check_form_key($form_key))
 				{
 					trigger_error($user->lang['FORM_INVALID'] . adm_back_link($this->u_action));
 				}
 
-				$template->assign_vars(array(
-					'U_ACTION'			=> append_sid($this->u_action),
+				$this->page_title = 'DONATION_DC_CONFIG';
 
+				$action = isset($_POST['add']) ? 'add' : (isset($_POST['save']) ? 'save' : $action);
+				$item_id = request_var('id', 0);
+
+				$template->assign_vars(array(
 					'L_TITLE'			=> $user->lang[$this->page_title],
 					'L_TITLE_EXPLAIN'	=> $user->lang[$this->page_title . '_EXPLAIN'],
-					'L_NAME'			=> $user->lang['DONATION_CURRENCY_NAME'],
-					'L_CREATE_ITEM'		=> $user->lang['DONATION_CREATE_CURRENCY'],
-					)
-				);
+					'L_NAME'			=> $user->lang['DONATION_DC_NAME'],
+					'L_CREATE_ITEM'		=> $user->lang['DONATION_DC_CREATE_CURRENCY'],
+
+					'S_CURRENCY'		=> $mode,
+
+					'U_ACTION'			=> $this->u_action,
+				));
+
+				//skip this code if $action is used
+				if (!$action)
+				{
+					$sql = 'SELECT *
+						FROM ' . DONATION_ITEM_TABLE . "
+						WHERE item_type= 'currency'
+						ORDER BY left_id";
+					$result = $db->sql_query($sql);
+
+					while ($row = $db->sql_fetchrow($result))
+					{
+						$row['item_id'] = (int) $row['item_id'];
+
+						$template->assign_block_vars('items', array(
+						'ITEM_NAME'			=> $row['item_name'],
+						'ITEM_ENABLED'		=> ($row['item_enable']) ? true : false,
+
+						// links
+						'U_EDIT'			=> $this->u_action . '&amp;action=edit&amp;id=' . $row['item_id'],
+						'U_MOVE_UP'			=> $this->u_action . '&amp;action=move_up&amp;id=' . $row['item_id'],
+						'U_MOVE_DOWN'		=> $this->u_action . '&amp;action=move_down&amp;id=' . $row['item_id'],
+						'U_DELETE'			=> $this->u_action . '&amp;action=delete&amp;id=' . $row['item_id'],
+						'U_ENABLE'			=> $this->u_action . '&amp;action=enable&amp;id=' . $row['item_id'],
+						'U_DISABLE'			=> $this->u_action . '&amp;action=disable&amp;id=' . $row['item_id'],
+						));
+					};
+					$db->sql_freeresult($result);
+				}
 
 				switch ($action)
 				{
@@ -376,30 +406,25 @@ class acp_donation
 							trigger_error($user->lang['MUST_SELECT_ITEM'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 
-						$s_hidden_fields .= '<input type="hidden" name="id" value="' . (int) $item_id . '" />';
+						$s_hidden_fields = build_hidden_fields(array(
+							'id'			=> $item_id,
+							'action'		=> 'save',
+							));
 
 					case 'add':
 						$template->assign_vars(array(
 							'S_EDIT'			=> true,
 							'S_MODE'			=> $mode,
+
 							'U_ACTION'			=> $this->u_action,
 							'U_BACK'			=> $this->u_action,
-
-							'L_ITEM_NAME'					=> $user->lang['DONATION_CURRENCY_NAME'],
-							'L_ITEM_NAME_EXPLAIN'			=> $user->lang['DONATION_CURRENCY_NAME_EXPLAIN'],
-							'L_ITEM_ISO_CODE'				=> $user->lang['DONATION_CURRENCY_ISO_CODE'],
-							'L_ITEM_ISO_CODE_EXPLAIN'		=> $user->lang['DONATION_CURRENCY_ISO_CODE_EXPLAIN'],
-							'L_ITEM_SYMBOL'					=> $user->lang['DONATION_CURRENCY_SYMBOL'],
-							'L_ITEM_SYMBOL_EXPLAIN'			=> $user->lang['DONATION_CURRENCY_SYMBOL_EXPLAIN'],
-							'L_ACP_ITEM_ENABLED'			=> $user->lang['DONATION_CURRENCY_ENABLED'],
-							'L_ACP_ITEM_ENABLED_EXPLAIN'	=> $user->lang['DONATION_CURRENCY_ENABLED_EXPLAIN'],
 
 							'ITEM_NAME'			=> isset($currency_ary['item_name']) ? $currency_ary['item_name'] : utf8_normalize_nfc(request_var('item_name', '', true)),
 							'ITEM_ISO_CODE'		=> isset($currency_ary['item_iso_code']) ? $currency_ary['item_iso_code'] : utf8_normalize_nfc(request_var('item_iso_code', '', true)),
 							'ITEM_SYMBOL'		=> isset($currency_ary['item_symbol']) ? $currency_ary['item_symbol'] : utf8_normalize_nfc(request_var('item_symbol', '', true)),
 							'ITEM_ENABLED'		=> isset($currency_ary['item_enable']) ? $currency_ary['item_enable'] : true,
 
-							'S_HIDDEN_FIELDS'		=> $s_hidden_fields,
+							'S_HIDDEN_FIELDS'	=> isset($s_hidden_fields) ? $s_hidden_fields : '',
 						));
 						return;
 					break;
@@ -541,30 +566,6 @@ class acp_donation
 					break;
 				}
 
-				$sql = 'SELECT *
-					FROM ' . DONATION_ITEM_TABLE . "
-					WHERE item_type= 'currency'
-					ORDER BY left_id";
-				$result = $db->sql_query($sql);
-
-				while ($row = $db->sql_fetchrow($result))
-				{
-					$row['item_id'] = (int) $row['item_id'];
-
-					$template->assign_block_vars('items', array(
-					'ITEM_NAME'			=> $row['item_name'],
-					'ITEM_ENABLED'		=> ($row['item_enable']) ? true : false,
-
-					// links
-					'U_EDIT'			=> $this->u_action . '&amp;action=edit&amp;id=' . $row['item_id'],
-					'U_MOVE_UP'			=> $this->u_action . '&amp;action=move_up&amp;id=' . $row['item_id'],
-					'U_MOVE_DOWN'		=> $this->u_action . '&amp;action=move_down&amp;id=' . $row['item_id'],
-					'U_DELETE'			=> $this->u_action . '&amp;action=delete&amp;id=' . $row['item_id'],
-					'U_ENABLE'			=> $this->u_action . '&amp;action=enable&amp;id=' . $row['item_id'],
-					'U_DISABLE'			=> $this->u_action . '&amp;action=disable&amp;id=' . $row['item_id'],
-					));
-				};
-				$db->sql_freeresult($result);
 			break;
 
 			default:
@@ -665,5 +666,4 @@ class acp_donation
 		return $text;
 	}
 }
-
 ?>

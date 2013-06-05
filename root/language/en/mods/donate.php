@@ -39,35 +39,36 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-// Notice
+	// Notice
 	'DONATION_DISABLED'				=> 'Sorry, the Donation page is currently unavailable.',
 	'DONATION_NOT_INSTALLED'		=> 'Paypal Donation MOD database entries are missing.<br />Please run the %sinstaller%s to make the database changes for the MOD.',
-	'DONATION_NOT_INSTALLED_USER'	=> 'The Donation page is not installed. Please notify the board founder.',
+	'DONATION_INSTALL_MISSING'		=> 'The installation file seems to be missing. Please check your installation !',
 	'DONATION_ADDRESS_MISSING'		=> 'Sorry, Paypal Donation is enabled but some settings are missing. Please notify the board founder.',
 	'SANDBOX_ADDRESS_MISSING'		=> 'Sorry, Paypal Sandbox is enabled but some settings are missing. Please notify the board founder.',
 
+	// Image alternative text
+	'IMG_DONATE'			=> 'donate',
+	'IMG_LOADER'			=> 'loading',
 
-// Image alternative text
-	'IMG_DONATE'					=> 'donate',
-	'IMG_LOADER'					=> 'loading',
-
-// Default Currency
+	// Default Currency
 	'CURRENCY_DEFAULT'		=> 'USD', // Note : If you remove from ACP ALL currencies, this value will be defined as the default currency.
 
-// Stats
-	'DONATE_RECEIVED'			=> 'We received',
-	'DONATE_RECEIVED_IN'		=> 'in donations.',
+	// Stats
+									// %1$d = donation raised; %2$s = currency
+	'DONATE_RECEIVED'			=> 'We received <strong>%1$d</strong> %2$s in donations.',
 	'DONATE_NOT_RECEIVED'		=> 'We haven’t received any donations.',
-	'DONATE_USED'				=> 'We used',
-	'DONATE_ALREADY_RECEIVE'	=> 'already received.',
-	'DONATE_NOT_USED'			=> 'We haven’t used any donations.',
-	'DONATE_GOAL_RAISE'			=> 'Our goal is to raise',
+
+									// %1$d = donation goal; %2$s = currency
+	'DONATE_GOAL_RAISE'			=> 'Our goal is to raise <strong>%1$d</strong> %2$s.',
 	'DONATE_GOAL_REACHED'		=> 'Our goal donation was reached.',
 	'DONATE_NO_GOAL'			=> 'We haven’t defined a donation goal.',
-	'DONATE_USED_EXCEEDED'		=> 'All your donations have been used.',
-	'DONATE_USED_OF'			=> 'of your donations on',
 
-// Pages
+									// %1$d = donation used; %2$s = currency; %3$d = donation raised;
+	'DONATE_USED'				=> 'We used <strong>%1$d</strong> %2$s of your donations on <strong>%3$d</strong> %2$s already received.',
+	'DONATE_USED_EXCEEDED'		=> 'We used <strong>%1$d</strong> %2$s. All your donations have been used.',
+	'DONATE_NOT_USED'			=> 'We haven’t used any donations.',
+
+	// Pages
 	'DONATION_TITLE'			=> 'Make a Donation',
 	'DONATION_TITLE_HEAD'		=> 'Make a Donation to',
 	'DONATION_CANCEL_TITLE'		=> 'Donation Canceled',
@@ -78,7 +79,9 @@ $lang = array_merge($lang, array(
 	'DONATION_INDEX'			=> 'Donations',
 ));
 
-// UMIL
+/*
+* UMIL
+*/
 $lang = array_merge($lang, array(
 	'INSTALL_DONATION_MOD'				=> 'Install Donation Mod',
 	'INSTALL_DONATION_MOD_CONFIRM'		=> 'Are you ready to install the Donation Mod?',
@@ -88,13 +91,6 @@ $lang = array_merge($lang, array(
 	'UNINSTALL_DONATION_MOD_CONFIRM'	=> 'Are you ready to uninstall the Donation Mod? All settings and data saved by this mod will be removed!',
 	'UPDATE_DONATION_MOD'				=> 'Update Donation Mod',
 	'UPDATE_DONATION_MOD_CONFIRM'		=> 'Are you ready to update the Donation Mod?',
-));
-
-// Custom language key for Pages Donations personnalisation
-$lang = array_merge($lang, array(
-	'CUSTOM_DONATION_BODY'		=> '<h2>This is an example of text based on <strong>CUSTOM_DONATION_BODY</strong> language key</h2><br /><p> Edit the file <strong>/language/en/mods/donate.php</strong> and write the text you want displayed here.</p>',
-	'CUSTOM_DONATION_SUCCESS'	=> '<h2>This is an example of text based on <strong>CUSTOM_DONATION_SUCCESS</strong> language key</h2><br /><p> Edit the <strong>/language/en/mods/donate.php</strong> and write the text you want displayed here.</p>',
-	'CUSTOM_DONATION_CANCEL'	=> '<h2>This is an example of text based on <strong>CUSTOM_DONATION_CANCEL</strong> language key</h2><br /><p> Edit the  <strong>/language/en/mods/donate.php</strong> and write the text you want displayed here.</p>',
 ));
 
 ?>

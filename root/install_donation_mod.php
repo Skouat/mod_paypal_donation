@@ -19,7 +19,6 @@ include($phpbb_root_path . 'common.' . $phpEx);
 $user->session_begin();
 $auth->acl($user->data);
 $user->setup();
-$user->add_lang('mods/donate');
 
 if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 {
@@ -32,8 +31,69 @@ $version_config_name = 'donation_mod_version';
 $language_file = 'mods/donate';
 
 $versions = array(
+	'1.0.2' => array(
+		// Remove unnecessary config
+		'config_remove'	=> array(
+			array('donation_currency_enable', false),
+		),
+
+		// Now to add some permission settings
+		'permission_add' => array(
+			array('a_pdm_manage', true),
+		),
+
+		// Rename module and add new permission
+		// 1st remove module
+		'module_remove' => array(
+			array('acp', 'ACP_DONATION_MOD', 'DONATION_CONFIG'),
+			array('acp', 'ACP_DONATION_MOD', 'DONATION_DONATION_PAGES_CONFIG'),
+			array('acp', 'ACP_DONATION_MOD', 'DONATION_CURRENCY_CONFIG'),
+			array('acp', 'ACP_CAT_DOT_MODS', 'ACP_DONATION_MOD'),
+		),
+		// 2nd add them
+		'module_add' => array(
+			array('acp', 'ACP_CAT_DOT_MODS', array(
+				'module_enabled'	=> 1,
+				'module_display'	=> 1,
+				'module_langname'	=> 'ACP_DONATION_MOD',
+				'module_auth'		=> 'acl_a_pdm_manage',
+				),
+			),
+
+			array('acp', 'ACP_DONATION_MOD', array(
+				'module_basename'	=> 'donation',
+				'module_langname'	=> 'DONATION_CONFIG',
+				'module_mode'		=> 'configuration',
+				'module_auth'		=> 'acl_a_pdm_manage',
+				),
+			),
+
+			array('acp', 'ACP_DONATION_MOD', array(
+				'module_basename'	=> 'donation',
+				'module_langname'	=> 'DONATION_DP_CONFIG',
+				'module_mode'		=> 'donation_pages',
+				'module_auth'		=> 'acl_a_pdm_manage',
+				'after'				=> 'DONATION_CONFIG',
+				),
+			),
+
+			array('acp', 'ACP_DONATION_MOD', array(
+				'module_basename'	=> 'donation',
+				'module_langname'	=> 'DONATION_DC_CONFIG',
+				'module_mode'		=> 'currency',
+				'module_auth'		=> 'acl_a_pdm_manage',
+				'after'				=> 'DONATION_DP_CONFIG',
+				),
+			),
+		),
+
+		// Purge cache
+		'cache_purge' => array(''),
+	),
+
 	'1.0.1' => array(
-		// No change
+		// Purge cache
+		'cache_purge' => array(''),
 	),
 
 	// Version 1.0.0-RC2
@@ -94,11 +154,37 @@ $versions = array(
 
 		// Add the module in ACP under the mods tab
 		'module_add' => array(
-			array('acp', 'ACP_CAT_DOT_MODS', 'ACP_DONATION_MOD'),
+			array('acp', 'ACP_CAT_DOT_MODS', array(
+				'module_enabled'	=> 1,
+				'module_display'	=> 1,
+				'module_langname'	=> 'ACP_DONATION_MOD',
+				'module_auth'		=> 'acl_a_board',
+				),
+			),
 
 			array('acp', 'ACP_DONATION_MOD', array(
-					'module_basename'	=> 'donation',
-					'modes'				=> array('configuration', 'donation_pages', 'currency'),
+				'module_basename'	=> 'donation',
+				'module_langname'	=> 'DONATION_CONFIG',
+				'module_mode'		=> 'configuration',
+				'module_auth'		=> 'acl_a_board',
+				),
+			),
+
+			array('acp', 'ACP_DONATION_MOD', array(
+				'module_basename'	=> 'donation',
+				'module_langname'	=> 'DONATION_DONATION_PAGES_CONFIG',
+				'module_mode'		=> 'donation_pages',
+				'module_auth'		=> 'acl_a_board',
+				'after'				=> 'DONATION_CONFIG',
+				),
+			),
+
+			array('acp', 'ACP_DONATION_MOD', array(
+				'module_basename'	=> 'donation',
+				'module_langname'	=> 'DONATION_CURRENCY_CONFIG',
+				'module_mode'		=> 'currency',
+				'module_auth'		=> 'acl_a_board',
+				'after'				=> 'DONATION_DONATION_PAGES_CONFIG',
 				),
 			),
 		),
@@ -120,7 +206,7 @@ $versions = array(
 				'PRIMARY_KEY'	=> 'item_id',
 			)),
 		),
-		
+
 		// Creating the entries
 		'table_insert' => array(
 			array('phpbb_donation_item', array(
@@ -227,12 +313,7 @@ $versions = array(
 			)),
 		),
 
-		'cache_purge' => (array(
-			'auth', // The auth
-			'imageset', // The imageset (all)
-			'template', // The template (all)
-			'theme', // The theme (all)
-		)),
+		'cache_purge' => array(''),
 	),
 );
 

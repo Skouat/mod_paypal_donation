@@ -8,29 +8,19 @@
 
 <p class="donation_stats">
 	<!-- IF DONATION_RAISED_ENABLE -->
-		<!-- IF DONATION_RAISED <= 0 -->{L_DONATE_NOT_RECEIVED}<br /><!-- ELSE -->{L_DONATE_RECEIVED} <strong>{DONATION_RAISED}</strong><!-- IF DONATION_CURRENCY_ENABLE --> {DONATION_CURRENCY}<!-- ENDIF --> {L_DONATE_RECEIVED_IN}<!-- IF DONATION_USED_ENABLE --><br /><!-- ENDIF --><!-- ENDIF -->
+		{L_DONATION_RAISED}<!-- IF DONATION_USED_ENABLE --><br /><!-- ENDIF -->
 	<!-- ENDIF -->
 	<!-- IF DONATION_GOAL_ENABLE -->
-		<!-- IF DONATION_GOAL <= 0 -->
-			{L_DONATE_NO_GOAL}<br />
-		<!-- ELSE -->
-			<!-- IF DONATION_RAISED < DONATION_GOAL --> {L_DONATE_GOAL_RAISE} <strong>{DONATION_GOAL}</strong><!-- IF DONATION_CURRENCY_ENABLE --> {DONATION_CURRENCY}<!-- ENDIF -->.<br /><!-- ELSE --> {L_DONATE_GOAL_REACHED}<br /><!-- ENDIF -->
-		<!-- ENDIF -->
+		{L_DONATION_GOAL}<br />
 	<!-- ENDIF -->
 
-	<!-- IF S_USED_NUMBER -->
+<!-- IF S_USED_NUMBER -->
 </p>
 <div class="prog_grey"><div class="prog_red" style="width:{DONATION_USED_NUMBER}%;"><span class="progress">{DONATION_USED_NUMBER}%</span></div></div>
 <p class="donation_stats">
-	<!-- ENDIF -->
+<!-- ENDIF -->
 
 	<!-- IF DONATION_USED_ENABLE -->
-			<!-- IF DONATION_USED <= 0 -->
-				{L_DONATE_NOT_USED}
-			<!-- ELSE -->
-				{L_DONATE_USED} <strong>{DONATION_USED}</strong>
-				<!-- IF DONATION_CURRENCY_ENABLE --> {DONATION_CURRENCY}<!-- ENDIF -->
-				<!-- IF DONATION_RAISED > DONATION_USED --> {L_DONATE_USED_OF} <strong>{DONATION_RAISED}</strong><!-- IF DONATION_CURRENCY_ENABLE --> {DONATION_CURRENCY}<!-- ENDIF --> {L_DONATE_ALREADY_RECEIVE}<!-- ELSE -->. {L_DONATE_USED_EXCEEDED}<!-- ENDIF -->
-			<!-- ENDIF -->
+				{L_DONATION_USED}
 	<!-- ENDIF -->
 </p>

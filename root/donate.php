@@ -6,7 +6,7 @@
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
- 
+
 /**
 * @ignore
 */
@@ -15,30 +15,17 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_donation.' . $phpEx);
- 
+
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
-$user->setup('mods/donate');
+$user->setup(array('mods/donate','mods/donate_custom'));
  
 $is_founder = ($user->data['user_type'] == USER_FOUNDER) ? true : false;
- 
-// Check for mod installed
-if (!isset($config['donation_enable']) || !isset($config['donation_mod_version']) || !isset($config['donation_default_currency']))
-{
-	if($is_founder)
-	{
-		$installer =  append_sid("{$phpbb_root_path}install_donation_mod.$phpEx");
-		$message = sprintf($user->lang['DONATION_NOT_INSTALLED'], '<a href="' . $installer . '">', '</a>');
-	}
-	else
-	{
-		$message = $user->lang['DONATION_NOT_INSTALLED_USER'];
-	}
 
-	trigger_error ($message);
-}
- 
+// Check for mod installed
+donation_check_install($is_founder);
+
 // Do we have the donation mod enabled and paypal account set ?
 
 // Paypal Donation and Paypal Sandbox is disabled
@@ -46,7 +33,7 @@ if (empty($config['donation_enable']) && empty($config['paypal_sandbox_enable'])
 {
 	trigger_error($user->lang['DONATION_DISABLED'], E_USER_NOTICE);
 }
- 
+
 // Paypal Donation enabled and Account ID missing
 if (!empty($config['donation_enable']) && empty($config['paypal_sandbox_enable']) && empty($config['donation_account_id']))
 {
@@ -61,7 +48,7 @@ if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_
 	{
 		trigger_error($user->lang['DONATION_DISABLED'], E_USER_NOTICE);
 	}
- 
+
 	// Paypal Donation enabled and Account ID missing
  	if (!empty($config['donation_enable']) && empty($config['donation_account_id']))
 	{
@@ -77,11 +64,11 @@ if (empty($config['paypal_sandbox_address']))
 		trigger_error($user->lang['SANDBOX_ADDRESS_MISSING'], E_USER_NOTICE);
 	}
 }
-  
+
 // Assign $mode to template
 $mode = request_var('mode', '');
 $template->assign_var('MODE', $mode);
- 
+
 switch ($mode)
 {
 	case 'success':
@@ -94,28 +81,26 @@ switch ($mode)
 		$result = $db->sql_query($sql);
 		$donation_pages = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
- 
+
 		$donation_body = isset($user->lang[strtoupper($donation_pages['item_text'])]) ? $user->lang[strtoupper($donation_pages['item_text'])] : $donation_pages['item_text'];
 		$donation_body = generate_text_for_display($donation_body, $donation_pages['item_text_bbcode_uid'], $donation_pages['item_text_bbcode_bitfield'], $donation_pages['item_text_bbcode_options']);
- 
+
 		$donation_title = $user->lang['DONATION_' . strtoupper($mode) . '_TITLE'];
- 
+
 		$template->assign_vars(array(
-			'DONATION_BODY'	 => $donation_body,
-			'L_DONATION_TITLE'	  => $donation_title,
+			'DONATION_BODY'		=> $donation_body,
+			'L_DONATION_TITLE'	=> $donation_title,
 		));
- 
+
 		page_header($donation_title);
 		$template->set_filenames(array('body' => 'donate/donate_body.html'));
 	break;
- 
+
 	default:
-		$s_hidden_fields = '';
- 
 		// Build Paypal return URL
 		$success_url = append_sid(generate_board_url(true) . $user->page['script_path'] . $user->page['page_name'], 'mode=success');
 		$cancel_url = append_sid(generate_board_url(true) . $user->page['script_path'] . $user->page['page_name'], 'mode=cancel');
- 
+
 		// Retrieve Paypal Sandbox value
 		if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_founder_enable']) && $is_founder || empty($config['paypal_sandbox_founder_enable'])))
 		{
@@ -129,18 +114,18 @@ switch ($mode)
 			$forms_url = 'https://www.paypal.com/cgi-bin/webscr';
 			$s_sandbox = false;
 		}
- 
+
 		// Retrieve currency value
 		$list_currency = donation_item_list((int) $config['donation_default_currency'], 'currency', '', $user->lang['CURRENCY_DEFAULT']);
 		$donation_currency = donation_item_list((int) $config['donation_default_currency'], 'currency', 'default_currency', $user->lang['CURRENCY_DEFAULT']);
- 
+
 		// Retrieve donation value for drop-down list
 		$list_donation_value = '';
- 
+
 		if (!empty($config['donation_dropbox_enable']) && !empty($config['donation_dropbox_value']))
 		{
 			$donation_arr_value = explode(',', $config['donation_dropbox_value']);
- 
+
 			foreach ($donation_arr_value as $value)
 			{
 				$int_value = (int) $value;
@@ -151,9 +136,8 @@ switch ($mode)
 			}
 			unset($value);
 		}
- 
+
 		// Build hidden fields
-		   
 		$s_hidden_fields = build_hidden_fields(array(
 			'cmd'			=> '_xclick',
 			'business'		=> $business,
@@ -164,63 +148,64 @@ switch ($mode)
 			'item_number'	=> 'uid_' . $user->data['user_id'] . '_' . time(),
 			'tax'			=> 0,
 			'bn'			=> 'Board_Donate_WPS',
+			'charset'		=> 'utf-8',
 			));
- 
+
 		// Retrieve text content for DONATION_BODY
 		$sql = 'SELECT item_text, item_text_bbcode_uid, item_text_bbcode_bitfield, item_text_bbcode_options
 			FROM ' . DONATION_ITEM_TABLE . "
-			WHERE item_name = 'donation_body'
-				AND item_type = 'donation_pages'";
+			WHERE item_type = 'donation_pages'
+				AND item_name = 'donation_body'";
 		$result = $db->sql_query($sql);
 		$donation_pages = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
- 
+
 		// Check if language key page donation body exist
 		$donation_body = isset($user->lang[strtoupper($donation_pages['item_text'])]) ? $user->lang[strtoupper($donation_pages['item_text'])] : $donation_pages['item_text'];
 		$donation_body = generate_text_for_display($donation_body, $donation_pages['item_text_bbcode_uid'], $donation_pages['item_text_bbcode_bitfield'], $donation_pages['item_text_bbcode_options']);
- 
+
+		// Donation percent
+		if (!empty($config['donation_goal_enable']) && (int) $config['donation_goal'] > 0)
+		{
+			donation_stats_percent('GOAL_NUMBER', (int) $config['donation_raised'], (int) $config['donation_goal']);
+		}
+
+		if (!empty($config['donation_used_enable']) && (int) $config['donation_raised'] > 0 && (int) $config['donation_used'] > 0)
+		{
+			donation_stats_percent('USED_NUMBER', (int) $config['donation_used'], (int) $config['donation_raised']);
+		}
+
+		// Assign vars to template
 		$template->assign_vars(array(
-			'DONATION_RAISED_ENABLE'		=> (!empty($config['donation_raised_enable'])) ? true : false,
-			'DONATION_RAISED'				=> (!empty($config['donation_raised'])) ? $config['donation_raised'] : 0,
 			'DONATION_GOAL_ENABLE'			=> (!empty($config['donation_goal_enable'])) ? true : false,
-			'DONATION_GOAL'					=> (!empty($config['donation_goal'])) ? $config['donation_goal'] : 0,
+			'DONATION_RAISED_ENABLE'		=> (!empty($config['donation_raised_enable'])) ? true : false,
 			'DONATION_USED_ENABLE'			=> (!empty($config['donation_used_enable'])) ? true : false,
-			'DONATION_USED'					=> (!empty($config['donation_used'])) ? $config['donation_used'] : 0,
-			'DONATION_CURRENCY_ENABLE'		=> (!empty($config['donation_currency_enable'])) ? true : false,
-			'DONATION_CURRENCY'				=> $donation_currency,
+
+			'L_DONATION_GOAL'				=> ((int) $config['donation_goal'] <= 0) ? $user->lang['DONATE_NO_GOAL'] : ((int) $config['donation_goal'] < (int) $config['donation_raised'] ? $user->lang['DONATE_GOAL_REACHED'] : sprintf($user->lang['DONATE_GOAL_RAISE'], (int) $config['donation_goal'], $donation_currency)),
+			'L_DONATION_RAISED'				=> ((int) $config['donation_raised'] <= 0) ? $user->lang['DONATE_NOT_RECEIVED'] : sprintf($user->lang['DONATE_RECEIVED'], (int) $config['donation_raised'], $donation_currency),
+			'L_DONATION_USED'				=> ((int) $config['donation_used'] <= 0) ? $user->lang['DONATE_NOT_USED'] : ((int) $config['donation_used'] < (int) $config['donation_raised'] ? sprintf($user->lang['DONATE_USED'], (int) $config['donation_used'], $donation_currency, (int) $config['donation_raised']) : sprintf($user->lang['DONATE_USED_EXCEEDED'], (int) $config['donation_used'], $donation_currency)),
  
 			'DONATION_BODY'					=> $donation_body,
 			'LIST_DONATION_CURRENCY'		=> $list_currency,
 			'DONATION_DEFAULT_VALUE'		=> (!empty($config['donation_default_value'])) ? $config['donation_default_value'] : 0,
 			'LIST_DONATION_VALUE'			=> $list_donation_value,
- 
+
 			'S_HIDDEN_FIELDS'				=> $s_hidden_fields,
 			'S_DONATE_FORMS'				=> $forms_url,
 			'S_DONATION_DROPBOX'			=> (!empty($list_donation_value)) ? true : false,
 			'S_SANDBOX'						=> $s_sandbox,
 			));
- 
-		if (!empty($config['donation_goal_enable']) && (int) $config['donation_goal'] > 0)
-		{
-			donation_percent_stats('GOAL_NUMBER', (int) $config['donation_raised'], (int) $config['donation_goal']);
-		}
- 
-		if (!empty($config['donation_used_enable']) && (int) $config['donation_raised'] > 0 && (int) $config['donation_used'] > 0)
-		{
-			donation_percent_stats('USED_NUMBER', (int) $config['donation_used'], (int) $config['donation_raised']);
-		}
- 
+
 		page_header($user->lang['DONATION_TITLE']);
 		$template->set_filenames(array('body' => 'donate/donate_body.html'));
 	break;
 }
- 
+
 // Set up Navlinks
 $template->assign_block_vars('navlinks', array(
 	'FORUM_NAME' => $user->lang['DONATION_TITLE'],
 	'U_VIEW_FORUM' => append_sid("{$phpbb_root_path}donate.$phpEx"),
 ));
- 
+
 page_footer();
- 
 ?>
