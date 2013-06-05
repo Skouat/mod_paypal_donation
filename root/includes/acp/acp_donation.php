@@ -116,11 +116,13 @@ class acp_donation
 								foreach ($donation_arr_value as $value)
 								{
 									$int_value = (int) $value;
-									if (!empty($int_value) && is_numeric($value) && ($int_value == $value))
+									if (!empty($int_value) && ($int_value == $value))
 									{
 										$donation_merge_value[] = $int_value;
 									}
 								}
+								unset($value);
+
 								$config_value = (!empty($donation_merge_value)) ? implode(',', $donation_merge_value) : '';
 							}
 						}
@@ -143,11 +145,16 @@ class acp_donation
 					'L_TITLE'			=> $user->lang[$display_vars['title']],
 					'L_TITLE_EXPLAIN'	=> $user->lang[$display_vars['title'] . '_EXPLAIN'],
 
-					'S_ERROR'			=> (sizeof($error)) ? true : false,
-					'ERROR_MSG'			=> implode('<br />', $error),
+					'U_ACTION'			=> $this->u_action,
+				));
 
-					'U_ACTION'			=> $this->u_action)
-				);
+				if ( sizeof($error) )
+				{
+					$template->assign_vars(array(
+						'S_ERROR' => true,
+						'ERROR_MSG' => implode('<br />', $error),
+					));
+				}
 
 				// Output relevant page
 				foreach ($display_vars['vars'] as $config_key => $vars)
@@ -200,8 +207,15 @@ class acp_donation
 			break;
 
 			case 'donation_pages':
-				include_once($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
-				include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+				if (!function_exists('generate_smilies'))
+				{
+					include_once($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
+				}
+
+				if (!function_exists('display_custom_bbcodes'))
+				{
+					include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+				}
 
 				$preview = (isset($_POST['preview'])) ? true : false;
 				$donation_draft = 'donation_draft';
@@ -277,7 +291,6 @@ class acp_donation
 
 					if ($row['donation_title'] == 'donation_draft')
 					{
-						$donation_draft_preview = '';
 						$donation_draft_preview = $row['donation_content'];
 						$donation_draft_preview = generate_text_for_display($donation_draft_preview, $row['item_text_bbcode_uid'], $row['item_text_bbcode_bitfield'], $row['item_text_bbcode_options']);
 
@@ -292,11 +305,13 @@ class acp_donation
 					{
 						decode_message($row['donation_content'], $row['item_text_bbcode_uid']);
 
+						$donation_title = strtoupper($row['donation_title']);
+
 						$template->assign_block_vars('donation_pages', array(
-							'L_ITEM_NAME'						=> $user->lang[strtoupper($row['donation_title']) . '_SETTINGS'],
-							'L_DONATION_PAGES_TITLE'			=> $user->lang[strtoupper($row['donation_title'])],
-							'L_DONATION_PAGES_TITLE_EXPLAIN'	=> $user->lang[strtoupper($row['donation_title']) . '_EXPLAIN'],
-							'L_COPY_TO'							=> $user->lang['COPY_TO_' . strtoupper($row['donation_title'])],
+							'L_ITEM_NAME'						=> $user->lang[$donation_title . '_SETTINGS'],
+							'L_DONATION_PAGES_TITLE'			=> $user->lang[$donation_title],
+							'L_DONATION_PAGES_TITLE_EXPLAIN'	=> $user->lang[$donation_title . '_EXPLAIN'],
+							'L_COPY_TO'							=> $user->lang['COPY_TO_' . $donation_title],
 							'S_DONATION_TYPE'					=> $row['donation_title'],
 							'DONATION_BODY'						=> $row['donation_content'],
 						));
@@ -304,7 +319,9 @@ class acp_donation
 				}
 				$db->sql_freeresult($result);
 
+				// Generate smilies on inline displaying
 				generate_smilies('inline', '');
+
 				// Assigning custom bbcodes
 				display_custom_bbcodes();
 
@@ -328,7 +345,7 @@ class acp_donation
 
 				if ($submit && !check_form_key($form_key))
 				{
-					$error[] = $user->lang['FORM_INVALID'];
+					trigger_error($user->lang['FORM_INVALID'] . adm_back_link($this->u_action));
 				}
 
 				$template->assign_vars(array(
@@ -348,6 +365,7 @@ class acp_donation
 						{
 							trigger_error($user->lang['MUST_SELECT_ITEM'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
+
 						$sql = 'SELECT * FROM ' . DONATION_ITEM_TABLE . ' WHERE item_id =' . (int) $item_id . " AND item_type = 'currency'";
 						$result = $db->sql_query($sql);
 						$currency_ary = $db->sql_fetchrow($result);
@@ -367,14 +385,14 @@ class acp_donation
 							'U_ACTION'			=> $this->u_action,
 							'U_BACK'			=> $this->u_action,
 
-							'L_ITEM_NAME'					=> $user->lang[ 'DONATION_CURRENCY_NAME'],
-							'L_ITEM_NAME_EXPLAIN'			=> $user->lang[ 'DONATION_CURRENCY_NAME_EXPLAIN'],
-							'L_ITEM_ISO_CODE'				=> $user->lang[ 'DONATION_CURRENCY_ISO_CODE'],
-							'L_ITEM_ISO_CODE_EXPLAIN'		=> $user->lang[ 'DONATION_CURRENCY_ISO_CODE_EXPLAIN'],
-							'L_ITEM_SYMBOL'					=> $user->lang[ 'DONATION_CURRENCY_SYMBOL'],
-							'L_ITEM_SYMBOL_EXPLAIN'			=> $user->lang[ 'DONATION_CURRENCY_SYMBOL_EXPLAIN'],
-							'L_ACP_ITEM_ENABLED'			=> $user->lang[ 'DONATION_CURRENCY_ENABLED'],
-							'L_ACP_ITEM_ENABLED_EXPLAIN'	=> $user->lang[ 'DONATION_CURRENCY_ENABLED_EXPLAIN'],
+							'L_ITEM_NAME'					=> $user->lang['DONATION_CURRENCY_NAME'],
+							'L_ITEM_NAME_EXPLAIN'			=> $user->lang['DONATION_CURRENCY_NAME_EXPLAIN'],
+							'L_ITEM_ISO_CODE'				=> $user->lang['DONATION_CURRENCY_ISO_CODE'],
+							'L_ITEM_ISO_CODE_EXPLAIN'		=> $user->lang['DONATION_CURRENCY_ISO_CODE_EXPLAIN'],
+							'L_ITEM_SYMBOL'					=> $user->lang['DONATION_CURRENCY_SYMBOL'],
+							'L_ITEM_SYMBOL_EXPLAIN'			=> $user->lang['DONATION_CURRENCY_SYMBOL_EXPLAIN'],
+							'L_ACP_ITEM_ENABLED'			=> $user->lang['DONATION_CURRENCY_ENABLED'],
+							'L_ACP_ITEM_ENABLED_EXPLAIN'	=> $user->lang['DONATION_CURRENCY_ENABLED_EXPLAIN'],
 
 							'ITEM_NAME'			=> isset($currency_ary['item_name']) ? $currency_ary['item_name'] : utf8_normalize_nfc(request_var('item_name', '', true)),
 							'ITEM_ISO_CODE'		=> isset($currency_ary['item_iso_code']) ? $currency_ary['item_iso_code'] : utf8_normalize_nfc(request_var('item_iso_code', '', true)),
@@ -393,13 +411,11 @@ class acp_donation
 						$item_symbol = utf8_normalize_nfc(request_var('item_symbol','',true));
 						$item_enable = request_var('item_enable', 0);
 
-						if (!$item_name && !$item_id)
+						if ( empty($item_name) )
 						{
-							trigger_error($user->lang['ENTER_CURRENCY_NAME'] . adm_back_link($this->u_action . '&amp;action=add'), E_USER_WARNING);
-						}
-						elseif (!$item_name)
-						{
-							trigger_error($user->lang['ENTER_CURRENCY_NAME'] . adm_back_link($this->u_action . '&amp;action=edit&amp;id=' . (int) $item_id ), E_USER_WARNING);
+							$trigger_url = !$item_id ? '&amp;action=add' : '&amp;action=edit&amp;id=' . (int) $item_id;
+
+							trigger_error($user->lang['ENTER_CURRENCY_NAME'] . adm_back_link($this->u_action . $trigger_url), E_USER_WARNING);
 						}
 
 						$sql_ary = array(
@@ -427,12 +443,9 @@ class acp_donation
 							$db->sql_query('INSERT INTO ' . DONATION_ITEM_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary));
 						}
 
-
-						$log_action = $item_id ? 'LOG_ITEM_UPDATED' : 'LOG_ITEM_ADDED';
-						add_log('admin', $log_action, $user->lang['MODE_CURRENCY'], $item_name);
-
-						$message = $item_id ? $user->lang['CURRENCY_UPDATED'] : $user->lang['CURRENCY_ADDED'];
-						trigger_error($message . adm_back_link($this->u_action));
+						$item_action = $item_id ? 'UPDATED' : 'ADDED';
+						add_log('admin', 'LOG_ITEM_' . $item_action, $user->lang['MODE_CURRENCY'], $item_name);
+						trigger_error($user->lang['CURRENCY_' . $item_action] . adm_back_link($this->u_action));
 
 					break;
 
@@ -497,7 +510,7 @@ class acp_donation
 							$sql = 'SELECT item_id
 									FROM ' . DONATION_ITEM_TABLE . "
 									WHERE item_type = 'currency'
-										AND item_enable = 1 ";
+										AND item_enable = 1";
 							$result = $db->sql_query($sql);
 							$default_currency_check = $db->sql_fetchrow($result);
 							$db->sql_freeresult($result);
@@ -521,8 +534,10 @@ class acp_donation
 						$row = $db->sql_fetchrow($result);
 						$db->sql_freeresult($result);
 
-						add_log('admin', ($action == 'enable') ? 'LOG_ITEM_ENABLED' : 'LOG_ITEM_DISABLED', $user->lang['MODE_CURRENCY'], $row['item_name']);
-						trigger_error($user->lang[($action == 'enable') ? 'CURRENCY_ENABLED' : 'CURRENCY_DISABLED'] . adm_back_link($this->u_action));
+						$item_action = ($action == 'enable') ? 'ENABLED' : 'DISABLED';
+
+						add_log('admin', 'LOG_ITEM_' . $item_action, $user->lang['MODE_CURRENCY'], $row['item_name']);
+						trigger_error($user->lang['CURRENCY_' . $item_action] . adm_back_link($this->u_action));
 					break;
 				}
 
@@ -534,17 +549,19 @@ class acp_donation
 
 				while ($row = $db->sql_fetchrow($result))
 				{
+					$row['item_id'] = (int) $row['item_id'];
+
 					$template->assign_block_vars('items', array(
 					'ITEM_NAME'			=> $row['item_name'],
 					'ITEM_ENABLED'		=> ($row['item_enable']) ? true : false,
 
 					// links
-					'U_EDIT'			=> $this->u_action . '&amp;action=edit&amp;id=' . (int) $row['item_id'],
-					'U_MOVE_UP'			=> $this->u_action . '&amp;action=move_up&amp;id=' . (int) $row['item_id'],
-					'U_MOVE_DOWN'		=> $this->u_action . '&amp;action=move_down&amp;id=' . (int) $row['item_id'],
-					'U_DELETE'			=> $this->u_action . '&amp;action=delete&amp;id=' . (int) $row['item_id'],
-					'U_ENABLE'			=> $this->u_action . '&amp;action=enable&amp;id=' . (int) $row['item_id'],
-					'U_DISABLE'			=> $this->u_action . '&amp;action=disable&amp;id=' . (int) $row['item_id'],
+					'U_EDIT'			=> $this->u_action . '&amp;action=edit&amp;id=' . $row['item_id'],
+					'U_MOVE_UP'			=> $this->u_action . '&amp;action=move_up&amp;id=' . $row['item_id'],
+					'U_MOVE_DOWN'		=> $this->u_action . '&amp;action=move_down&amp;id=' . $row['item_id'],
+					'U_DELETE'			=> $this->u_action . '&amp;action=delete&amp;id=' . $row['item_id'],
+					'U_ENABLE'			=> $this->u_action . '&amp;action=enable&amp;id=' . $row['item_id'],
+					'U_DISABLE'			=> $this->u_action . '&amp;action=disable&amp;id=' . $row['item_id'],
 					));
 				};
 				$db->sql_freeresult($result);

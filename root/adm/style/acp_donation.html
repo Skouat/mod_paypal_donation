@@ -59,7 +59,7 @@
 
 		<fieldset>
 			<legend>{L_DONATION_DRAFT_SETTINGS}</legend>
-		
+
 			<div id="format-buttons">
 				<input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px;" onclick="bbstyle(0)" onmouseover="helpline('b')" onmouseout="helpline('tip')" />
 				<input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px;" onclick="bbstyle(2)" onmouseover="helpline('i')" onmouseout="helpline('tip')" />
@@ -95,7 +95,7 @@
 				<dt>
 					<script type="text/javascript">
 					// <![CDATA[
-						colorPalette('h', 15, 10);
+						colorPalette('h', 8, 10);
 					// ]]>
 					</script>
 
@@ -108,7 +108,7 @@
 					<!-- ENDIF -->
 				</dt>
 				<dd>{L_DONATION_DRAFT_EXPLAIN}:
-				<textarea name="pages[donation_draft]" id="donation_draft" rows="10" cols="45" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{DONATION_DRAFT}</textarea><br />
+					<textarea name="pages[donation_draft]" id="donation_draft" rows="10" cols="45" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{DONATION_DRAFT}</textarea><br />
 					<input class="button1" type="submit" name="preview" value="{L_PREVIEW}" />
 					<!-- BEGIN donation_pages --><input class="button2" type="button" value="{donation_pages.L_COPY_TO}" onclick="move_draft_{donation_pages.S_DONATION_TYPE}();" /> <!-- END donation_pages -->
 				</dd>

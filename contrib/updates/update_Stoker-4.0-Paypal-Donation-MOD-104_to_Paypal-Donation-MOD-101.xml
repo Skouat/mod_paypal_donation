@@ -4,33 +4,10 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Update from Stoker 4.0's Paypal Donation MOD 1.0.3 to Paypal Donation MOD 1.0.0]]></title>
-		<description lang="en"><![CDATA[Those update instructions help you to migrate from Stoker 4.0's MOD to this Paypal Donation version..]]></description>
-		<description lang="fr"><![CDATA[Ces instructions de mise à jour vous aiderons à migrer de Paypal Donation MOD de Stoker 4.0 vers cette version de Paypal Donation MOD]]></description>
-				<author-notes lang="en"><![CDATA[
-This MOD is inspired by the Stoker 4.0's "Paypal Donation MOD 1.0.3".
-By wanting to add to his MOD the management of the currencies, I met to re-code it completely.
-Some displayed features have been kept and improved:
-- Stats displaying
-- Customizable pages with text
-Thanks to Stoker 4.0 to have accepted that I publish this new version of Paypal Donation.
-
-Be careful !!!
-If you already have Stoker 4.0's Paypal Donation MOD 1.0.3, please remove-it before to install this MOD.
-See instructions in /contrib folder]]>
-		</author-notes>
-		<author-notes lang="fr"><![CDATA[
-Ce module est inspiré de "Paypal Donation MOD 1.0.3" de Stoker 4.0.
-En voulant ajouter à son MOD la gestion des devises, je me suis retrouvé à entièrement le recoder.
-Certaines fonctionnalitées ont été gardées et améliorées:
-- Visualisation des statistiques
-- Personalisation des pages avec du texte
-Merci à Stoker 4.0 d'avoir accepté que je publie cette nouvelle mouture de Paypal Donation.
-
-Attention !!!
-Si vous utilisez déjà le MOD Paypal Donation 1.0.3 de Stoker 4.0, désintallez-le avant d'installer ce MOD.
-Voir les instructions dans le dossier /contrib]]>
-		</author-notes>
+		<title lang="en"><![CDATA[Update from “Stoker 4.0's Paypal Donation MOD 1.0.4” to “Paypal Donation MOD 1.0.1”]]></title>
+		<title lang="fr"><![CDATA[Mise à jour de “Paypal Donation MOD 1.0.4” de Stoker 4.0 vers “Paypal Donation MOD 1.0.1”]]></title>
+		<description lang="en"><![CDATA[Those update instructions help you to migrate from “Stoker 4.0's Paypal Donation MOD 1.0.3” to this “Paypal Donation MOD” version.]]></description>
+		<description lang="fr"><![CDATA[Ces instructions de mise à jour vous aiderons à migrer de “Paypal Donation MOD de Stoker 4.0” vers cette version de “Paypal Donation MOD”]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Skouat]]></realname>
@@ -38,14 +15,6 @@ Voir les instructions dans le dossier /contrib]]>
 				<homepage><![CDATA[http://www.ultima-world.com]]></homepage>
 				<contributions-group>
 					<contributions status="current" from="2009-08-02" position="Developer"/>
-				</contributions-group>
-			</author>
-			<author>
-				<realname><![CDATA[Stoker 4.0]]></realname>
-				<username><![CDATA[Stoker 4.0]]></username>
-				<homepage><![CDATA[http://www.phpbb3bbcodes.com]]></homepage>
-				<contributions-group>
-					<contributions status="past" position="Initial MOD Developer"/>
 				</contributions-group>
 			</author>
 		</author-group>
@@ -61,7 +30,7 @@ Voir les instructions dans le dossier /contrib]]>
 		<history>
 			<entry>
 				<date>2012-02-04</date>
-				<rev-version>1.0.0</rev-version>
+				<rev-version>1.0.0 of this MOD</rev-version>
 				<changelog lang="en">
 					<change>Too many change... All the code was rewritten.</change>
 				</changelog>
@@ -70,8 +39,8 @@ Voir les instructions dans le dossier /contrib]]>
 				</changelog>
 			</entry>
 			<entry>
-				<date>2011-11-23</date>
-				<rev-version>1.0.3 of Stoker 4.0's MOD</rev-version>
+				<date>2012-04-12</date>
+				<rev-version>1.0.4 of Stoker 4.0's MOD</rev-version>
 				<changelog lang="en">
 					<change>Last version of Stoker 4.0's MOD.</change>
 				</changelog>
@@ -81,7 +50,7 @@ Voir les instructions dans le dossier /contrib]]>
 			</entry>
 		</history>
 		<link-group>
-			<link type="parent" href="../install.xml" lang="en">Parent MOD installation</link>
+			<link type="parent" href="../../install.xml" lang="en">Parent MOD installation</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -95,7 +64,9 @@ DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_goal_c
 DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_goal_currency_enable';
 DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_goal_enable';
 DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_index_enable';
-DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_mod_version';]]></sql>
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_mod_version';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_index_top';
+DELETE FROM `phpbb_config` WHERE `phpbb_config`.`config_name` = 'donation_index_bottom';]]></sql>
 		<sql><![CDATA[DELETE FROM `phpbb_modules` WHERE `phpbb_modules`.`module_langname` = 'ACP_DONATION_MOD';
 DELETE FROM `phpbb_modules` WHERE `phpbb_modules`.`module_langname` = 'DONATION_CONFIG';]]></sql>
 		<copy>
@@ -139,18 +110,21 @@ $template->assign_vars(array(
 	'DONATION_ACHIEVEMENT_ENABLE'		=> (isset($config['donation_achievement_enable'])) ? $config['donation_achievement_enable']:false,
 	'DONATION_ACHIEVEMENT'				=> (isset($config['donation_achievement'])) ? $config['donation_achievement']:false,
 	'DONATION_INDEX_ENABLE'				=> (isset($config['donation_index_enable'])) ? $config['donation_index_enable']:false,
+	'DONATION_INDEX_TOP'				=> (isset($config['donation_index_top'])) ? $config['donation_index_top']:false,
+	'DONATION_INDEX_BOTTOM'				=> (isset($config['donation_index_bottom'])) ? $config['donation_index_bottom']:false,
 	'DONATION_GOAL_ENABLE'				=> (isset($config['donation_goal_enable'])) ? $config['donation_goal_enable']:false,
 	'DONATION_GOAL'						=> (isset($config['donation_goal'])) ? $config['donation_goal']:false,
 	'DONATION_GOAL_CURRENCY_ENABLE'		=> (isset($config['donation_goal_currency_enable'])) ? $config['donation_goal_currency_enable']:false,
 	'DONATION_GOAL_CURRENCY'			=> (isset($config['donation_goal_currency'])) ? $config['donation_goal_currency']:false,
 ));
 }
-
 if (!empty($config['donation_goal_enable']) &&  $config['donation_goal'] > 0)
 {
 $donation_goal_number = ($config['donation_achievement'] * 100) / $config['donation_goal'];
+$donation_goal_rest = $config['donation_goal'] - $config['donation_achievement'];
 $template->assign_vars(array(
-   'DONATION_GOAL_NUMBER'            => $donation_goal_number,
+   'DONATION_GOAL_NUMBER'           => round($donation_goal_number),
+   'DONATION_GOAL_REST'            	=> $donation_goal_rest,
 ));
 }]]></find>
 				<action type="replace-with"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
@@ -230,10 +204,13 @@ define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
 ]]></find>
 				<action type="after-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
 //-- add
-	$template->assign_vars(array(
-		'U_DONATE'				=> append_sid("{$phpbb_root_path}donate.$phpEx"),
-		'S_DONATE_ENABLED'		=> ((!empty($config['donation_enable']) && !empty($config['donation_account_id'])) || (!empty($config['paypal_sandbox_enable']) && !empty($config['paypal_sandbox_address']))) ? true : false,
-	));
+	if ((!empty($config['donation_enable']) && !empty($config['donation_account_id'])) || (!empty($config['paypal_sandbox_enable']) && !empty($config['paypal_sandbox_address'])))
+	{
+		$template->assign_vars(array(
+			'U_DONATE'			=> append_sid("{$phpbb_root_path}donate.$phpEx"),
+			'S_DONATE_ENABLED'	=> true,
+		));
+	}
 //-- end : Paypal Donation --------------------------------------------------------
 ]]></action>
 			</edit>
@@ -257,10 +234,19 @@ $lang = array_merge($lang, array(
 		</open>
 			<open src="styles/prosilver/template/index_body.html">
 			<edit>
-				<find><![CDATA[<!-- IF DONATION_INDEX_ENABLE and (DONATION_ACHIEVEMENT_ENABLE or DONATION_GOAL_ENABLE) -->
+				<remove><![CDATA[<!-- IF (DONATION_INDEX_ENABLE and S_DONATE_ENABLED and DONATION_INDEX_TOP) and (DONATION_ACHIEVEMENT_ENABLE or DONATION_GOAL_ENABLE) -->
 	<h3><a href="{U_DONATE}">{L_DONATIONS_INDEX}</a></h3>
 	<!-- IF DONATION_GOAL_ENABLE and DONATION_ACHIEVEMENT_ENABLE and DONATION_GOAL > 0 -->
-	<div style="background:url('{ROOT_PATH}images/prog_grey.png') repeat-x; background-color: #cccccc; border: 1px solid black; width:100%; margin-top: 2px;"><div style="background:url('{ROOT_PATH}images/prog_green.png') repeat-x;background-color: #008040; color: white; font-weight:bold; max-width:100%;  width:{DONATION_GOAL_NUMBER}%; height:24px;"><span style="padding-left:25px; font-size:18px;">{DONATION_GOAL_NUMBER}%</span></div></div>
+	<div style="background:url('{ROOT_PATH}images/prog_grey_index.png') repeat-x; background-color: #cccccc; border: 1px solid black; width:100%; margin-top: 2px;"><div style="background:url('{ROOT_PATH}images/prog_<!-- IF DONATION_GOAL_NUMBER < 33 -->red<!-- ELSEIF DONATION_GOAL_NUMBER < 67 -->yellow<!-- ELSE -->green<!-- ENDIF -->_index.png') repeat-x;background-color: #008040; color: white; font-weight:bold; max-width:100%;<!-- IF DONATION_GOAL_NUMBER < 100 --> border-right: 1px solid black;<!-- ENDIF -->  width:{DONATION_GOAL_NUMBER}%; height:16px;"><span style="padding-left:25px; font-size:12px; line-height:16px;">{DONATION_GOAL_NUMBER}%</span></div></div>
+	<!-- ENDIF -->
+	<p style="text-align:center;"><!-- IF DONATION_ACHIEVEMENT_ENABLE -->{L_WE_HAVE_ACHIEVED} <strong><!-- IF DONATION_ACHIEVEMENT > 0 -->{DONATION_ACHIEVEMENT}<!-- ELSE -->{DONATION_GOAL_NUMBER}<!-- ENDIF --></strong><!-- IF DONATION_GOAL_CURRENCY_ENABLE --> {DONATION_GOAL_CURRENCY}<!-- ENDIF --> {L_WE_HAVE_ACHIEVED_IN}<!-- ENDIF --><!-- IF DONATION_GOAL_ENABLE and DONATION_GOAL > 0 --> {L_OUR_DONATION_GOAL} <strong>{DONATION_GOAL}</strong><!-- IF DONATION_GOAL_CURRENCY_ENABLE --> {DONATION_GOAL_CURRENCY}<!-- ENDIF -->.<!-- ENDIF --></p>
+<!-- ENDIF -->]]></remove>
+			</edit>
+			<edit>
+				<find><![CDATA[<!-- IF (DONATION_INDEX_ENABLE and S_DONATE_ENABLED and DONATION_INDEX_BOTTOM) and (DONATION_ACHIEVEMENT_ENABLE or DONATION_GOAL_ENABLE) -->
+	<h3><a href="{U_DONATE}">{L_DONATIONS_INDEX}</a></h3>
+	<!-- IF DONATION_GOAL_ENABLE and DONATION_ACHIEVEMENT_ENABLE and DONATION_GOAL > 0 -->
+	<div style="background:url('{ROOT_PATH}images/prog_grey_index.png') repeat-x; background-color: #cccccc; border: 1px solid black; width:100%; margin-top: 2px;"><div style="background:url('{ROOT_PATH}images/prog_<!-- IF DONATION_GOAL_NUMBER < 33 -->red<!-- ELSEIF DONATION_GOAL_NUMBER < 67 -->yellow<!-- ELSE -->green<!-- ENDIF -->_index.png') repeat-x;background-color: #008040; color: white; font-weight:bold; max-width:100%;<!-- IF DONATION_GOAL_NUMBER < 100 --> border-right: 1px solid black;<!-- ENDIF -->  width:{DONATION_GOAL_NUMBER}%; height:16px;"><span style="padding-left:25px; font-size:12px; line-height:16px;">{DONATION_GOAL_NUMBER}%</span></div></div>
 	<!-- ENDIF -->
 	<p style="text-align:center;"><!-- IF DONATION_ACHIEVEMENT_ENABLE -->{L_WE_HAVE_ACHIEVED} <strong><!-- IF DONATION_ACHIEVEMENT > 0 -->{DONATION_ACHIEVEMENT}<!-- ELSE -->{DONATION_GOAL_NUMBER}<!-- ENDIF --></strong><!-- IF DONATION_GOAL_CURRENCY_ENABLE --> {DONATION_GOAL_CURRENCY}<!-- ENDIF --> {L_WE_HAVE_ACHIEVED_IN}<!-- ENDIF --><!-- IF DONATION_GOAL_ENABLE and DONATION_GOAL > 0 --> {L_OUR_DONATION_GOAL} <strong>{DONATION_GOAL}</strong><!-- IF DONATION_GOAL_CURRENCY_ENABLE --> {DONATION_GOAL_CURRENCY}<!-- ENDIF -->.<!-- ENDIF --></p>
 <!-- ENDIF -->]]></find>
@@ -284,5 +270,11 @@ $lang = array_merge($lang, array(
 - Go to ACP, refresh your style and purge your cache
 - Run the installer
 - Set the Paypal Donation Mod settings under the .MOD tab.]]></diy-instructions>
+		<diy-instructions lang="fr"><![CDATA[--------- instructions de mise à jour ---------
+- Transférez l'ensemble des fichiers.
+- Si ce n'est pas déjà fait, exécutez les requêtes SQL.
+- Allez dans l'ACP, rafraichissez les styles et purgez le cache.
+- Lancez le fichier d'installation
+- Configurez le MOD depuis le panneau d'administration dans l'onglet “.MOD”.]]></diy-instructions>
 	</action-group>
 </mod>

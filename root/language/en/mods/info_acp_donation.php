@@ -97,20 +97,20 @@ $lang = array_merge($lang, array(
 // Donation Page Body settings
 	'DONATION_BODY_SETTINGS'				=> 'Donation page config',
 	'DONATION_BODY'							=> 'Donation page text',
-	'DONATION_BODY_EXPLAIN'					=> 'Enter the text you want displayed on the main donation page.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />Use this Language Key: <strong>CUSTOM_DONATION_BODY</strong>',
-	'COPY_TO_DONATION_BODY'					=> 'Copy text to Donation body',
+	'DONATION_BODY_EXPLAIN'					=> 'Enter the text you want displayed on the main donation page.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />If needed, use this Language Key: <strong>CUSTOM_DONATION_BODY</strong>',
+	'COPY_TO_DONATION_BODY'					=> 'Copy to Donation body',
 
 // Donation Success settings
 	'DONATION_SUCCESS_SETTINGS'				=> 'Donation success config',
 	'DONATION_SUCCESS'						=> 'Donation success text',
-	'DONATION_SUCCESS_EXPLAIN'				=> 'Enter the text you want displayed on the success page<br />This is the page users are redirected to after a successfull donation.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />Use this Language Key: <strong>CUSTOM_DONATION_SUCCESS</strong>',
-	'COPY_TO_DONATION_SUCCESS'				=> 'Copy text to Donation success',
+	'DONATION_SUCCESS_EXPLAIN'				=> 'Enter the text you want displayed on the success page<br />This is the page users are redirected to after a successfull donation.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />If needed, use this Language Key: <strong>CUSTOM_DONATION_SUCCESS</strong>',
+	'COPY_TO_DONATION_SUCCESS'				=> 'Copy to Donation success',
 
 // Donation Cancel settings
 	'DONATION_CANCEL_SETTINGS'				=> 'Donation cancel config',
 	'DONATION_CANCEL'						=> 'Donation cancel text',
-	'DONATION_CANCEL_EXPLAIN'				=> 'Enter the text you want displayed on the cancel page<br />This is the page users are redirected to after they cancel a donation.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />Use this Language Key: <strong>CUSTOM_DONATION_CANCEL</strong>',
-	'COPY_TO_DONATION_CANCEL'				=> 'Copy text to Donation cancel',
+	'DONATION_CANCEL_EXPLAIN'				=> 'Enter the text you want displayed on the cancel page<br />This is the page users are redirected to after they cancel a donation.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />If needed, use this Language Key: <strong>CUSTOM_DONATION_CANCEL</strong>',
+	'COPY_TO_DONATION_CANCEL'				=> 'Copy to Donation cancel',
 
 // Currency Management
 	'DONATION_CURRENCY_CONFIG'				=> 'Currency management',

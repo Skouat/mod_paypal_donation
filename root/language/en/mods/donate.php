@@ -43,7 +43,9 @@ $lang = array_merge($lang, array(
 	'DONATION_DISABLED'				=> 'Sorry, the Donation page is currently unavailable.',
 	'DONATION_NOT_INSTALLED'		=> 'Paypal Donation MOD database entries are missing.<br />Please run the %sinstaller%s to make the database changes for the MOD.',
 	'DONATION_NOT_INSTALLED_USER'	=> 'The Donation page is not installed. Please notify the board founder.',
+	'DONATION_ADDRESS_MISSING'		=> 'Sorry, Paypal Donation is enabled but some settings are missing. Please notify the board founder.',
 	'SANDBOX_ADDRESS_MISSING'		=> 'Sorry, Paypal Sandbox is enabled but some settings are missing. Please notify the board founder.',
+
 
 // Image alternative text
 	'IMG_DONATE'					=> 'donate',
@@ -90,9 +92,9 @@ $lang = array_merge($lang, array(
 
 // Custom language key for Pages Donations personnalisation
 $lang = array_merge($lang, array(
-	'CUSTOM_DONATION_BODY'		=> '<h2>This is an example of text based on the language keys</h2><br /><p> Edit <strong>CUSTOM_DONATION_BODY</strong> Language Key in <strong>/language/en/mods/donate.php</strong>.<br /> Write the text you want displayed in your custom pages.</p>',
-	'CUSTOM_DONATION_SUCCESS'	=> '<h2>This is an example of text based on the language keys</h2><br /><p> Edit <strong>CUSTOM_DONATION_SUCCESS</strong> Language Key in <strong>/language/en/mods/donate.php</strong>.<br /> Write the text you want displayed in your custom pages.</p>',
-	'CUSTOM_DONATION_CANCEL'	=> '<h2>This is an example of text based on the language keys</h2><br /><p> Edit <strong>CUSTOM_DONATION_CANCEL</strong> Language Key in <strong>/language/en/mods/donate.php</strong>.<br /> Write the text you want displayed in your custom pages.</p>',
+	'CUSTOM_DONATION_BODY'		=> '<h2>This is an example of text based on <strong>CUSTOM_DONATION_BODY</strong> language key</h2><br /><p> Edit the file <strong>/language/en/mods/donate.php</strong> and write the text you want displayed here.</p>',
+	'CUSTOM_DONATION_SUCCESS'	=> '<h2>This is an example of text based on <strong>CUSTOM_DONATION_SUCCESS</strong> language key</h2><br /><p> Edit the <strong>/language/en/mods/donate.php</strong> and write the text you want displayed here.</p>',
+	'CUSTOM_DONATION_CANCEL'	=> '<h2>This is an example of text based on <strong>CUSTOM_DONATION_CANCEL</strong> language key</h2><br /><p> Edit the  <strong>/language/en/mods/donate.php</strong> and write the text you want displayed here.</p>',
 ));
 
 ?>

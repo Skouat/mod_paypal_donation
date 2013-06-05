@@ -32,6 +32,10 @@ $version_config_name = 'donation_mod_version';
 $language_file = 'mods/donate';
 
 $versions = array(
+	'1.0.1' => array(
+		// No change
+	),
+
 	// Version 1.0.0-RC2
 	'1.0.0-RC2' => array(
 		// Add new enable/disable config entry
@@ -66,12 +70,7 @@ $versions = array(
 			)
 		)),
 
-		'cache_purge' => (array(
-			'auth', // The auth
-			'imageset', // The imageset (all)
-			'template', // The template (all)
-			'theme', // The theme (all)
-		)),
+		'cache_purge' => array(''),
 	),
 
 	// Version 1.0.0-RC1
@@ -159,7 +158,7 @@ $versions = array(
 					'item_type'			=> 'currency',
 					'item_name'			=> 'U.S. Dollar',
 					'item_iso_code'		=> 'USD',
-					'item_symbol'		=> '&#36;', // symbol $
+					'item_symbol'		=> '&#36;', // symbol dollar
 					'item_text'			=> '',
 					'item_enable'		=> true,
 					'left_id'			=> 1,
@@ -169,7 +168,7 @@ $versions = array(
 					'item_type'			=> 'currency',
 					'item_name'			=> 'Euro',
 					'item_iso_code'		=> 'EUR',
-					'item_symbol'		=> '&#8364;', // symbol €
+					'item_symbol'		=> '&#8364;', // symbol euro
 					'item_text'			=> '',
 					'item_enable'		=> true,
 					'left_id'			=> 3,
@@ -179,7 +178,7 @@ $versions = array(
 					'item_type'			=> 'currency',
 					'item_name'			=> 'Pound Sterling',
 					'item_iso_code'		=> 'GBP',
-					'item_symbol'		=> '&#163;', // symbol £
+					'item_symbol'		=> '&#163;', // symbol livre sterling
 					'item_text'			=> '',
 					'item_enable'		=> true,
 					'left_id'			=> 5,
@@ -189,7 +188,7 @@ $versions = array(
 					'item_type'			=> 'currency',
 					'item_name'			=> 'Yen',
 					'item_iso_code'		=> 'JPY',
-					'item_symbol'		=> '&#165;', // symbol ¥
+					'item_symbol'		=> '&#165;', // symbol yen
 					'item_text'			=> '',
 					'item_enable'		=> true,
 					'left_id'			=> 7,

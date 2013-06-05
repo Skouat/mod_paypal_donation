@@ -97,19 +97,19 @@ $lang = array_merge($lang, array(
 // Donation Page Body settings
 	'DONATION_BODY_SETTINGS'				=> 'Paramètres de la Page des dons',
 	'DONATION_BODY'							=> 'Texte de la page des dons',
-	'DONATION_BODY_EXPLAIN'					=> 'Saisir le texte que vous souhaitez afficher sur la page des dons.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langue, mais pas les deux en même temps.<br />Clé de langues à utiliser : <strong>CUSTOM_DONATION_BODY</strong>',
+	'DONATION_BODY_EXPLAIN'					=> 'Saisir le texte que vous souhaitez afficher sur la page des dons.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langue, mais pas les deux en même temps.<br />Si besoin, Clé de langues à utiliser : <strong>CUSTOM_DONATION_BODY</strong>',
 	'COPY_TO_DONATION_BODY'					=> 'Copier vers Page des dons',
 
 // Donation Success settings
 	'DONATION_SUCCESS_SETTINGS'				=> 'Paramètres de la page des dons validés',
 	'DONATION_SUCCESS'						=> 'Texte de la page des dons validés',
-	'DONATION_SUCCESS_EXPLAIN'				=> 'Saisir le texte que vous souhaitez afficher sur la page des dons validés<br />Après avoir reçus un dons avec succès, les membres seront redirigés sur cette page.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Clé de langue à utiliser : <strong>CUSTOM_DONATION_SUCCESS</strong>',
+	'DONATION_SUCCESS_EXPLAIN'				=> 'Saisir le texte que vous souhaitez afficher sur la page des dons validés<br />Après avoir reçus un dons avec succès, les membres seront redirigés sur cette page.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Si besoin, Clé de langue à utiliser : <strong>CUSTOM_DONATION_SUCCESS</strong>',
 	'COPY_TO_DONATION_SUCCESS'				=> 'Copier vers Dons validés',
 
 // Donation Cancel settings
 	'DONATION_CANCEL_SETTINGS'				=> 'Paramètres de la page des dons annulés',
 	'DONATION_CANCEL'						=> 'Texte de la page des dons annulés',
-	'DONATION_CANCEL_EXPLAIN'				=> 'Saisir le texte que vous souhaitez afficher sur la page des dons annulés<br />les membres seront redirigés sur cette page s’ils abandonnent une donnation depuis le site Paypal.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Clé de langue à utiliser : <strong>CUSTOM_DONATION_CANCEL</strong>',
+	'DONATION_CANCEL_EXPLAIN'				=> 'Saisir le texte que vous souhaitez afficher sur la page des dons annulés<br />les membres seront redirigés sur cette page s’ils abandonnent une donnation depuis le site Paypal.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Si besoin, Clé de langue à utiliser : <strong>CUSTOM_DONATION_CANCEL</strong>',
 	'COPY_TO_DONATION_CANCEL'				=> 'Copier vers Dons annulés',
 
 // Currency Management

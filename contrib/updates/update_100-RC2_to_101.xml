@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Paypal Donation Mod - Update from 1.0.0-RC2 to 1.0.1]]></title>
+		<description lang="en"><![CDATA[Allows to update the MOD from 1.0.0-RC2 to 1.0.1]]></description>
+		<description lang="fr"><![CDATA[Permet de mettre à jour le MOD de la version 1.0.0-RC2 à la version 1.0.1]]></description>
+		<author-group>
+			<author>
+				<realname><![CDATA[Skouat]]></realname>
+				<username><![CDATA[Skouat]]></username>
+				<homepage><![CDATA[http://www.ultima-world.com]]></homepage>
+				<contributions-group>
+					<contributions status="current" from="2009-08-02" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+
+		<mod-version>1.0.1</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.10</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2012-04-14</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Add: MOD Check version add-on</change>
+					<change>Add: Advanced BBCode Box 3 add-on</change>
+					<change>Minor code change</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Ajout : Contribution pour MOD Check version</change>
+					<change>Ajout : Contribution pour Advanced BBCode Box 3</change>
+					<change>Changement mineur du code</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-04-11</date>
+				<rev-version>1.0.0-RC2</rev-version>
+				<changelog lang="en">
+					<change>Fix: Change code according to the phpBB coding guidelines.</change>
+					<change>Fix: If all currencies are disabled, the first currency that is enabled becomes the default currency.</change>
+					<change>Fix: Characters with accents are not supported in ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
+					<change>Change: HTML usage is replaced by BBcode usage.</change>
+					<change>Add: Possibility to define a default donation value.</change>
+					<change>Add: Ability to set Paypal Sandbox only for board founder.</change>
+					<change>Add: Ability to replace the paypal textbox by a paypal drop-list.</change>
+					<change>Some changed code.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Correction : Changement du code selon les directive de codage de phpBB.</change>
+					<change>Correction : Si toutes les devises sont désactivées, la première devise qui est activée ne devient pas la devise par défaut.</change>
+					<change>Correction : Les caractères accentués ne sont pas supportés dans ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
+					<change>Modification: L’utilisation du HTML est remplacé par l’utilisation des BBcode.</change>
+					<change>Ajout : Il est possible de définir une valeur de dons par défaut.</change>
+					<change>Ajout : Possibilité d'autoriser Paypal Sandbox seulement pour les foundateurs du forum.</change>
+					<change>Ajout : Possibilité de remplacer la zone de saisie de donation libre par une liste déroulante.</change>
+					<change>Divers changement dans le code.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-01-24</date>
+				<rev-version>1.0.0-RC1</rev-version>
+				<changelog lang="en">
+					<change>First public version...</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Première version public...</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="parent" href="../../install.xml" lang="en">Parent MOD installation</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/donate.php" to="donate.php" />
+			<file from="root/install_donation_mod.php" to="install_donation_mod.php" />
+			<file from="root/adm/style/acp_donation.html" to="adm/style/acp_donation.html" />
+			<file from="root/images/donation/*.*" to="images/donation/*.*" />
+			<file from="root/includes/acp/*.*" to="includes/acp/*.*" />
+			<file from="root/includes/functions_donation.php" to="includes/functions_donation.php" />
+			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*" />
+			<file from="root/styles/prosilver/imageset/en/donate.gif" to="styles/prosilver/imageset/en/donate.gif" />
+			<file from="root/styles/prosilver/template/donate/*.*" to="styles/prosilver/template/donate/*.*" />
+			<file from="root/styles/prosilver/theme/donation.css" to="styles/prosilver/theme/donation.css" />
+			<file from="root/umil/*.*" to="umil/*.*" />
+		</copy>
+		<delete>
+			<file name="images/donation/yourlogohere.png"/>
+		</delete>
+				<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[	$template->assign_vars(array(
+		'U_DONATE'				=> append_sid("{$phpbb_root_path}donate.$phpEx"),
+		'S_DONATE_ENABLED'		=> ((!empty($config['donation_enable']) && !empty($config['donation_account_id'])) || (!empty($config['paypal_sandbox_enable']) && !empty($config['paypal_sandbox_address']))) ? true : false,
+	));]]></find>
+				<action type="replace-with"><![CDATA[	if ((!empty($config['donation_enable']) && !empty($config['donation_account_id'])) || (!empty($config['paypal_sandbox_enable']) && !empty($config['paypal_sandbox_address'])))
+	{
+		$template->assign_vars(array(
+			'U_DONATE'			=> append_sid("{$phpbb_root_path}donate.$phpEx"),
+			'S_DONATE_ENABLED'	=> true,
+		));
+	}]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install_donation_mod.php]]></php-installer>
+
+		<diy-instructions lang="en"><![CDATA[--------- Update instructions ---------
+Upload all included files.
+Run the installer.]]></diy-instructions>
+		<diy-instructions lang="fr"><![CDATA[--------- Instructions de mise à jour ---------
+Transférer tous les fichiers.
+Executer le fichier d'installation.]]></diy-instructions>
+	</action-group>
+</mod>

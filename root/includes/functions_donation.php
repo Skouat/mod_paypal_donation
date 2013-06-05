@@ -51,15 +51,18 @@ function donation_item_list($default = 4, $type, $format = '', $lang_key = 'USD'
 	$default_currency_check = $db->sql_fetchrow($result);
 	$db->sql_freeresult($result);
 
+	$item_select = '';
+	if ($format == 'default_currency' && $default_currency_check)
+	{
+		$item_select .= ' AND item_id = ' . (int) $default;
+	}
+
 	$sql = 'SELECT item_id, item_name, item_iso_code, item_symbol
 		FROM ' . DONATION_ITEM_TABLE . "
 		WHERE item_type = '" . $db->sql_escape($type) . "'
 			AND item_enable = 1
+			$item_select
 		ORDER BY left_id";
-	if ($format == 'default_currency' && $default_currency_check)
-	{
-		$sql = str_replace('ORDER BY left_id', 'AND item_id = ' . (int) $default . ' ORDER BY left_id', $sql);
-	}
 	$result = $db->sql_query($sql);
 
 	$item_list_options = '';
@@ -67,12 +70,18 @@ function donation_item_list($default = 4, $type, $format = '', $lang_key = 'USD'
 	// Build output
 	while ($row = $db->sql_fetchrow($result))
 	{
-		$selected = ((int) $row['item_id'] == (int) $default) ? ' selected="selected"' : '' ;
+		$selected = '';
+
+		$row['item_id'] = (int) $row['item_id'];
+		if ($row['item_id'] == (int) $default)
+		{
+			$selected = ' selected="selected"';
+		}
 
 		if ($format == 'acp')
 		{
 			// Build ACP list
-			$item_list_options .= '<option value="' . (int) $row['item_id'] . '"' . $selected . '>' . $row['item_name'] . '</option>';
+			$item_list_options .= '<option value="' . $row['item_id'] . '"' . $selected . '>' . $row['item_name'] . '</option>';
 		}
 		elseif ($format == 'default_currency')
 		{
@@ -95,7 +104,7 @@ function donation_item_list($default = 4, $type, $format = '', $lang_key = 'USD'
 	}
 	elseif (empty($item_list_options) && $type =='currency')
 	{
-		$item_list_options = '<option value="' . $lang_key . '" selected="selected">' . $lang_key . '</option>';
+		$item_list_options = '<option value="' . $lang_key . '">' . $lang_key . '</option>';
 	}
 	return $item_list_options;
 }

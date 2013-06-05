@@ -4,63 +4,11 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod - Update 1.0.0-RC1 to 1.0.0-RC2]]></title>
-		<description lang="en"><![CDATA[This MOD add a Paypal Donation page to your site. 
+		<title lang="en"><![CDATA[Paypal Donation Mod - Update from 1.0.0-RC1 to 1.0.0-RC2]]></title>
+		<description lang="en"><![CDATA[Allows to update the MOD from 1.0.0-RC1 to 1.0.0-RC2]]></description>
+		<description lang="fr"><![CDATA[Permet de mettre à jour le MOD de la version 1.0.0-RC1 à la version 1.0.0-RC2
 
-Features :
-=> Safely test this MOD with Paypal Sandbox
-=> Displaying donation statistics on the Donation page and on the bottom of the forum index page
-- Progress bar
-- Donation received
-- Donation used
-- Goal to reach
-=> Advanced currencies management : Add/remove/enable/disable
-=> Backup currency: I hope no, but if you remove or disable all currencies, a Language Key is defined to provide a backup currency. If the language key does not exist, U.S Dollar will be defined as the default currency.
-=> Customize the main donation page, success page and cancel page. You can use BBcode and Language keys.
-=> Automatic redirection to the forum after a successfull/cancelled donations.
-=> Define and suggest a default donation value
-
-All options are manageable from ACP]]></description>
-		<description lang="fr"><![CDATA[Ce MOD ajoute une page de don Paypal à votre forum
-
-Fonctionnalitées :
-=> Paypal Sandbox: Tester le MOD en toute tranquilité
-=> Affichage des Statistiques de don sur la page des dons ainsi qu'en bas de page de l'index du forum.
-- Bar de progression
-- Dons reçus
-- Dons utilisés
-- Objectif des dons à atteindre
-=> Gestion avancées des devises : Ajout/suppression/activation/désactivation
-=> Devise de secours : En cas de désactivation/suppression de toutes les devises, une clé de langue permet de définir une devise de secours par défaut.
-=> Personnaliser les pages des dons, ainsi que les pages de retour au forum (Validation/annulation de dons). Vous pouvez utiliser les BBcode et les clés de langues.
-=> Retourner automatiquement vers le forum si la soumission du don a été validé avec succès ou abondonnée.
-=> Définir et suggérer une valeur de don par défaut.
-
-Toutes les options sont administrables depuis l'ACP]]></description>
-		<author-notes lang="en"><![CDATA[
-This MOD is inspired by the Stoker 4.0's "Paypal Donation MOD 1.0.3".
-By wanting to add to his MOD the management of the currencies, I met to re-code it completely.
-Some displayed features have been kept and improved:
-- Stats displaying
-- Customizable pages with text
-Thanks to Stoker 4.0 to have accepted that I publish this new version of Paypal Donation.
-
-Be careful !!!
-If you already have Stoker 4.0's Paypal Donation MOD 1.0.3, please remove-it before to install this MOD.
-See instructions in /contrib folder]]>
-		</author-notes>
-		<author-notes lang="fr"><![CDATA[
-Ce module est inspiré de "Paypal Donation MOD 1.0.3" de Stoker 4.0.
-En voulant ajouter à son MOD la gestion des devises, je me suis retrouvé à entièrement le recoder.
-Certaines fonctionnalitées ont été gardées et améliorées:
-- Visualisation des statistiques
-- Personalisation des pages avec du texte
-Merci à Stoker 4.0 d'avoir accepté que je publie cette nouvelle mouture de Paypal Donation.
-
-Attention !!!
-Si vous utilisez déjà le MOD Paypal Donation 1.0.3 de Stoker 4.0, désintallez-le avant d'installer ce MOD.
-Voir les instructions dans le dossier /contrib]]>
-		</author-notes>
+]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Skouat]]></realname>
@@ -70,21 +18,13 @@ Voir les instructions dans le dossier /contrib]]>
 					<contributions status="current" from="2009-08-02" position="Developer"/>
 				</contributions-group>
 			</author>
-			<author>
-				<realname><![CDATA[Stoker 4.0]]></realname>
-				<username><![CDATA[Stoker 4.0]]></username>
-				<homepage><![CDATA[http://www.phpbb3bbcodes.com]]></homepage>
-				<contributions-group>
-					<contributions status="past" position="Initial MOD Developer"/>
-				</contributions-group>
-			</author>
 		</author-group>
 
 		<mod-version>1.0.0-RC2</mod-version>
 
 		<installation>
 			<level>easy</level>
-			<time>300</time>
+			<time>120</time>
 			<target-version>3.0.10</target-version>
 		</installation>
 
@@ -125,7 +65,7 @@ Voir les instructions dans le dossier /contrib]]>
 			</entry>
 		</history>
 		<link-group>
-			<link type="parent" href="../install.xml" lang="en">Parent MOD installation</link>
+			<link type="parent" href="../../install.xml" lang="en">Parent MOD installation</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -244,7 +184,9 @@ if ($config['donation_enable'] && $config['donation_stats_index_enable'])
 
 		<diy-instructions lang="en"><![CDATA[--------- Update instructions ---------
 Upload all included files.
-Run the installer.
-Set the Paypal Donation Mod settings under the .MOD tab.]]></diy-instructions>
+Run the installer.]]></diy-instructions>
+		<diy-instructions lang="fr"><![CDATA[--------- Instructions de mise à jour ---------
+Transférer tous les fichiers.
+Executer le fichier d'installation.]]></diy-instructions>
 	</action-group>
 </mod>

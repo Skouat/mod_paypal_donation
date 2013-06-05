@@ -43,6 +43,7 @@ $lang = array_merge($lang, array(
 	'DONATION_DISABLED'				=> 'Désolé, la page des Dons n’est pas disponible.',
 	'DONATION_NOT_INSTALLED'		=> 'Des entrées dans la base de données pour le MOD <strong>Paypal Donation</strong> sont manquantes.<br />Merci de lancer à nouveau le %sfichier d’installation%s pour corriger le problème.',
 	'DONATION_NOT_INSTALLED_USER'	=> 'La page des Dons n’est pas installée. Merci de contacter l’administrateur du forum.',
+	'DONATION_ADDRESS_MISSING'		=> 'Désolé, Paypal Donation est activé mais certains paramètres sont manquants. Merci de contacter l’administrateur du forum.',
 	'SANDBOX_ADDRESS_MISSING'		=> 'Désolé, Paypal Sandbox est activé mais certains paramètres sont manquants. Merci de contacter l’administrateur du forum.',
 
 // Image alternative text
@@ -90,9 +91,9 @@ $lang = array_merge($lang, array(
 
 // Custom language key
 $lang = array_merge($lang, array(
-	'CUSTOM_DONATION_BODY'		=> '<h2>Ceci est un exemple de texte basé sur les clés de langues</h2><br /><p> Editez la clé de langue <strong>CUSTOM_DONATION_BODY</strong> depuis le fichier <strong>/language/fr/mods/donate.php</strong>.<br /> Saisir le texte que vous souhaitez voir apparaitre sur vos pages personnalisées.</p>',
-	'CUSTOM_DONATION_SUCCESS'	=> '<h2>Ceci est un exemple de texte basé sur les clés de langues</h2><br /><p> Editez la clé de langue <strong>CUSTOM_DONATION_SUCCESS</strong> depuis le fichier <strong>/language/fr/mods/donate.php</strong>.<br /> Saisir le texte que vous souhaitez voir apparaitre sur vos pages personnalisées.</p>',
-	'CUSTOM_DONATION_CANCEL'	=> '<h2>Ceci est un exemple de texte basé sur les clés de langues</h2><br /><p> Editez la clé de langue <strong>CUSTOM_DONATION_CANCEL</strong> depuis le fichier <strong>/language/fr/mods/donate.php</strong>.<br /> Saisir le texte que vous souhaitez voir apparaitre sur vos pages personnalisées.</p>',
+	'CUSTOM_DONATION_BODY'		=> '<h2>Ceci est un exemple de texte basé sur la clé de langue <strong>CUSTOM_DONATION_BODY</strong> </h2><br /><p> Editez le fichier <strong>/language/fr/mods/donate.php</strong> et saisissez le texte que vous souhaitez pour modifier ce texte.</p>',
+	'CUSTOM_DONATION_SUCCESS'	=> '<h2>Ceci est un exemple de texte basé sur la clé de langue <strong>CUSTOM_DONATION_SUCCESS</strong></h2><br /><p> Editez le fichier <strong>/language/fr/mods/donate.php</strong> et saisissez le texte que vous souhaitez pour modifier ce texte.</p>',
+	'CUSTOM_DONATION_CANCEL'	=> '<h2>Ceci est un exemple de texte basé sur la clé de langue <strong>CUSTOM_DONATION_CANCEL</strong></h2><br /><p> Editez le fichier <strong>/language/fr/mods/donate.php</strong> et saisissez le texte que vous souhaitez pour modifier ce texte.</p>',
 ));
 
 ?>
