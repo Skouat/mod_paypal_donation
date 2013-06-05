@@ -4,10 +4,10 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod - French Language]]></title>
-		<title lang="fr"><![CDATA[Paypal Donation Mod - Langue Française]]></title>
-		<description lang="en"><![CDATA[Allows to use the MOD for french boards]]></description>
-		<description lang="fr"><![CDATA[Permet aux forums francophones d'utiliser le MOD]]></description>
+		<title lang="en"><![CDATA[Paypal Donation Mod - Dutch (formal) Language]]></title>
+		<title lang="nl-x-formal"><![CDATA[Paypal Donatie Mod - Nederlands Formeel]]></title>
+		<description lang="en"><![CDATA[Allows the use of the MOD on Dutch boards]]></description>
+		<description lang="nl-x-formal"><![CDATA[Voor gebruik van de MOD op Nederlandse forums]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Skouat]]></realname>
@@ -15,6 +15,13 @@
 				<homepage><![CDATA[http://www.ultima-world.com]]></homepage>
 				<contributions-group>
 					<contributions status="current" from="2009-08-02" position="Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[zdDog]]></realname>
+				<username><![CDATA[zdDog]]></username>
+				<contributions-group>
+					<contributions status="current" from="2013-01-07" position="Dutch (formal) translator"/>
 				</contributions-group>
 			</author>
 		</author-group>
@@ -34,52 +41,49 @@
 				<changelog lang="en">
 					<change>Add : New language keys for predefined language keys of Donation Pages</change>
 				</changelog>
-				<changelog lang="fr">
-					<change>Ajout : Nouvelles clés de langue pour les variables prédéfinies des pages de dons</change>
-				</changelog>
 			</entry>
 			<entry>
 				<date>2012-01-24</date>
-				<rev-version>1.0.0</rev-version>
+				<rev-version>1.0.3</rev-version>
 				<changelog lang="en">
 					<change>First version...</change>
 				</changelog>
-				<changelog lang="fr">
-					<change>Première version...</change>
+				<changelog lang="nl-x-formal">
+					<change>Eerste versie...</change>
 				</changelog>
 			</entry>
 		</history>
 		<link-group>
 			<link type="parent" href="../../install.xml" lang="en">Parent MOD installation</link>
-			<link type="parent" href="../../install.xml" lang="fr">Fichier d’installation parent</link>
+			<link type="parent" href="../../install.xml" lang="nl-x-formal">Oude MOD installatie</link>
 		</link-group>
 	</header>
 	<action-group>
 		<copy>
-			<file from="root/language/fr/mods/donate.php" to="language/fr/mods/donate.php" />
-			<file from="root/language/fr/mods/info_acp_donation.php" to="language/fr/mods/info_acp_donation.php" />
-			<file from="root/language/fr/mods/permissions_donation.php" to="language/fr/mods/permissions_donation.php" />
-			<file from="root/styles/prosilver/imageset/fr/donate.gif" to="styles/prosilver/imageset/fr/donate.gif" />
+			<file from="root/language/nl_x_formal/mods/donate.php" to="language/nl_x_formal/mods/donate.php" />
+			<file from="root/language/nl_x_formal/mods/info_acp_donation.php" to="language/nl_x_formal/mods/info_acp_donation.php" />
+			<file from="root/language/nl_x_formal/mods/permissions_donation.php" to="language/nl_x_formal/mods/permissions_donation.php" />
+			<file from="root/styles/prosilver/imageset/nl_x_formal/donate.gif" to="styles/prosilver/imageset/nl_x_formal/donate.gif" />
 		</copy>
-		<open src="language/fr/common.php">
+		<open src="language/nl_x_formal/common.php">
 			<edit>
 				<find><![CDATA[?>]]></find>
 				<action type="before-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
 //-- add
 $lang = array_merge($lang, array(
-	'DONATEINDEX'				=> 'Faire un don',
-	'VIEWING_DONATE'			=> 'Consulte la page des dons',
+	'DONATEINDEX'				=> 'Doneer',
+	'VIEWING_DONATE'			=> 'Donatie pagina weergeven',
 ));
 //-- end : Paypal donation --------------------------------------------------------
 ]]></action>
 			</edit>
 		</open>
 
-		<diy-instructions lang="en"><![CDATA[--------- FR Language Pack ---------
+		<diy-instructions lang="en"><![CDATA[--------- NL (formal) Language Pack ---------
 Upload included language files.
 Go to ACP, refresh your style and purge your cache.]]></diy-instructions>
-		<diy-instructions lang="fr"><![CDATA[--------- Pack de langue FR ---------
-Transférer tous les fichiers.
-Rafraichir les styles et purger le cache du forum.]]></diy-instructions>
+		<diy-instructions lang="nl-x-formal"><![CDATA[--------- Nederlands taal pakket ---------
+Upload is inclusief de taalbestanden.
+Ververs de stijlen prosilver en subsilver2 en de forum-cache via de ACP.]]></diy-instructions>
 	</action-group>
 </mod>

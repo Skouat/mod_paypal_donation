@@ -4,10 +4,10 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod - Update from 1.0.1 to 1.0.2]]></title>
-		<title lang="fr"><![CDATA[Paypal Donation Mod - Mise à jour 1.0.1 vers 1.0.2]]></title>
-		<description lang="en"><![CDATA[Allows to update the MOD from 1.0.1 to 1.0.2]]></description>
-		<description lang="fr"><![CDATA[Permet de mettre à jour le MOD de la version 1.0.1 à la version 1.0.2]]></description>
+		<title lang="en"><![CDATA[Paypal Donation Mod - Update from 1.0.3 to 1.0.4]]></title>
+		<title lang="fr"><![CDATA[Paypal Donation Mod - Mise à jour 1.0.3 vers 1.0.4]]></title>
+		<description lang="en"><![CDATA[Allows to update the MOD from 1.0.3 to 1.0.4]]></description>
+		<description lang="fr"><![CDATA[Permet de mettre à jour le MOD de la version 1.0.3 vers la version 1.0.4]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Skouat]]></realname>
@@ -19,15 +19,59 @@
 			</author>
 		</author-group>
 
-		<mod-version>1.0.2</mod-version>
+		<mod-version>1.0.4</mod-version>
 
 		<installation>
 			<level>easy</level>
 			<time>60</time>
-			<target-version>3.0.10</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 
 		<history>
+			<entry>
+				<date>2013-05-01</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change>Add: Some predefined vars are available to customize the Donation Pages</change>
+					<change>Fix: xHTML non conformity in ACP Donation Pages</change>
+					<change>Fix: Link for Donation statistics on index can return and unexpected url</change>
+					<change>Change: Improved detection of fsockopen and cURL</change>
+					<change>Change: Function donation_check_configuration() improved for autorised members of PPDM</change>
+					<change>Minor code change</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Ajout: Quelques variables pré-définies sont disponibles pour personnaliser les pages de dons</change>
+					<change>Correction: Une non conformité xHTML pouvait être rencontrée dans le module Donation Pages de l’ACP</change>
+					<change>Correction: Le lien des statistiques de dons présent sur la page d'index pouvait retourner une URL inattendue</change>
+					<change>Modification: Amélioration de la détection de cURL et fsockopen</change>
+					<change>Modification: Amélioration de la fonction donation_check_configuration() pour les membres autorisés à utiliser PPDM</change>
+					<change>Corrections divers</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-11-26</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change>Fix: Cannot add a new currency</change>
+					<change>Add: User permissions. Must be set through ACP>>Permissions</change>
+					<change>Add: Module "Overview"</change>
+					<change>Change: Multi-language features for custom donation page are now stored in the database</change>
+					<change>Change: some Language keys renamed</change>
+					<change>Remove: Language keys for "custom donation pages" are removed (see change below)</change>
+					<change>Remove: contrib/add-ons/addon_mod_check_version/ was removed, see the newly added module "Overview" to check the updates</change>
+					<change>Minor code change</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Correction: Impossible d’ajouter une nouvelle devise</change>
+					<change>Ajout: Permissions utilisateur. Doivent être définies en passant par ACP>>Permissions</change>
+					<change>Ajout: Module "Général"</change>
+					<change>Modification: La fonctionnalité multi-langue pour la personnalisation des pages de dons est maintenant stockées dans la base de données</change>
+					<change>Modification: Renommage de certaines clés de langues</change>
+					<change>Suppression: Les clés de langues utilser pour personnalisées les pages de dons ont été supprimées (voir ci-dessus)</change>
+					<change>Suppression: contrib/add-ons/addon_mod_check_version/ a été supprimé, voir le nouveau module "Vue d’ensemble" pour contrôler les mises à jour</change>
+					<change>Corrections divers</change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2012-07-15</date>
 				<rev-version>1.0.2</rev-version>
@@ -128,7 +172,8 @@
 			<file from="root/install_donation_mod.php" to="install_donation_mod.php" />
 			<file from="root/adm/style/acp_donation.html" to="adm/style/acp_donation.html" />
 			<file from="root/images/donation/*.*" to="images/donation/*.*" />
-			<file from="root/includes/acp/*.*" to="includes/acp/*.*" />
+			<file from="root/includes/acp/acp_donation.php" to="includes/acp/acp_donation.php" />
+			<file from="root/includes/acp/info/acp_donation.php" to="includes/acp/info/acp_donation.php" />
 			<file from="root/includes/functions_donation.php" to="includes/functions_donation.php" />
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*" />
 			<file from="root/styles/prosilver/imageset/en/donate.gif" to="styles/prosilver/imageset/en/donate.gif" />
@@ -137,74 +182,19 @@
 			<file from="root/styles/prosilver/theme/images/icon_donate.gif" to="styles/prosilver/theme/images/icon_donate.gif" />
 			<file from="root/umil/*.*" to="umil/*.*" />
 		</copy>
-		<open src="index.php">
+		<open src="includes/functions.php">
 			<edit>
-				<find><![CDATA[if ($config['donation_enable'] && $config['donation_stats_index_enable'])]]></find>
-				<action type="replace-with"><![CDATA[if (!empty($config['donation_enable']) && !empty($config['donation_stats_index_enable']))]]></action>
-			</edit>
-			<edit>
-				<find><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
-//-- add
-if ($config['donation_enable'] && $config['donation_stats_index_enable'])
-{
-	$template->assign_vars(array(
-		'DONATION_STATS_INDEX_ENABLE'	=> (!empty($config['donation_stats_index_enable'])) ? true : false,
-		'DONATION_RAISED_ENABLE'		=> (!empty($config['donation_raised_enable'])) ? true : false,
-		'DONATION_RAISED'				=> (!empty($config['donation_raised'])) ? $config['donation_raised'] : 0,
-		'DONATION_GOAL_ENABLE'			=> (!empty($config['donation_goal_enable'])) ? true : false,
-		'DONATION_GOAL'					=> (!empty($config['donation_goal'])) ? $config['donation_goal'] : 0,
-		'DONATION_USED_ENABLE'			=> (!empty($config['donation_used_enable'])) ? true : false,
-		'DONATION_USED'					=> (!empty($config['donation_used'])) ? $config['donation_used'] : 0,
-		'DONATION_CURRENCY_ENABLE'		=> (!empty($config['donation_currency_enable'])) ? true : false,
-		'DONATION_CURRENCY'				=> donation_item_list((int) $config['donation_default_currency'], 'currency', 'default_currency', $user->lang['CURRENCY_DEFAULT']),
-	));
-
-	if ($config['donation_goal_enable'] && (int) $config['donation_goal'] > 0)
+				<find><![CDATA[	if ($auth->acl_get('u_pdm_use'))
 	{
-		donation_percent_stats('GOAL_NUMBER', (int) $config['donation_raised'], (int) $config['donation_goal']);
-	}
-
-	if ($config['donation_used_enable'] && (int) $config['donation_raised'] > 0 && (int) $config['donation_used'] > 0)
-	{
-		donation_percent_stats('USED_NUMBER', (int) $config['donation_used'], (int) $config['donation_raised']);
-	}
-}
-//-- end : Paypal donation --------------------------------------------------------]]></find>
-				<action type="replace-with"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
-//-- add
-if (!empty($config['donation_enable']) && !empty($config['donation_stats_index_enable']))
-{
-	$donation_currency = donation_item_list((int) $config['donation_default_currency'], 'currency', 'default_currency', $user->lang['CURRENCY_DEFAULT']);
-
-	$template->assign_vars(array(
-		'DONATION_STATS_INDEX_ENABLE'	=> (!empty($config['donation_stats_index_enable'])) ? true : false,
-		'DONATION_GOAL_ENABLE'			=> (!empty($config['donation_goal_enable'])) ? true : false,
-		'DONATION_RAISED_ENABLE'		=> (!empty($config['donation_raised_enable'])) ? true : false,
-		'DONATION_USED_ENABLE'			=> (!empty($config['donation_used_enable'])) ? true : false,
-
-		'L_DONATION_GOAL'				=> ((int) $config['donation_goal'] <= 0) ? $user->lang['DONATE_NO_GOAL'] : ((int) $config['donation_goal'] < (int) $config['donation_raised'] ? $user->lang['DONATE_GOAL_REACHED'] : sprintf($user->lang['DONATE_GOAL_RAISE'], (int) $config['donation_goal'], $donation_currency)),
-		'L_DONATION_RAISED'				=> ((int) $config['donation_raised'] <= 0) ? $user->lang['DONATE_NOT_RECEIVED'] : sprintf($user->lang['DONATE_RECEIVED'], (int) $config['donation_raised'], $donation_currency),
-		'L_DONATION_USED'				=> ((int) $config['donation_used'] <= 0) ? $user->lang['DONATE_NOT_USED'] : ((int) $config['donation_used'] < (int) $config['donation_raised'] ? sprintf($user->lang['DONATE_USED'], (int) $config['donation_used'], $donation_currency, (int) $config['donation_raised']) : sprintf($user->lang['DONATE_USED_EXCEEDED'], (int) $config['donation_used'], $donation_currency)),
-	));
-
-	// Donation percent
-	if (!empty($config['donation_goal_enable']) && (int) $config['donation_goal'] > 0)
-	{
-		donation_stats_percent('GOAL_NUMBER', (int) $config['donation_raised'], (int) $config['donation_goal']);
-	}
-
-	if (!empty($config['donation_used_enable']) && (int) $config['donation_raised'] > 0 && (int) $config['donation_used'] > 0)
-	{
-		donation_stats_percent('USED_NUMBER', (int) $config['donation_used'], (int) $config['donation_raised']);
-	}
-}
-//-- end : Paypal donation --------------------------------------------------------]]></action>
-			</edit>
-		</open>
-		<open src="styles/prosilver/template/overall_header.html">
-			<edit>
-				<find><![CDATA[				<!-- IF S_DONATE_ENABLED --><li class="icon-bump"><a href="{U_DONATE}">{L_DONATEINDEX}</a></li><!-- ENDIF -->]]></find>
-				<action type="replace-with"><![CDATA[				<!-- IF S_DONATE_ENABLED --><li class="icon-donate"><a href="{U_DONATE}">{L_DONATEINDEX}</a></li><!-- ENDIF -->]]></action>
+		$template->assign_vars(array(
+			'U_DONATE'			=> append_sid("{$phpbb_root_path}donate.$phpEx"),
+			'S_DONATE_ENABLED'	=> true,
+		));
+	}]]></find>
+				<action type="replace-with"><![CDATA[	$template->assign_vars(array(
+		'U_DONATE'			=> $auth->acl_get('u_pdm_use') ? append_sid("{$phpbb_root_path}donate.$phpEx") : '',
+		'S_DONATE_ENABLED'	=> $auth->acl_get('u_pdm_use'),
+	));]]></action>
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_donation_mod.php]]></php-installer>

@@ -2,7 +2,7 @@
 /**
 *
 * @package Paypal Donation MOD
-* @copyright (c) 2012 Skouat
+* @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
@@ -25,7 +25,7 @@ class acp_donation_info
 		return array(
 			'filename'			=> 'acp_donation',
 			'title'				=> 'ACP_DONATION_MOD',
-			'version'			=> '1.0.3',
+			'version'			=> '1.0.4',
 			'modes'		=> array(
 				'overview'			=> array('title' => 'DONATION_OVERVIEW',	'auth' => 'acl_a_pdm_manage', 'cat' => array('ACP_DONATION_MOD')),
 				'configuration'		=> array('title' => 'DONATION_CONFIG',		'auth' => 'acl_a_pdm_manage', 'cat' => array('ACP_DONATION_MOD')),

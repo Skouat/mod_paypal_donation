@@ -4,7 +4,7 @@
 * info_acp_donation.php [French]
 *
 * @package Paypal Donation MOD
-* @copyright (c) 2012 Skouat
+* @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
@@ -146,6 +146,20 @@ $lang = array_merge($lang, array(
 	'DONATION_CANCEL_SETTINGS'	=> 'Paramètres de la page des dons annulés',
 	'DONATION_CANCEL'			=> 'Page des dons annulés',
 	'DONATION_CANCEL_EXPLAIN'	=> 'Saisir le texte que vous souhaitez afficher sur la page des dons annulés.',
+
+	// Donation Page Template vars
+	'DONATION_DP_PREDEFINED_VARS'	=> 'Variables prédéfinies',
+	'DONATION_DP_VAR_EXAMPLE'		=> 'Exemple',
+	'DONATION_DP_VAR_NAME'			=> 'Nom',
+	'DONATION_DP_VAR_VAR'			=> 'Variable',
+
+	'DONATION_DP_BOARD_CONTACT'		=> 'E-mail de contact',
+	'DONATION_DP_BOARD_EMAIL'		=> 'E-mail du forum',
+	'DONATION_DP_BOARD_SIG'			=> 'Signature du forum',
+	'DONATION_DP_SITE_DESC'			=> 'Description du site',
+	'DONATION_DP_SITE_NAME'			=> 'Nom du site',
+	'DONATION_DP_USER_ID'			=> 'ID de l’utilisateur',
+	'DONATION_DP_USERNAME'			=> 'Nom de l’utilisateur',
 ));
 
 /**

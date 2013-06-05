@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+<!--For security purposes, please check: https://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at https://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Paypal Donation Mod - Update from 1.0.2 to 1.0.3]]></title>
@@ -32,18 +32,18 @@
 				<date>2012-11-26</date>
 				<rev-version>1.0.3</rev-version>
 				<changelog lang="en">
-					<change>correct: Cannot add a new currency</change>
-					<change>Add: User permissions</change>
+					<change>Fix: Cannot add a new currency</change>
+					<change>Add: User permissions. Must be set through ACP>>Permissions</change>
 					<change>Add: Module "Overview"</change>
-					<change>change: Multi-language features for custom donation page are now stored in the database</change>
-					<change>change: some Language keys renamed</change>
-					<change>remove: Language keys for "custom donation pages" are removed (see change below)</change>
-					<change>remove: contrib/add-ons/addon_mod_check_version/ was removed, see the newly added module "Overview" to check the updates</change>
-					<change>minor code change</change>
+					<change>Change: Multi-language features for custom donation page are now stored in the database</change>
+					<change>Change: some Language keys renamed</change>
+					<change>Remove: Language keys for "custom donation pages" are removed (see change below)</change>
+					<change>Remove: contrib/add-ons/addon_mod_check_version/ was removed, see the newly added module "Overview" to check the updates</change>
+					<change>Minor code change</change>
 				</changelog>
 				<changelog lang="fr">
 					<change>Correction: Impossible d’ajouter une nouvelle devise</change>
-					<change>Ajout: Permissions utilisateur</change>
+					<change>Ajout: Permissions utilisateur. Doivent être définies en passant par ACP>>Permissions</change>
 					<change>Ajout: Module "Général"</change>
 					<change>Modification: La fonctionnalité multi-langue pour la personnalisation des pages de dons est maintenant stockées dans la base de données</change>
 					<change>Modification: Renommage de certaines clés de langues</change>

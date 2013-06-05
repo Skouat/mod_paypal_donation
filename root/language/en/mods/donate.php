@@ -4,7 +4,7 @@
 * donate.php [English]
 *
 * @package Paypal Donation MOD
-* @copyright (c) 2012 Skouat
+* @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */

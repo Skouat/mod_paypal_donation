@@ -4,10 +4,10 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod - Subsilver2 FR]]></title>
-		<title lang="fr"><![CDATA[Paypal Donation Mod - Subsilver2 FR]]></title>
-		<description lang="en"><![CDATA[French modifications for Subsilver2]]></description>
-		<description lang="fr"><![CDATA[Modifications française pour Subsilver2]]></description>
+		<title lang="en"><![CDATA[Paypal Donation Mod - Subsilver2 Dutch (formal)]]></title>
+		<title lang="nl-x-formal"><![CDATA[Paypal Donation Mod - Subsilver2 Nederlands Formeel]]></title>
+		<description lang="en"><![CDATA[Dutch (formal) modifications for Subsilver2]]></description>
+		<description lang="nl-x-formal"><![CDATA[Nederlands veranderingen voor Subsilver2]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Skouat]]></realname>
@@ -17,9 +17,16 @@
 					<contributions status="current" from="2009-08-02" position="Developer"/>
 				</contributions-group>
 			</author>
+			<author>
+				<realname><![CDATA[zdDog]]></realname>
+				<username><![CDATA[zdDog]]></username>
+				<contributions-group>
+					<contributions status="current" from="2013-01-07" position="Dutch (formal) translator"/>
+				</contributions-group>
+			</author>
 		</author-group>
 
-		<mod-version>1.0.2</mod-version>
+		<mod-version>1.0.3</mod-version>
 
 		<installation>
 			<level>easy</level>
@@ -29,31 +36,31 @@
 
 		<history>
 			<entry>
-				<date>2012-07-05</date>
-				<rev-version>1.0.2</rev-version>
+				<date>2012-01-07</date>
+				<rev-version>1.0.3</rev-version>
 				<changelog lang="en">
 					<change>First version...</change>
 				</changelog>
-				<changelog lang="fr">
-					<change>Première version...</change>
+				<changelog lang="nl-x-formal">
+					<change>Eerste versie...</change>
 				</changelog>
 			</entry>
 		</history>
 		<link-group>
 			<link type="parent" href="../../../install.xml" lang="en">Parent MOD installation</link>
-			<link type="parent" href="../../../install.xml" lang="fr">Fichier d’installation parent</link>
+			<link type="parent" href="../../../install.xml" lang="nl-x-formal">Oude MOD installatie</link>
 		</link-group>
 	</header>
 	<action-group>
 		<copy>
-			<file from="root/styles/subsilver2/imageset/fr/donate.gif" to="styles/subsilver2/imageset/fr/donate.gif" />
+			<file from="root/styles/subsilver2/imageset/nl_x_formal/donate.gif" to="styles/subsilver2/imageset/nl_x_formal/donate.gif" />
 		</copy>
 
-		<diy-instructions lang="en"><![CDATA[--------- Subsilver2-FR ---------
+		<diy-instructions lang="en"><![CDATA[--------- Subsilver2-Dutch (formal) ---------
 Upload included language files.
 Go to ACP, refresh your style and purge your cache.]]></diy-instructions>
-		<diy-instructions lang="fr"><![CDATA[--------- Subsilver2-FR ---------
-Transférer tous les fichiers.
-Rafraichir les styles et purger le cache du forum.]]></diy-instructions>
+		<diy-instructions lang="nl-x-formal"><![CDATA[--------- Subsilver2 - Nederlands---------
+Upload is inclusief de taalbestanden.
+Ververs de stijlen prosilver en subsilver2 en de forum-cache via de ACP.]]></diy-instructions>
 	</action-group>
 </mod>

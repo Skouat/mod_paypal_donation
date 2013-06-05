@@ -2,7 +2,7 @@
 /**
 *
 * @package Paypal Donation MOD
-* @copyright (c) 2012 Skouat
+* @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -29,15 +29,26 @@ if (!$is_authorised)
 	trigger_error('NOT_AUTHORISED');
 }
 
-// Check for mod installed and configured
+// Checks that the MOD is fully installed and configured with the prerequisite settings
 donation_check_install($is_founder);
-donation_check_configuration($is_founder);
+donation_check_configuration($is_founder, $is_authorised);
 
 // Request vars
 $mode = request_var('mode', '');
 
 // Assign $mode to template
 $template->assign_var('MODE', $mode);
+
+// initiate ppdm class
+$ppdm = new ppdm_main();
+
+// Get predifined vars
+$ppdm->get_vars();
+
+for($i = 0; $i < sizeof($ppdm->vars); $i++)
+{
+	$dp_vars[$ppdm->vars[$i]['var']] = $ppdm->vars[$i]['value'];
+}
 
 switch ($mode)
 {
@@ -59,7 +70,7 @@ switch ($mode)
 		$donation_title = $user->lang['DONATION_' . strtoupper($mode) . '_TITLE'];
 
 		$template->assign_vars(array(
-			'DONATION_BODY'		=> $donation_body,
+			'DONATION_BODY'		=> str_replace(array_keys($dp_vars), array_values($dp_vars), $donation_body),
 			'L_DONATION_TITLE'	=> $donation_title,
 		));
 
@@ -155,7 +166,7 @@ switch ($mode)
 			'L_DONATION_RAISED'				=> ((int) $config['donation_raised'] <= 0) ? $user->lang['DONATE_NOT_RECEIVED'] : sprintf($user->lang['DONATE_RECEIVED'], (int) $config['donation_raised'], $donation_currency),
 			'L_DONATION_USED'				=> ((int) $config['donation_used'] <= 0) ? $user->lang['DONATE_NOT_USED'] : ((int) $config['donation_used'] < (int) $config['donation_raised'] ? sprintf($user->lang['DONATE_USED'], (int) $config['donation_used'], $donation_currency, (int) $config['donation_raised']) : sprintf($user->lang['DONATE_USED_EXCEEDED'], (int) $config['donation_used'], $donation_currency)),
  
-			'DONATION_BODY'					=> $donation_body,
+			'DONATION_BODY'					=> str_replace(array_keys($dp_vars), array_values($dp_vars), $donation_body),
 			'LIST_DONATION_CURRENCY'		=> $list_currency,
 			'DONATION_DEFAULT_VALUE'		=> (!empty($config['donation_default_value'])) ? $config['donation_default_value'] : 0,
 			'LIST_DONATION_VALUE'			=> $list_donation_value,
@@ -173,8 +184,8 @@ switch ($mode)
 
 // Set up Navlinks
 $template->assign_block_vars('navlinks', array(
-	'FORUM_NAME' => $user->lang['DONATION_TITLE'],
-	'U_VIEW_FORUM' => append_sid("{$phpbb_root_path}donate.$phpEx"),
+	'FORUM_NAME'	=> $user->lang['DONATION_TITLE'],
+	'U_VIEW_FORUM'	=> append_sid("{$phpbb_root_path}donate.$phpEx"),
 ));
 
 page_footer();

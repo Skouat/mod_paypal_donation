@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+<!--For security purposes, please check: https://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at https://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Paypal Donation Mod]]></title>
@@ -17,10 +17,11 @@ Features :
 => Advanced currencies management: Add/remove/enable/disable
 => Backup currency: I hope no, but if you remove or disable all currencies, a Language Key is defined to provide a backup currency. If the language key does not exist, U.S Dollar will be defined as the default currency.
 => Customize the main donation page, success page and cancel page.
-- You can use BBcode.
+- You can use BBcode and predefined vars.
 - Multi-language customization available through the ACP
 => Automatic redirection to the forum after a successfull/cancelled donation.
 => Define and suggest a default donation value, or use a drop-down list.
+=> Admin and user permissions can be set through ACP >> Permissions
 
 Styles :
 => Prosilver
@@ -39,10 +40,11 @@ Fonctionnalitées :
 => Gestion avancées des devises: Ajout/suppression/activation/désactivation
 => Devise de secours: En cas de désactivation/suppression de toutes les devises, une clé de langue permet de définir une devise de secours par défaut.
 => Personnaliser les pages des dons, ainsi que les pages de retour au forum (Validation/annulation de dons).
-- Vous pouvez utiliser les BBcode.
+- Vous pouvez utiliser les BBcodes et des variables pré-définies
 - Personnalisation multi-langue disponible via l’ACP
 => Retourner automatiquement vers le forum si la soumission du don a été validé avec succès ou abondonnée.
 => Définir et suggérer une valeur de don par défaut, ou utiliser une liste déroulante.
+=> Gestion des permissions du MOD via ACP >> Permissions
 
 Styles :
 => Prosilver
@@ -55,7 +57,7 @@ To avoid possible conflict with another Paypal Donation MOD, please backup your 
 		</author-notes>
 		<author-notes lang="fr"><![CDATA[
 Attention !!!
-Pour éviter des éventuels conflits avec un autre MOD Paypal, sauvegardez vos fichiers et désintallez-le avant d’installer ce MOD.]]>
+Pour éviter des éventuels conflits avec un autre MOD Paypal, sauvegardez vos fichiers et désintallez ce dernier avant d’installer ce MOD.]]>
 		</author-notes>
 		<author-group>
 			<author>
@@ -80,9 +82,16 @@ Pour éviter des éventuels conflits avec un autre MOD Paypal, sauvegardez vos f
 					<contributions status="current" from="2012-01-24" position="Debugger"/>
 				</contributions-group>
 			</author>
+			<author>
+				<realname><![CDATA[zdDog]]></realname>
+				<username><![CDATA[zdDog]]></username>
+				<contributions-group>
+					<contributions status="current" from="2013-01-07" position="Dutch (formal) translator"/>
+				</contributions-group>
+			</author>
 		</author-group>
 
-		<mod-version>1.0.3</mod-version>
+		<mod-version>1.0.4</mod-version>
 
 		<installation>
 			<level>easy</level>
@@ -92,21 +101,42 @@ Pour éviter des éventuels conflits avec un autre MOD Paypal, sauvegardez vos f
 
 		<history>
 			<entry>
+				<date>2013-05-01</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change>Add: Some predefined vars are available to customize the Donation Pages</change>
+					<change>Add: Dutch (formal) language translated by zDog</change>
+					<change>Fix: xHTML non conformity in ACP Donation Pages</change>
+					<change>Fix: Link for Donation statistics on index can return and unexpected url</change>
+					<change>Change: Improved detection of fsockopen and cURL</change>
+					<change>Change: Function donation_check_configuration() improved for autorised members of PPDM</change>
+					<change>Minor code change</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Ajout: Quelques variables pré-définies sont disponibles pour personnaliser les pages de dons</change>
+					<change>Correction: Une non conformité xHTML pouvait être rencontrée dans le module Donation Pages de l’ACP</change>
+					<change>Correction: Le lien des statistiques de dons présent sur la page d'index pouvait retourner une URL inattendue</change>
+					<change>Modification: Amélioration de la détection de cURL et fsockopen</change>
+					<change>Modification: Amélioration de la fonction donation_check_configuration() pour les membres autorisés à utiliser PPDM</change>
+					<change>Corrections divers</change>
+				</changelog>
+			</entry>
+			<entry>
 				<date>2012-11-26</date>
 				<rev-version>1.0.3</rev-version>
 				<changelog lang="en">
-					<change>correct: Cannot add a new currency</change>
-					<change>Add: User permissions</change>
+					<change>Fix: Cannot add a new currency</change>
+					<change>Add: User permissions. Must be set through ACP>>Permissions</change>
 					<change>Add: Module "Overview"</change>
-					<change>change: Multi-language features for custom donation page are now stored in the database</change>
-					<change>change: some Language keys renamed</change>
-					<change>remove: Language keys for "custom donation pages" are removed (see change below)</change>
-					<change>remove: contrib/add-ons/addon_mod_check_version/ was removed, see the newly added module "Overview" to check the updates</change>
-					<change>minor code change</change>
+					<change>Change: Multi-language features for custom donation page are now stored in the database</change>
+					<change>Change: some Language keys renamed</change>
+					<change>Remove: Language keys for "custom donation pages" are removed (see change below)</change>
+					<change>Remove: contrib/add-ons/addon_mod_check_version/ was removed, see the newly added module "Overview" to check the updates</change>
+					<change>Minor code change</change>
 				</changelog>
 				<changelog lang="fr">
 					<change>Correction: Impossible d’ajouter une nouvelle devise</change>
-					<change>Ajout: Permissions utilisateur</change>
+					<change>Ajout: Permissions utilisateur. Doivent être définies en passant par ACP>>Permissions</change>
 					<change>Ajout: Module "Général"</change>
 					<change>Modification: La fonctionnalité multi-langue pour la personnalisation des pages de dons est maintenant stockées dans la base de données</change>
 					<change>Modification: Renommage de certaines clés de langues</change>
@@ -205,8 +235,8 @@ Pour éviter des éventuels conflits avec un autre MOD Paypal, sauvegardez vos f
 			</entry>
 		</history>
 		<link-group>
-			<link type="language" href="./contrib/languages/fr.xml" lang="en">French</link>
-			<link type="language" href="./contrib/languages/fr.xml" lang="fr">Français</link>
+			<link type="contrib" href="./contrib/updates/update_103_to_104.xml" lang="en">Paypal Donation Mod update 1.0.3 to 1.0.4</link>
+			<link type="contrib" href="./contrib/updates/update_103_to_104.xml" lang="fr">Mise à jour de Paypal Donation Mod 1.0.3 vers 1.0.4</link>
 			<link type="contrib" href="./contrib/updates/update_102_to_103.xml" lang="en">Paypal Donation Mod update 1.0.2 to 1.0.3</link>
 			<link type="contrib" href="./contrib/updates/update_102_to_103.xml" lang="fr">Mise à jour de Paypal Donation Mod 1.0.2 vers 1.0.3</link>
 			<link type="contrib" href="./contrib/updates/update_101_to_102.xml" lang="en">Paypal Donation Mod update 1.0.1 to 1.0.2</link>
@@ -217,9 +247,17 @@ Pour éviter des éventuels conflits avec un autre MOD Paypal, sauvegardez vos f
 			<link type="contrib" href="./contrib/updates/update_100-RC1_to_100-RC2.xml" lang="fr">Mise à jour de Paypal Donation Mod 1.0.0-RC1 vers 1.0.0-RC2</link>
 			<link type="contrib" href="./contrib/add-ons/addon_advanced_bbcode_box_3/advanced_bbcode_box_3.xml" lang="en">Add-on for “Advanced BBCode Box 3” MOD</link>
 			<link type="contrib" href="./contrib/add-ons/addon_advanced_bbcode_box_3/advanced_bbcode_box_3.xml" lang="fr">Add-on pour le MOD “Advanced BBCode Box 3”</link>
+			<link type="contrib" href="./contrib/add-ons/icon_donate_in_each_post/icon_donate_in_each_post.xml" lang="en">Add-on “Icon donate in each post”</link>
+			<link type="contrib" href="./contrib/add-ons/icon_donate_in_each_post/icon_donate_in_each_post.xml" lang="fr">Add-on “Icône des dons sur chaque message”</link>
+			<link type="language" href="./contrib/languages/fr.xml" lang="en">French</link>
+			<link type="language" href="./contrib/languages/fr.xml" lang="fr">Français</link>
+			<link type="language" href="./contrib/languages/nl_x_formal.xml" lang="en">Dutch (Formal)</link>
+			<link type="language" href="./contrib/languages/nl_x_formal.xml" lang="nl_x_formal">Nederlands Formeel</link>
 			<link type="template" href="./contrib/template/subsilver2/subsilver2.xml" lang="en">Subsilver2</link>
 			<link type="template-lang" href="./contrib/template-lang/subsilver2/fr-subsilver2.xml" lang="en">Subsilver2 French</link>
 			<link type="template-lang" href="./contrib/template-lang/subsilver2/fr-subsilver2.xml" lang="fr">Subsilver2 Français</link>
+			<link type="template-lang" href="./contrib/template-lang/subsilver2/nl_x_formal-subsilver2.xml" lang="en">Subsilver2 Dutch (Formal)</link>
+			<link type="template-lang" href="./contrib/template-lang/subsilver2/nl_x_formal-subsilver2.xml" lang="nl_x_formal">Subsilver2 Nederlands Formeel</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -314,13 +352,10 @@ define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
 ]]></find>
 				<action type="after-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
 //-- add
-	if ($auth->acl_get('u_pdm_use'))
-	{
-		$template->assign_vars(array(
-			'U_DONATE'			=> append_sid("{$phpbb_root_path}donate.$phpEx"),
-			'S_DONATE_ENABLED'	=> true,
-		));
-	}
+	$template->assign_vars(array(
+		'U_DONATE'			=> $auth->acl_get('u_pdm_use') ? append_sid("{$phpbb_root_path}donate.$phpEx") : '',
+		'S_DONATE_ENABLED'	=> $auth->acl_get('u_pdm_use'),
+	));
 //-- end : Paypal Donation --------------------------------------------------------]]></action>
 			</edit>
 		</open>
@@ -361,9 +396,9 @@ $lang = array_merge($lang, array(
 
 		<diy-instructions lang="en"><![CDATA[Upload all included files.
 Run the installer.
-Set the Paypal Donation Mod settings under the .MOD tab.]]></diy-instructions>
+Set the Paypal Donation Mod settings under the .MODS tab.]]></diy-instructions>
 		<diy-instructions lang="fr"><![CDATA[Transféer tous les fichiers.
 Executer le fichier d’installation.
-Définir les paramètres de Paypal Donation Mod depuis l’ACP dans l’onglet ".MOD".]]></diy-instructions>
+Définir les paramètres de Paypal Donation Mod depuis l’ACP dans l’onglet ".MODS".]]></diy-instructions>
 	</action-group>
 </mod>

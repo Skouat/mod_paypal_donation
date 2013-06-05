@@ -2,7 +2,7 @@
 /**
 *
 * @package Paypal Donation MOD
-* @copyright (c) 2012 Skouat
+* @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
@@ -20,6 +20,7 @@ if (!defined('IN_PHPBB'))
 class acp_donation
 {
 	var $u_action;
+	private $u_version_check = 'http://skouat31.free.fr';
 
 	function main($id, $mode)
 	{
@@ -91,10 +92,14 @@ class acp_donation
 				}
 
 				// Check if a new version of this MOD is available
-				$latest_version_info = false;
-				if (($latest_version_info = $this->obtain_latest_version_info(request_var('donation_versioncheck_force', false))) === false)
+				$latest_version_info = $this->obtain_latest_version_info(request_var('donation_versioncheck_force', false));
+
+				if ($latest_version_info === false || !function_exists('phpbb_version_compare'))
 				{
-					$template->assign_var('S_DONATION_VERSIONCHECK_FAIL', true);
+					$template->assign_vars(array(
+						'S_DONATION_VERSIONCHECK_FAIL'	=> true,
+						'L_VERSIONCHECK_FAIL'			=> sprintf($user->lang['VERSIONCHECK_FAIL'], $latest_version_info),
+					));
 				}
 				else
 				{
@@ -112,14 +117,34 @@ class acp_donation
 
 				if (function_exists('fsockopen'))
 				{
-					$info_fsockopen = $user->lang['INFO_DETECTED'];
-					$s_fsockopen = true;
+					$url = parse_url($this->u_version_check);
+
+					$fp = @fsockopen($url['host'], 80);
+
+					if ($fp)
+					{
+						$info_fsockopen = $user->lang['INFO_DETECTED'];
+						$s_fsockopen = true;
+					}
 				}
 
 				if (function_exists('curl_init'))
 				{
-					$info_curl = $user->lang['INFO_DETECTED'];
-					$s_curl = true;
+
+					$ch = curl_init($this->u_version_check);
+
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+					$response = curl_exec($ch);
+					$response_status = strval(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+
+					curl_close ($ch);
+
+					if ($response !== false || $response_status != '0')
+					{
+						$info_curl = $user->lang['INFO_DETECTED'];
+						$s_curl = true;
+					}
 				}
 
 				$donation_install_date = $user->format_date($config['donation_install_date']);
@@ -130,7 +155,7 @@ class acp_donation
 					'INFO_CURL'					=> $info_curl,
 					'INFO_FSOCKOPEN'			=> $info_fsockopen,
 
-					'U_DONATION_VERSIONCHECK_FORCE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", 'i=donation&amp;mode=overview&amp;donation_versioncheck_force=1'),
+					'U_DONATION_VERSIONCHECK_FORCE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", 'i=donation&amp;mode=' . $mode . '&amp;donation_versioncheck_force=1'),
 					'U_ACTION'						=> $this->u_action,
 
 					'S_ACTION_OPTIONS'		=> ($auth->acl_get('a_board')) ? true : false,
@@ -314,6 +339,8 @@ class acp_donation
 
 				global $cache;
 
+				$ppdm = new ppdm_main();
+
 				$this->page_title = 'DONATION_DP_CONFIG';
 
 				$item_id = request_var('id', 0);
@@ -358,7 +385,7 @@ class acp_donation
 
 						// Initiate donation page data array
 						$dp_data = array(
-							'item_type'					=> 'donation_pages',
+							'item_type'					=> $mode,
 							'item_name'					=> $donation_name,
 							'item_iso_code'				=> $input_lang,
 							'item_text'					=> $input_pages,
@@ -376,7 +403,7 @@ class acp_donation
 							$message_parser = new parse_message($input_pages);
 
 							// Allowing Quote BBCode
-							$message_parser->parse(true, true, true, true, true, true, true, true, 'donation_pages');
+							$message_parser->parse(true, true, true, true, true, true, true, true, $mode);
 
 							if (sizeof($message_parser->warn_msg))
 							{
@@ -441,8 +468,26 @@ class acp_donation
 							'donation_name'	=> $dp_data['item_name'],
 						));
 
+						// Get predifined vars
+						$ppdm->get_vars(true);
+
+						for($i = 0; $i < sizeof($ppdm->vars); $i++)
+						{
+							$dp_vars[$ppdm->vars[$i]['var']] = $ppdm->vars[$i]['value'];
+						}
+
+						// Assigging predefined variables in a template block vars
+						for ($i = 0, $size = sizeof($ppdm->vars); $i < $size; $i++)
+						{
+							$template->assign_block_vars('dp_vars', array(
+								'NAME'		=> $ppdm->vars[$i]['name'],
+								'VARIABLE'	=> $ppdm->vars[$i]['var'],
+								'EXAMPLE'	=> $ppdm->vars[$i]['value'])
+							);
+						}
+
 						$template->assign_vars(array(
-							'DONATION_DRAFT_PREVIEW'	=> $dp_preview,
+							'DONATION_DRAFT_PREVIEW'	=> str_replace(array_keys($dp_vars), array_values($dp_vars), $dp_preview),
 							'DONATION_BODY'				=> $dp_data['item_text'],
 							'LANG_ISO'					=> !empty($item_id) ? $dp_data['item_iso_code'] : $input_lang,
 
@@ -458,7 +503,7 @@ class acp_donation
 
 						// Assigning custom bbcodes
 						display_custom_bbcodes();
-					Break;
+					break;
 
 					case 'delete':
 						if (!$item_id)
@@ -515,7 +560,7 @@ class acp_donation
 						// Build sql query with alias field
 						$sql = 'SELECT item_id, item_name AS donation_title, item_iso_code AS lang_iso
 							FROM ' . DONATION_ITEM_TABLE . "
-							WHERE item_type = 'donation_pages'
+							WHERE item_type = '" . $mode . "'
 								AND item_iso_code = '" . $lang . "'";
 						$result = $db->sql_query($sql);
 
@@ -564,7 +609,7 @@ class acp_donation
 				{
 					$sql = 'SELECT *
 						FROM ' . DONATION_ITEM_TABLE . "
-						WHERE item_type= 'currency'
+						WHERE item_type= '" . $mode . "'
 						ORDER BY left_id";
 					$result = $db->sql_query($sql);
 
@@ -596,7 +641,10 @@ class acp_donation
 							trigger_error($user->lang['MUST_SELECT_ITEM'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 
-						$sql = 'SELECT * FROM ' . DONATION_ITEM_TABLE . ' WHERE item_id =' . (int) $item_id . " AND item_type = 'currency'";
+						$sql = 'SELECT *
+								FROM ' . DONATION_ITEM_TABLE . '
+								WHERE item_id = ' . (int) $item_id . "
+									AND item_type = '" . $mode . "'";
 						$result = $db->sql_query($sql);
 						$currency_ary = $db->sql_fetchrow($result);
 						$db->sql_freeresult($result);
@@ -711,7 +759,10 @@ class acp_donation
 							trigger_error($user->lang['MUST_SELECT_ITEM'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 
-						$sql = 'SELECT * FROM ' . DONATION_ITEM_TABLE . ' WHERE item_id = ' . (int) $item_id . " AND item_type = 'currency'";
+						$sql = 'SELECT *
+								FROM ' . DONATION_ITEM_TABLE . '
+								WHERE item_id = ' . (int) $item_id . "
+									AND item_type = '" . $mode . "'";
 						$result = $db->sql_query($sql);
 						$row = $db->sql_fetchrow($result);
 						$db->sql_freeresult($result);
@@ -738,7 +789,7 @@ class acp_donation
 							// SQL Build array
 							$sql = 'SELECT item_id
 									FROM ' . DONATION_ITEM_TABLE . "
-									WHERE item_type = 'currency'
+									WHERE item_type = '" . $mode . "'
 										AND item_enable = 1";
 							$result = $db->sql_query($sql);
 							$default_currency_check = $db->sql_fetchrow($result);
@@ -758,7 +809,10 @@ class acp_donation
 							$db->sql_query($sql);
 						}
 
-						$sql = 'SELECT * FROM ' . DONATION_ITEM_TABLE . ' WHERE item_id = ' . (int) $item_id . " AND item_type = 'currency'";
+						$sql = 'SELECT *
+								FROM ' . DONATION_ITEM_TABLE . '
+								WHERE item_id = ' . (int) $item_id . "
+									AND item_type = '" . $mode . "'";
 						$result = $db->sql_query($sql);
 						$row = $db->sql_fetchrow($result);
 						$db->sql_freeresult($result);

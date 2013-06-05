@@ -2,7 +2,7 @@
 /**
 *
 * @package Paypal Donation MOD
-* @copyright (c) 2012 Skouat
+* @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
@@ -13,6 +13,62 @@
 if (!defined('IN_PHPBB'))
 {
 	exit;
+}
+
+class ppdm_main
+{
+	var $vars = array();
+
+	/**
+	* Method get_vars
+	* Sets preset dynamic vars
+	*
+	* @param bool $acp
+	*/
+	function get_vars($acp = false)
+	{
+		global $config, $user, $auth;
+
+		$this->vars = array(
+			0	=> array(
+				'var'	=> '{USER_ID}',
+				'value'	=> $user->data['user_id'],
+			),
+			1	=> array(
+				'var'	=> '{USERNAME}',
+				'value'	=> $user->data['username'],
+			),
+			2	=> array(
+				'var'	=> '{SITE_NAME}',
+				'value'	=> $config['sitename'],
+			),
+			3	=> array(
+				'var'	=> '{SITE_DESC}',
+				'value'	=> $config['site_desc'],
+			),
+			4	=> array(
+				'var'	=> '{BOARD_CONTACT}',
+				'value'	=> $config['board_contact'],
+			),
+			5	=> array(
+				'var'	=> '{BOARD_EMAIL}',
+				'value'	=> $config['board_email'],
+			),
+			6	=> array(
+				'var'	=> '{BOARD_SIG}',
+				'value'	=> $config['board_email_sig'],
+			),
+		);
+
+		if ($acp)
+		{
+			//Add language entries for displaying the vars
+			for ($i = 0, $size = sizeof($this->vars); $i < $size; $i++)
+			{
+				$this->vars[$i]['name'] = $user->lang['DONATION_DP_' . substr(substr($this->vars[$i]['var'], 0, -1), 1)];
+			}
+		}
+	}
 }
 
 /**
@@ -40,7 +96,7 @@ function donation_stats_percent($type = '', $multiplicand, $dividend)
 * @param bool $is_founder = false
 */
 
-function donation_check_configuration($is_founder = false)
+function donation_check_configuration($is_founder = false, $is_authorised = false)
 {
 	global $config, $user;
 	// Do we have the donation mod enabled and paypal account set ?
@@ -57,8 +113,8 @@ function donation_check_configuration($is_founder = false)
 			trigger_error($user->lang['DONATION_ADDRESS_MISSING'], E_USER_NOTICE);
 	}
 
-	// Sandbox is enabled only for founder and $is_founder is false or Sandbox is visible for all members
-	if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_founder_enable']) && !$is_founder || empty($config['paypal_sandbox_founder_enable'])))
+	// Sandbox is enabled only for founder and $is_founder is false. Or Sandbox is visible for all autorised members
+	if (!empty($config['paypal_sandbox_enable']) && ((!empty($config['paypal_sandbox_founder_enable']) && !$is_founder) || (empty($config['paypal_sandbox_founder_enable']) && $is_authorised)))
 	{
 		// Paypal Donation disabled
 		if (empty($config['donation_enable']) && !empty($config['paypal_sandbox_founder_enable']))
@@ -76,7 +132,7 @@ function donation_check_configuration($is_founder = false)
 	// Paypal Sandbox address missing
 	if (empty($config['paypal_sandbox_address']))
 	{
-		if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_founder_enable']) && $is_founder || empty($config['paypal_sandbox_founder_enable'])))
+		if (!empty($config['paypal_sandbox_enable']) && ((!empty($config['paypal_sandbox_founder_enable']) && $is_founder) || (empty($config['paypal_sandbox_founder_enable']) && $is_authorised)))
 		{
 			trigger_error($user->lang['SANDBOX_ADDRESS_MISSING'], E_USER_NOTICE);
 		}

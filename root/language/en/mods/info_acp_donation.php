@@ -4,7 +4,7 @@
 * info_acp_donation.php [English]
 *
 * @package Paypal Donation MOD
-* @copyright (c) 2012 Skouat
+* @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
@@ -146,6 +146,20 @@ $lang = array_merge($lang, array(
 	'DONATION_CANCEL_SETTINGS'	=> 'Donation cancel config',
 	'DONATION_CANCEL'			=> 'Donation cancel',
 	'DONATION_CANCEL_EXPLAIN'	=> 'Enter the text you want displayed on the cancel page.',
+
+	// Donation Page Template vars
+	'DONATION_DP_PREDEFINED_VARS'	=> 'Predefined Variables',
+	'DONATION_DP_VAR_EXAMPLE'		=> 'Example',
+	'DONATION_DP_VAR_NAME'			=> 'Name',
+	'DONATION_DP_VAR_VAR'			=> 'Variable',
+
+	'DONATION_DP_BOARD_CONTACT'		=> 'Board contact',
+	'DONATION_DP_BOARD_EMAIL'		=> 'Board e-mail',
+	'DONATION_DP_BOARD_SIG'			=> 'Board’s Signature',
+	'DONATION_DP_SITE_DESC'			=> 'Site description',
+	'DONATION_DP_SITE_NAME'			=> 'Sitename',
+	'DONATION_DP_USER_ID'			=> 'User ID',
+	'DONATION_DP_USERNAME'			=> 'Username',
 ));
 
 /**

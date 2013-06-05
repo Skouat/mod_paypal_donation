@@ -2,7 +2,7 @@
 /**
 *
 * @package Paypal Donation MOD
-* @copyright (c) 2012 Skouat
+* @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
@@ -50,8 +50,12 @@ $options = array(
 
 // array of versions and actions within each
 $versions = array(
+	'1.0.4' => array(
+		// Nothing changed in this version
+	),
+
 	'1.0.3' => array(
-		// Add new enable/disable config entry
+		// Add new config entry
 		'config_add' => array(
 			array('donation_install_date', $current_time),
 		),
@@ -66,7 +70,7 @@ $versions = array(
 			array('ROLE_USER_FULL', 'u_pdm_use'),
 		),
 
-		// Add the module in ACP under the mods tab
+		// Add the module in ACP under the .MODS tab
 		'module_add' => array(
 			array('acp', 'ACP_DONATION_MOD', array(
 				'module_basename'	=> 'donation',
@@ -81,8 +85,8 @@ $versions = array(
 		'table_row_remove' => array(
 			array('phpbb_donation_item',
 				array(
-					'item_type'					=> 'donation_pages',
-					'item_name'					=> 'donation_draft',
+					'item_type'		=> 'donation_pages',
+					'item_name'		=> 'donation_draft',
 				),
 			),
 		),
@@ -90,10 +94,10 @@ $versions = array(
 		'table_row_update' => array(
 			array('phpbb_donation_item',
 				array(
-					'item_type'			=> 'donation_pages',
+					'item_type'		=> 'donation_pages',
 				),
 				array(
-					'item_iso_code'		=> $user->lang_name,
+					'item_iso_code'	=> $user->lang_name,
 				),
 			),
 		),

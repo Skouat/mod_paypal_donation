@@ -8,7 +8,7 @@
 	<!-- IF S_DONATION_VERSIONCHECK_FAIL -->
 		<div class="errorbox notice">
 			<p>{L_VERSIONCHECK_FAIL}</p>
-			<p><a href="{U_DONATION_VERSIONCHECK_FORCE}">{L_VERSIONCHECK_FORCE_UPDATE}</a> &middot; <a href="{U_DONATION_VERSIONCHECK}">{L_MORE_INFORMATION}</a></p>
+			<p><a href="{U_DONATION_VERSIONCHECK_FORCE}">{L_VERSIONCHECK_FORCE_UPDATE}</a></p>
 		</div>
 	<!-- ELSEIF not S_DONATION_VERSION_UP_TO_DATE -->
 		<div class="errorbox">
@@ -185,6 +185,29 @@
 				</p>
 				{S_FORM_TOKEN}
 			</fieldset>
+
+			<table cellspacing="1">
+				<caption>{L_DONATION_DP_PREDEFINED_VARS}</caption>
+				<col class="col1" /><col class="col2" /><col class="col1" />
+
+				<thead>
+					<tr>
+						<th>{L_DONATION_DP_VAR_NAME}</th>
+						<th>{L_DONATION_DP_VAR_VAR}</th>
+						<th>{L_DONATION_DP_VAR_EXAMPLE}</th>
+					</tr>
+				</thead>
+
+				<tbody>
+				<!-- BEGIN dp_vars -->
+					<tr>
+						<td>{dp_vars.NAME}</td>
+						<td><a href="#" onclick="insert_text('{dp_vars.VARIABLE}'); return false;"><strong>{dp_vars.VARIABLE}</strong></a></td>
+						<td><strong><em>{dp_vars.EXAMPLE}</em></strong></td>
+					</tr>
+				<!-- END dp_vars -->
+				</tbody>
+			</table>
 		</form>
 	<!-- ELSE -->
 	<h1>{L_TITLE}</h1>
@@ -314,6 +337,10 @@
 							<a href="{items.U_EDIT}">{ICON_EDIT}</a> 
 							<a href="{items.U_DELETE}">{ICON_DELETE}</a>
 						</td>
+					</tr>
+				<!-- BEGINELSE -->
+					<tr class="row2">
+						<td style="text-align: center;" colspan="3">{L_ACP_NO_ITEMS}</td>
 					</tr>
 				<!-- END items -->
 				</tbody>

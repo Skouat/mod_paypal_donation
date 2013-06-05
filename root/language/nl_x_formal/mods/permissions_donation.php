@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* permissions_donation.php [English]
+* permissions_donation.php [Dutch Formal]
 *
 * @package Paypal Donation MOD
 * @copyright (c) 2013 Skouat
@@ -39,15 +39,15 @@ if (empty($lang) || !is_array($lang))
 //
 
 // Adding new category
-$lang['permission_cat']['donation']   = 'Paypal Donation MOD';
+$lang['permission_cat']['donation']   = 'Paypal Donatie MOD';
 
 // Adding the permissions
 $lang = array_merge($lang, array(
 	// User Permissions
-	'acl_u_pdm_use'		=> array('lang' => 'Peut faire un don', 'cat' => 'donation'),
+	'acl_u_pdm_use'		=> array('lang' => 'Kan doneren', 'cat' => 'donatie'),
 
 	// Admin Permissions
-	'acl_a_pdm_manage'	=> array('lang' => 'Peut gérer Paypal Donation MOD', 'cat' => 'misc'),
+	'acl_a_pdm_manage'	=> array('lang' => 'Kan Paypal Donatie MOD beheren', 'cat' => 'misc'),
 ));
 
 ?>
