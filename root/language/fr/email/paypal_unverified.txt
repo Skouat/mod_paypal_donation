@@ -1,0 +1,9 @@
+
+{TO_USERNAME},
+
+Vous avez reçu un don PayPal de {PAYER_USERNAME} ({PAYER_EMAIL}) d’un montant de {AMOUNT} {CURRENCY}.
+
+Cette transaction n’a pas pu être vérifiée.
+Allez sur {U_PAYPAL} pour vérifier la transaction n°: {TXN_ID}
+
+{EMAIL_SIG}

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: https://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at https://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Paypal Donation Mod - Update from 1.0.3 to 1.0.4]]></title>
+		<title lang="fr"><![CDATA[Paypal Donation Mod - Mise à jour 1.0.3 vers 1.0.4]]></title>
+		<description lang="en"><![CDATA[Allows to update the MOD from 1.0.3 to 1.0.4]]></description>
+		<description lang="fr"><![CDATA[Permet de mettre à jour le MOD de la version 1.0.3 vers la version 1.0.4]]></description>
+		<author-group>
+			<author>
+				<realname><![CDATA[Skouat]]></realname>
+				<username><![CDATA[Skouat]]></username>
+				<homepage><![CDATA[http://www.ultima-world.com]]></homepage>
+				<contributions-group>
+					<contributions status="current" from="2009-08-02" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+
+		<mod-version>1.0.4</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.11</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2013-05-01</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change>Add: Some predefined vars are available to customize the Donation Pages</change>
+					<change>Fix: xHTML non conformity in ACP Donation Pages</change>
+					<change>Fix: Link for Donation statistics on index can return and unexpected url</change>
+					<change>Change: Improved detection of fsockopen and cURL</change>
+					<change>Change: Function donation_check_configuration() improved for autorised members of PPDM</change>
+					<change>Minor code change</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Ajout: Quelques variables pré-définies sont disponibles pour personnaliser les pages de dons</change>
+					<change>Correction: Une non conformité xHTML pouvait être rencontrée dans le module Donation Pages de l’ACP</change>
+					<change>Correction: Le lien des statistiques de dons présent sur la page d'index pouvait retourner une URL inattendue</change>
+					<change>Modification: Amélioration de la détection de cURL et fsockopen</change>
+					<change>Modification: Amélioration de la fonction donation_check_configuration() pour les membres autorisés à utiliser PPDM</change>
+					<change>Corrections divers</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-11-26</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change>Fix: Cannot add a new currency</change>
+					<change>Add: User permissions. Must be set through ACP>>Permissions</change>
+					<change>Add: Module "Overview"</change>
+					<change>Change: Multi-language features for custom donation page are now stored in the database</change>
+					<change>Change: some Language keys renamed</change>
+					<change>Remove: Language keys for "custom donation pages" are removed (see change below)</change>
+					<change>Remove: contrib/add-ons/addon_mod_check_version/ was removed, see the newly added module "Overview" to check the updates</change>
+					<change>Minor code change</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Correction: Impossible d’ajouter une nouvelle devise</change>
+					<change>Ajout: Permissions utilisateur. Doivent être définies en passant par ACP>>Permissions</change>
+					<change>Ajout: Module "Général"</change>
+					<change>Modification: La fonctionnalité multi-langue pour la personnalisation des pages de dons est maintenant stockées dans la base de données</change>
+					<change>Modification: Renommage de certaines clés de langues</change>
+					<change>Suppression: Les clés de langues utilser pour personnalisées les pages de dons ont été supprimées (voir ci-dessus)</change>
+					<change>Suppression: contrib/add-ons/addon_mod_check_version/ a été supprimé, voir le nouveau module "Vue d’ensemble" pour contrôler les mises à jour</change>
+					<change>Corrections divers</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-07-15</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change>Fix: In the currencies management, the redirect url to iso.org is wrong</change>
+					<change>Fix: Special characters not parsed correctly to Paypal</change>
+					<change>Add: Donate icons</change>
+					<change>Add: In the currencies management, the currency name is now clickable</change>
+					<change>Add: In ACP, "Donation pages" can now preview the custom language keys</change>
+					<change>Add: Subsilver2 style</change>
+					<change>Add: Admin permissions</change>
+					<change>Remove: $config['donation_currency_enable'] is no longer necessary</change>
+					<change>Change: In ACP, "donation_page" and "currency" Module language name have been changed</change>
+					<change>Change: Some language keys have been changed</change>
+					<change>Change: Improve check installation on page donate.php (only available for founders)</change>
+					<change>Change: Improve UMIL installation</change>
+					<change>Change: Code optimisation</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Correction: Dans la gestion des devises, l’URL redirigeant sur iso.org est incorrect</change>
+					<change>Correction: Les caractères spéciaux sont mal interprétés par Paypal</change>
+					<change>Ajout: Icone donation</change>
+					<change>Ajout: Dans la gestion des devises, le nom des devises est désormais cliquable</change>
+					<change>Ajout: Dans le panneau d’administration, "Donation pages" peut prévisualiser les clés de langue personalisées</change>
+					<change>Ajout: Style Subsilver2</change>
+					<change>Ajout: Permission d’administration</change>
+					<change>Suppression: $config['donation_currency_enable'] n’est plus nécessaire</change>
+					<change>Modification: Dans le Panneau d’administraion le nom des clés de langues des modules "donation_pages" et "currency" ont été changés</change>
+					<change>Modification: Quelques clés de langue ont été modifiées</change>
+					<change>Modification: Amélioration du contrôle de l’installation du MOD sur la page donate.php (seulement disponible pour les fondateurs)</change>
+					<change>Modification: Amélioration de l’installation avec UMIL</change>
+					<change>Modification: Optimisation du code</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-04-14</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Fix: The setting “Sandbox only for founder” does not work</change>
+					<change>Fix: Some code optimisation reported by ABDev (Thanks to him)</change>
+					<change>Add: MOD Check version add-on</change>
+					<change>Add: Advanced BBCode Box 3 add-on</change>
+					<change>Add: Update since the new Stocker 4.0's Paypal Donation 1.0.4</change>
+					<change>Other minor code change</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Correction: Le paramètre “Sandbox pour les fondateurs” ne fonctionne pas</change>
+					<change>Correction: Optimisation du code reporté par ABDev (Merci à lui)</change>
+					<change>Ajout: Contribution pour MOD Check version</change>
+					<change>Ajout: Contribution pour Advanced BBCode Box 3</change>
+					<change>Ajout: Fichier de mise à jour de la version 1.0.4 de Paypal Donation de Stocker 4.0</change>
+					<change>Autres changement mineur du code</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-04-11</date>
+				<rev-version>1.0.0-RC2</rev-version>
+				<changelog lang="en">
+					<change>Fix: Change code according to the phpBB coding guidelines.</change>
+					<change>Fix: If all currencies are disabled, the first currency that is enabled becomes the default currency.</change>
+					<change>Fix: Characters with accents are not supported in ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
+					<change>Change: HTML usage is replaced by BBcode usage.</change>
+					<change>Add: Possibility to define a default donation value.</change>
+					<change>Add: Ability to set Paypal Sandbox only for board founder.</change>
+					<change>Add: Ability to replace the paypal textbox by a paypal drop-list.</change>
+					<change>Some changed code.</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Correction: Changement du code selon les directive de codage de phpBB.</change>
+					<change>Correction: Si toutes les devises sont désactivées, la première devise qui est activée ne devient pas la devise par défaut.</change>
+					<change>Correction: Les caractères accentués ne sont pas supportés dans ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
+					<change>Modification: L’utilisation du HTML est remplacé par l’utilisation des BBcode.</change>
+					<change>Ajout: Il est possible de définir une valeur de dons par défaut.</change>
+					<change>Ajout: Possibilité d’autoriser Paypal Sandbox seulement pour les foundateurs du forum.</change>
+					<change>Ajout: Possibilité de remplacer la zone de saisie de donation libre par une liste déroulante.</change>
+					<change>Divers changement dans le code.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-01-24</date>
+				<rev-version>1.0.0-RC1</rev-version>
+				<changelog lang="en">
+					<change>First public version...</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Première version public...</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="parent" href="../../install.xml" lang="en">Parent MOD installation</link>
+			<link type="parent" href="../../install.xml" lang="fr">Fichier d’installation parent</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/donate.php" to="donate.php" />
+			<file from="root/install_donation_mod.php" to="install_donation_mod.php" />
+			<file from="root/adm/style/acp_donation.html" to="adm/style/acp_donation.html" />
+			<file from="root/images/donation/*.*" to="images/donation/*.*" />
+			<file from="root/includes/acp/acp_donation.php" to="includes/acp/acp_donation.php" />
+			<file from="root/includes/acp/info/acp_donation.php" to="includes/acp/info/acp_donation.php" />
+			<file from="root/includes/functions_donation.php" to="includes/functions_donation.php" />
+			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*" />
+			<file from="root/styles/prosilver/imageset/en/donate.gif" to="styles/prosilver/imageset/en/donate.gif" />
+			<file from="root/styles/prosilver/template/donate/*.*" to="styles/prosilver/template/donate/*.*" />
+			<file from="root/styles/prosilver/theme/donation.css" to="styles/prosilver/theme/donation.css" />
+			<file from="root/styles/prosilver/theme/images/icon_donate.gif" to="styles/prosilver/theme/images/icon_donate.gif" />
+			<file from="root/umil/*.*" to="umil/*.*" />
+		</copy>
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[	if ($auth->acl_get('u_pdm_use'))
+	{
+		$template->assign_vars(array(
+			'U_DONATE'			=> append_sid("{$phpbb_root_path}donate.$phpEx"),
+			'S_DONATE_ENABLED'	=> true,
+		));
+	}]]></find>
+				<action type="replace-with"><![CDATA[	$template->assign_vars(array(
+		'U_DONATE'			=> $auth->acl_get('u_pdm_use') ? append_sid("{$phpbb_root_path}donate.$phpEx") : '',
+		'S_DONATE_ENABLED'	=> $auth->acl_get('u_pdm_use'),
+	));]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install_donation_mod.php]]></php-installer>
+
+		<diy-instructions lang="en"><![CDATA[--------- Update instructions ---------
+Upload all included files.
+Run the installer.]]></diy-instructions>
+		<diy-instructions lang="fr"><![CDATA[--------- Instructions de mise à jour ---------
+Transférer tous les fichiers.
+Executer le fichier d’installation.]]></diy-instructions>
+	</action-group>
+</mod>

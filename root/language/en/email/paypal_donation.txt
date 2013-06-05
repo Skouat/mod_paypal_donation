@@ -1,0 +1,6 @@
+
+Dear {TO_USERNAME},
+
+You’ve received a PayPal Donation from {PAYER_USERNAME} ({PAYER_EMAIL}) in the amount of {AMOUNT} {CURRENCY}.
+
+{EMAIL_SIG}

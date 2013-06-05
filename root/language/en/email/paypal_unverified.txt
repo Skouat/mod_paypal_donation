@@ -1,0 +1,9 @@
+
+Dear {TO_USERNAME},
+
+You’ve received a PayPal Donation from {PAYER_USERNAME} ({PAYER_EMAIL}) in the amount of {AMOUNT} {CURRENCY}.
+
+This transaction has not been verified.
+Go to {U_PAYPAL} to verify the transaction ID: {TXN_ID}
+
+{EMAIL_SIG}

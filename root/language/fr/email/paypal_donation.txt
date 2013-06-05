@@ -1,0 +1,6 @@
+
+{TO_USERNAME},
+
+Vous avez reçu un don PayPal de {PAYER_USERNAME} ({PAYER_EMAIL}) d’un montant de {AMOUNT} {CURRENCY}.
+
+{EMAIL_SIG}
