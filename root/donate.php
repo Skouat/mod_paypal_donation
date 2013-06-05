@@ -19,54 +19,24 @@ include($phpbb_root_path . 'includes/functions_donation.' . $phpEx);
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
-$user->setup(array('mods/donate','mods/donate_custom'));
- 
-$is_founder = ($user->data['user_type'] == USER_FOUNDER) ? true : false;
+$user->setup('mods/donate');
 
-// Check for mod installed
+$is_founder = $user->data['user_type'] == USER_FOUNDER;
+$is_authorised = $auth->acl_get('u_pdm_use');
+
+if (!$is_authorised)
+{
+	trigger_error('NOT_AUTHORISED');
+}
+
+// Check for mod installed and configured
 donation_check_install($is_founder);
+donation_check_configuration($is_founder);
 
-// Do we have the donation mod enabled and paypal account set ?
-
-// Paypal Donation and Paypal Sandbox is disabled
-if (empty($config['donation_enable']) && empty($config['paypal_sandbox_enable']))
-{
-	trigger_error($user->lang['DONATION_DISABLED'], E_USER_NOTICE);
-}
-
-// Paypal Donation enabled and Account ID missing
-if (!empty($config['donation_enable']) && empty($config['paypal_sandbox_enable']) && empty($config['donation_account_id']))
-{
-		trigger_error($user->lang['DONATION_ADDRESS_MISSING'], E_USER_NOTICE);
-}
-
-// Sandbox is enabled only for founder and $is_founder is false or Sandbox is visible for all members
-if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_founder_enable']) && !$is_founder || empty($config['paypal_sandbox_founder_enable'])))
-{
-	// Paypal Donation disabled
-	if (empty($config['donation_enable']) && !empty($config['paypal_sandbox_founder_enable']))
-	{
-		trigger_error($user->lang['DONATION_DISABLED'], E_USER_NOTICE);
-	}
-
-	// Paypal Donation enabled and Account ID missing
- 	if (!empty($config['donation_enable']) && empty($config['donation_account_id']))
-	{
-		trigger_error($user->lang['DONATION_ADDRESS_MISSING'], E_USER_NOTICE);
-	}
-}
-
-// Paypal Sandbox address missing
-if (empty($config['paypal_sandbox_address']))
-{
-	if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_founder_enable']) && $is_founder || empty($config['paypal_sandbox_founder_enable'])))
-	{
-		trigger_error($user->lang['SANDBOX_ADDRESS_MISSING'], E_USER_NOTICE);
-	}
-}
+// Request vars
+$mode = request_var('mode', '');
 
 // Assign $mode to template
-$mode = request_var('mode', '');
 $template->assign_var('MODE', $mode);
 
 switch ($mode)
@@ -77,7 +47,8 @@ switch ($mode)
 		$sql = 'SELECT item_text, item_text_bbcode_uid, item_text_bbcode_bitfield, item_text_bbcode_options
 			FROM ' . DONATION_ITEM_TABLE . "
 			WHERE item_name = 'donation_" . $db->sql_escape($mode) . "'
-				AND item_type = 'donation_pages'";
+				AND item_type = 'donation_pages'
+				AND item_iso_code = '" . $user->lang_name . "'";
 		$result = $db->sql_query($sql);
 		$donation_pages = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
@@ -155,14 +126,13 @@ switch ($mode)
 		$sql = 'SELECT item_text, item_text_bbcode_uid, item_text_bbcode_bitfield, item_text_bbcode_options
 			FROM ' . DONATION_ITEM_TABLE . "
 			WHERE item_type = 'donation_pages'
-				AND item_name = 'donation_body'";
+				AND item_name = 'donation_body'
+				AND item_iso_code = '" . $user->lang_name . "'";
 		$result = $db->sql_query($sql);
 		$donation_pages = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
 
-		// Check if language key page donation body exist
-		$donation_body = isset($user->lang[strtoupper($donation_pages['item_text'])]) ? $user->lang[strtoupper($donation_pages['item_text'])] : $donation_pages['item_text'];
-		$donation_body = generate_text_for_display($donation_body, $donation_pages['item_text_bbcode_uid'], $donation_pages['item_text_bbcode_bitfield'], $donation_pages['item_text_bbcode_options']);
+		$donation_body = generate_text_for_display($donation_pages['item_text'], $donation_pages['item_text_bbcode_uid'], $donation_pages['item_text_bbcode_bitfield'], $donation_pages['item_text_bbcode_options']);
 
 		// Donation percent
 		if (!empty($config['donation_goal_enable']) && (int) $config['donation_goal'] > 0)

@@ -16,6 +16,7 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
 
+// start session management
 $user->session_begin();
 $auth->acl($user->data);
 $user->setup();
@@ -25,12 +26,84 @@ if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 	trigger_error('Please download the latest UMIL (Unified MOD Install Library) from: <a href="http://www.phpbb.com/mods/umil/">phpBB.com/mods/umil</a>', E_USER_ERROR);
 }
 
+// name of the mod
 $mod_name = 'DONATION_MOD';
 
+// name of the config variable
 $version_config_name = 'donation_mod_version';
+
+// language file which will be included when installing
 $language_file = 'mods/donate';
 
+// logo image
+$logo_img = 'images/donation/ppdm_logo_small.png';
+
+// current time needed for 'donation_install_date'
+$current_time = time();
+
+// Options to display to the user
+$options = array(
+	'legend2'	=> 'WARNING',
+	'welcome'	=> array('lang' => 'INSTALL_DONATION_MOD_WELCOME', 'type' => 'custom', 'function' => 'display_message', 'params' => array('INSTALL_DONATION_MOD_WELCOME_NOTE', 'error'), 'explain' => false),
+	'legend3'	=> 'ACP_SUBMIT_CHANGES',
+);
+
+// array of versions and actions within each
 $versions = array(
+	'1.0.3' => array(
+		// Add new enable/disable config entry
+		'config_add' => array(
+			array('donation_install_date', $current_time),
+		),
+
+		// Now to add some permission settings
+		'permission_add' => array(
+			array('u_pdm_use', true),
+		),
+		// How about we give some default permissions then as well?
+		'permission_set' => array(
+			// Global Role permissions
+			array('ROLE_USER_FULL', 'u_pdm_use'),
+		),
+
+		// Add the module in ACP under the mods tab
+		'module_add' => array(
+			array('acp', 'ACP_DONATION_MOD', array(
+				'module_basename'	=> 'donation',
+				'module_langname'	=> 'DONATION_OVERVIEW',
+				'module_mode'		=> 'overview',
+				'module_auth'		=> 'acl_a_pdm_manage',
+				'before'			=> 'DONATION_CONFIG',
+				),
+			),
+		),
+
+		'table_row_remove' => array(
+			array('phpbb_donation_item',
+				array(
+					'item_type'					=> 'donation_pages',
+					'item_name'					=> 'donation_draft',
+				),
+			),
+		),
+
+		'table_row_update' => array(
+			array('phpbb_donation_item',
+				array(
+					'item_type'			=> 'donation_pages',
+				),
+				array(
+					'item_iso_code'		=> $user->lang_name,
+				),
+			),
+		),
+
+		// remove unused language files
+		'custom'	=> 'unused_language_files',
+
+		'cache_purge' => '',
+	),
+
 	'1.0.2' => array(
 		// Remove unnecessary config
 		'config_remove'	=> array(
@@ -88,12 +161,12 @@ $versions = array(
 		),
 
 		// Purge cache
-		'cache_purge' => array(''),
+		'cache_purge' => '',
 	),
 
 	'1.0.1' => array(
 		// Purge cache
-		'cache_purge' => array(''),
+		'cache_purge' => '',
 	),
 
 	// Version 1.0.0-RC2
@@ -107,13 +180,13 @@ $versions = array(
 		),
 
 		'table_column_add' => array(
-			array('phpbb_donation_item', 'item_text_bbcode_uid', array('VCHAR:8', '')),
 			array('phpbb_donation_item', 'item_text_bbcode_bitfield', array('VCHAR:255', '')),
-			array('phpbb_donation_item', 'item_text_bbcode_options', array('UINT:11', 7)),
+			array('phpbb_donation_item', 'item_text_bbcode_uid', array('VCHAR:8', '')),
+			array('phpbb_donation_item', 'item_text_bbcode_options', array('UINT:4', 7)),
 		),
 
 		'table_insert' => array(
-			array('phpbb_donation_item', array(
+			array('phpbb_donation_item',
 				array(
 					'item_type'					=> 'donation_pages',
 					'item_name'					=> 'donation_draft',
@@ -127,10 +200,10 @@ $versions = array(
 					'item_text_bbcode_bitfield'	=> '',
 					'item_text_bbcode_options'	=> 7,
 				),
-			)
-		)),
+			),
+		),
 
-		'cache_purge' => array(''),
+		'cache_purge' => '',
 	),
 
 	// Version 1.0.0-RC1
@@ -313,11 +386,63 @@ $versions = array(
 			)),
 		),
 
-		'cache_purge' => array(''),
+		'cache_purge' => '',
 	),
 );
 
 // Include the UMIF Auto file and everything else will be handled automatically.
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
 
+/*
+* Function called for version 1.0.3.
+* 
+* @param string $action The action (install|update|uninstall) will be sent through this.
+* @param string $version The version this is being run for will be sent through this.
+*/
+function unused_language_files($action, $version)
+{
+	global $db, $phpbb_root_path, $phpEx;
+
+	$check_file_exists = false;
+
+	if ($action == 'update')
+	{
+
+	$sql = 'SELECT * FROM ' . LANG_TABLE;
+		$result = $db->sql_query($sql);
+
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$file_path = $phpbb_root_path . 'language/' . $row['lang_dir'] . '/mods/donate_custom.' . $phpEx;
+
+			if (file_exists($file_path))
+			{
+				@unlink($file_path);
+				$check_file_exists = true;
+			}
+		}
+	}
+	if ($check_file_exists)
+	{
+		return array('command' => 'UNUSED_LANG_FILES_TRUE', 'result' => 'SUCCESS');
+	}
+	else
+	{
+		return array('command' => 'UNUSED_LANG_FILES_FALSE', 'result' => 'SUCCESS');
+	}
+}
+
+/**
+* Display a message with a specified css class
+*
+* @param string		$lang_string	The language string to display
+* @param string		$class			The css class to apply
+* @return string					Formated html code
+*/
+function display_message($lang_string, $class)
+{
+	global $user;
+
+	return '<span class="' . $class . '">' . $user->lang[$lang_string] . '</span>';
+}
 ?>

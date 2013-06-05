@@ -35,19 +35,49 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
 //
 
+
+/**
+* mode: main
+*/
+$lang = array_merge($lang, array(
+	'ACP_DONATION_MOD' => 'Paypal Donation',
+));
+
+/**
+* mode: overview
+*/
+$lang = array_merge($lang, array(
+	'DONATION_OVERVIEW'			=> 'Overview',
+	'DONATION_WELCOME'			=> 'Welcome on Paypal Donation MOD',
+	'DONATION_WELCOME_EXPLAIN'	=> '',
+
+	'DONATION_STATS'			=> 'Donation statistics',
+	'DONATION_INSTALL_DATE'		=> 'Install date of <strong>Paypal Donation MOD</strong>',
+	'DONATION_VERSION'			=> '<strong>Paypal Donation</strong> version',
+
+	'INFO_FSOCKOPEN'			=> 'Fsockopen',
+	'INFO_CURL'					=> 'cURL',
+	'INFO_DETECTED'				=> 'Detected',
+	'INFO_NOT_DETECTED'			=> 'Not detected',
+	'DONATION_VERSION_NOT_UP_TO_DATE_TITLE'	=> 'Your Paypal Donation installation is not up to date.',
+
+	'STAT_RESET_DATE'							=> 'Reset MOD Installation date',
+	'STAT_RESET_DATE_EXPLAIN'					=> 'Reset installation affect statistic about the total amount calculation',
+	'STAT_RESET_DATE_CONFIRM'					=> 'Are you sure you wish to reset the MOD’s installation date?',
+));
 
 /**
 * mode: configuration
 */
 $lang = array_merge($lang, array(
-	'ACP_DONATION_MOD'				=> 'Paypal Donation',
 	'DONATION_CONFIG'				=> 'Configuration',
 	'DONATION_CONFIG_EXPLAIN'		=> '',
 	'DONATION_SAVED'				=> 'Donation settings saved',
 	'MODE_CURRENCY'					=> 'currency',
+	'MODE_DONATION_PAGES'			=> 'donation pages',
 
 	// Global Donation settings
 	'DONATION_ENABLE'						=> 'Enable Paypal Donation',
@@ -97,30 +127,25 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
 	// Donation Page settings
 	'DONATION_DP_CONFIG'			=> 'Donation pages',
-	'DONATION_DP_CONFIG_EXPLAIN'	=> 'Permit to improve the rendering of customizable pages of the MOD.<br />Read more about “<a href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod/faq/f_749" title="How to use language keys with that MOD ?">How to use language keys with that MOD ?</a>” (external link).',
+	'DONATION_DP_CONFIG_EXPLAIN'	=> 'Permit to improve the rendering of customizable pages of the MOD.',
 
-	// Donation Page Draft settings
-	'DONATION_DRAFT_PREVIEW'	=> 'Draft Donation pages preview',
-	'DONATION_DRAFT_SETTINGS'	=> 'Donation page draft',
-	'DONATION_DRAFT_EXPLAIN'	=> 'Draft here your Donation page text',
+	'DONATION_DP_PAGE'				=> 'Page type',
+	'DONATION_DP_LANG'				=> 'Language',
 
 	// Donation Page Body settings
-	'DONATION_BODY_SETTINGS'	=> 'Donation page config',
-	'DONATION_BODY'				=> 'Donation page text',
-	'DONATION_BODY_EXPLAIN'		=> 'Enter the text you want displayed on the main donation page.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />If needed, use this Language Key: <strong>CUSTOM_DONATION_BODY</strong>',
-	'COPY_TO_DONATION_BODY'		=> 'Copy to Donation body',
+	'DONATION_BODY_SETTINGS'	=> 'Donation main page config',
+	'DONATION_BODY'				=> 'Donation main page',
+	'DONATION_BODY_EXPLAIN'		=> 'Enter the text you want displayed on the main donation page.',
 
 	// Donation Success settings
 	'DONATION_SUCCESS_SETTINGS'	=> 'Donation success config',
-	'DONATION_SUCCESS'			=> 'Donation success text',
-	'DONATION_SUCCESS_EXPLAIN'	=> 'Enter the text you want displayed on the success page<br />This is the page users are redirected to after a successfull donation.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />If needed, use this Language Key: <strong>CUSTOM_DONATION_SUCCESS</strong>',
-	'COPY_TO_DONATION_SUCCESS'	=> 'Copy to Donation success',
+	'DONATION_SUCCESS'			=> 'Donation success',
+	'DONATION_SUCCESS_EXPLAIN'	=> 'Enter the text you want displayed on the success page.',
 
 	// Donation Cancel settings
 	'DONATION_CANCEL_SETTINGS'	=> 'Donation cancel config',
-	'DONATION_CANCEL'			=> 'Donation cancel text',
-	'DONATION_CANCEL_EXPLAIN'	=> 'Enter the text you want displayed on the cancel page<br />This is the page users are redirected to after they cancel a donation.<br /><br /><strong>BBcode</strong> and <strong>Language Keys</strong> are allowed.<br />You can use either BBcode or Language Keys, but not both in the same time.<br />If needed, use this Language Key: <strong>CUSTOM_DONATION_CANCEL</strong>',
-	'COPY_TO_DONATION_CANCEL'	=> 'Copy to Donation cancel',
+	'DONATION_CANCEL'			=> 'Donation cancel',
+	'DONATION_CANCEL_EXPLAIN'	=> 'Enter the text you want displayed on the cancel page.',
 ));
 
 /**
@@ -156,16 +181,20 @@ $lang = array_merge($lang, array(
 	'LOG_ITEM_MOVE_UP'				=> '<strong>Paypal Donation: Moved a %1$s. </strong> %2$s <strong>above</strong> %3$s',
 	'LOG_ITEM_ENABLED'				=> '<strong>Paypal Donation: %1$s enabled</strong><br />» %2$s',
 	'LOG_ITEM_DISABLED'				=> '<strong>Paypal Donation: %1$s disabled</strong><br />» %2$s',
+	'LOG_STAT_RESET_DATE'			=> '<strong>Paypal Donation: Installation date reset</strong>',
 
 	// Confirm box
-	'CURRENCY_ENABLED'		=> 'A currency has been enabled',
-	'CURRENCY_DISABLED'		=> 'A currency has been disabled.',
-	'CURRENCY_ADDED'		=> 'A new currency has been added.',
-	'CURRENCY_UPDATED'		=> 'A currency has been updated.',
-	'CURRENCY_REMOVED'		=> 'A currency has been removed.',
+	'DONATION_DC_ENABLED'		=> 'A currency has been enabled',
+	'DONATION_DC_DISABLED'		=> 'A currency has been disabled.',
+	'DONATION_DC_ADDED'			=> 'A new currency has been added.',
+	'DONATION_DC_UPDATED'		=> 'A currency has been updated.',
+	'DONATION_DC_REMOVED'		=> 'A currency has been removed.',
+	'DONATION_DP_LANG_ADDED'	=> 'A donation page language has been added',
+	'DONATION_DP_LANG_UPDATED'	=> 'A donation page language has been updated',
+	'DONATION_DP_LANG_REMOVED'	=> 'A donation page language has been removed',
 
 	// Errors
-	'MUST_SELECT_ITEM'		=> 'The selected item does not exist',
-	'ENTER_CURRENCY_NAME'	=> 'Enter a currency name',
+	'MUST_SELECT_ITEM'			=> 'The selected item does not exist',
+	'DONATION_DC_ENTER_NAME'	=> 'Enter a currency name',
 ));
 ?>

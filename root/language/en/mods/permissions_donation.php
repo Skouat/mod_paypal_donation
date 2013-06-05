@@ -35,14 +35,18 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
 //
 
 // Adding new category
 $lang['permission_cat']['donation']   = 'Paypal Donation MOD';
 
-// Admin Permissions
+// Adding the permissions
 $lang = array_merge($lang, array(
+	// User Permissions
+	'acl_u_pdm_use'		=> array('lang' => 'Can make a donation', 'cat' => 'donation'),
+
+	// Admin Permissions
 	'acl_a_pdm_manage'	=> array('lang' => 'Can manage Paypal Donation MOD', 'cat' => 'misc'),
 ));
 

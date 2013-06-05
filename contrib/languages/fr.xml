@@ -24,7 +24,7 @@
 		<installation>
 			<level>easy</level>
 			<time>300</time>
-			<target-version>3.0.10</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 
 		<history>
@@ -41,6 +41,7 @@
 		</history>
 		<link-group>
 			<link type="parent" href="../../install.xml" lang="en">Parent MOD installation</link>
+			<link type="parent" href="../../install.xml" lang="fr">Fichier d’installation parent</link>
 		</link-group>
 	</header>
 	<action-group>

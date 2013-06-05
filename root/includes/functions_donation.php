@@ -27,11 +27,62 @@ function donation_stats_percent($type = '', $multiplicand, $dividend)
 	global $template;
 
 	$donation_stats_percent = ($multiplicand * 100) / $dividend;
+
 	$template->assign_vars(array(
 		'DONATION_' . $type	=> round($donation_stats_percent, 2),
 		'S_' . $type 		=> !empty($type) ? true : false,
 	));
 }
+
+/**
+* Paypal donation configuration check.
+*
+* @param bool $is_founder = false
+*/
+
+function donation_check_configuration($is_founder = false)
+{
+	global $config, $user;
+	// Do we have the donation mod enabled and paypal account set ?
+
+	// Paypal Donation and Paypal Sandbox is disabled
+	if (empty($config['donation_enable']) && empty($config['paypal_sandbox_enable']))
+	{
+		trigger_error($user->lang['DONATION_DISABLED'], E_USER_NOTICE);
+	}
+
+	// Paypal Donation enabled and Account ID missing
+	if (!empty($config['donation_enable']) && empty($config['paypal_sandbox_enable']) && empty($config['donation_account_id']))
+	{
+			trigger_error($user->lang['DONATION_ADDRESS_MISSING'], E_USER_NOTICE);
+	}
+
+	// Sandbox is enabled only for founder and $is_founder is false or Sandbox is visible for all members
+	if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_founder_enable']) && !$is_founder || empty($config['paypal_sandbox_founder_enable'])))
+	{
+		// Paypal Donation disabled
+		if (empty($config['donation_enable']) && !empty($config['paypal_sandbox_founder_enable']))
+		{
+			trigger_error($user->lang['DONATION_DISABLED'], E_USER_NOTICE);
+		}
+
+		// Paypal Donation enabled and Account ID missing
+		if (!empty($config['donation_enable']) && empty($config['donation_account_id']))
+		{
+			trigger_error($user->lang['DONATION_ADDRESS_MISSING'], E_USER_NOTICE);
+		}
+	}
+
+	// Paypal Sandbox address missing
+	if (empty($config['paypal_sandbox_address']))
+	{
+		if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_founder_enable']) && $is_founder || empty($config['paypal_sandbox_founder_enable'])))
+		{
+			trigger_error($user->lang['SANDBOX_ADDRESS_MISSING'], E_USER_NOTICE);
+		}
+	}
+}
+
 
 /**
 * Paypal donation installation check.
@@ -60,6 +111,8 @@ function donation_check_install($is_founder = false)
 			'donation_enable',
 			'donation_goal',
 			'donation_goal_enable',
+			'donation_install_date',
+			'donation_mod_version',
 			'donation_raised',
 			'donation_raised_enable',
 			'donation_stats_index_enable',

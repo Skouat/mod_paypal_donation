@@ -35,19 +35,49 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
 //
 
+
+/**
+* mode: main
+*/
+$lang = array_merge($lang, array(
+	'ACP_DONATION_MOD' => 'Paypal Donation',
+));
+
+/**
+* mode: overview
+*/
+$lang = array_merge($lang, array(
+	'DONATION_OVERVIEW'			=> 'Général',
+	'DONATION_WELCOME'			=> 'Bienvenue sur Paypal Donation MOD',
+	'DONATION_WELCOME_EXPLAIN'	=> '',
+
+	'DONATION_STATS'			=> 'Statistics des dons',
+	'DONATION_INSTALL_DATE'		=> 'Date d’installation de <strong>Paypal Donation</strong>',
+	'DONATION_VERSION'			=> 'Version de <strong>Paypal Donation</strong>',
+
+	'INFO_FSOCKOPEN'			=> 'Fsockopen',
+	'INFO_CURL'					=> 'cURL',
+	'INFO_DETECTED'				=> 'Détecté',
+	'INFO_NOT_DETECTED'			=> 'Non détecté',
+	'DONATION_VERSION_NOT_UP_TO_DATE_TITLE'	=> 'Votre installation de Paypal Donation n’est pas à jour.',
+
+	'STAT_RESET_DATE'							=> 'Réinitialiser la date d’installation du MOD',
+	'STAT_RESET_DATE_EXPLAIN'					=> 'La réinitialisation de la date d’installation affecte les statistiques du MOD',
+	'STAT_RESET_DATE_CONFIRM'					=> 'Etes-vous sûr de vouloir réinitialiser la data d’installation du MOD ?',
+));
 
 /**
 * mode: configuration
 */
 $lang = array_merge($lang, array(
-	'ACP_DONATION_MOD'				=> 'Paypal Donation',
 	'DONATION_CONFIG'				=> 'Configuration',
 	'DONATION_CONFIG_EXPLAIN'		=> '',
 	'DONATION_SAVED'				=> 'Les paramètres de Paypal Donation ont été sauvegardés',
 	'MODE_CURRENCY'					=> 'devise',
+	'MODE_DONATION_PAGES'			=> 'pages de dons',
 
 	// Global Donation settings
 	'DONATION_ENABLE'						=> 'Activer Paypal Donation',
@@ -69,7 +99,7 @@ $lang = array_merge($lang, array(
 	'SANDBOX_ENABLE_EXPLAIN'				=> 'Activez cette option si vous voulez utiliser Paypal Sandbox au lieu des Services Paypal.<br />Pratique pour les développeurs/testeurs. Toutes les transactions sont fictives.',
 	'SANDBOX_FOUNDER_ENABLE'				=> 'Sandbox pour les fondateurs',
 	'SANDBOX_FOUNDER_ENABLE_EXPLAIN'		=> 'Si activé, Paypal Sandbox ne sera visible que par les fondateurs du forum.',
-	'SANDBOX_ADDRESS'						=> 'Addresse PayPal Sandbox',
+	'SANDBOX_ADDRESS'						=> 'Adresse PayPal Sandbox',
 	'SANDBOX_ADDRESS_EXPLAIN'				=> 'Inscrire votre addresse e-mail de vendeur Paypal Sandbox',
 
 	// Stats Donation settings
@@ -97,30 +127,25 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
 	// Donation Page settings
 	'DONATION_DP_CONFIG'			=> 'Donation pages',
-	'DONATION_DP_CONFIG_EXPLAIN'	=> 'Permet d’améliorer le rendu des pages personalisables du MOD.<br />En savoir plus sur “<a href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod/faq/f_749" title="Comment utiliser les clés de langues?">Comment utiliser les clés de langues ?</a>” (lien externe en anglais).',
+	'DONATION_DP_CONFIG_EXPLAIN'	=> 'Permet d’améliorer le rendu des pages personalisables du MOD.',
 
-	// Donation Page Draft settings
-	'DONATION_DRAFT_PREVIEW'	=> 'Aperçu de la pages de dons',
-	'DONATION_DRAFT_SETTINGS'	=> 'Simulation de page de dons',
-	'DONATION_DRAFT_EXPLAIN'	=> 'Rédiger ici votre texte pour la Page des dons',
+	'DONATION_DP_PAGE'				=> 'Type de page',
+	'DONATION_DP_LANG'				=> 'Langue',
 
 	// Donation Page Body settings
-	'DONATION_BODY_SETTINGS'	=> 'Paramètres de la Page des dons',
-	'DONATION_BODY'				=> 'Texte de la page des dons',
-	'DONATION_BODY_EXPLAIN'		=> 'Saisir le texte que vous souhaitez afficher sur la page des dons.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langue, mais pas les deux en même temps.<br />Si besoin, Clé de langues à utiliser : <strong>CUSTOM_DONATION_BODY</strong>',
-	'COPY_TO_DONATION_BODY'		=> 'Copier vers Page des dons',
+	'DONATION_BODY_SETTINGS'	=> 'Paramètres de la page principale',
+	'DONATION_BODY'				=> 'Page principale',
+	'DONATION_BODY_EXPLAIN'		=> 'Saisir le texte que vous souhaitez afficher sur la page principale.',
 
 	// Donation Success settings
 	'DONATION_SUCCESS_SETTINGS'	=> 'Paramètres de la page des dons validés',
-	'DONATION_SUCCESS'			=> 'Texte de la page des dons validés',
-	'DONATION_SUCCESS_EXPLAIN'	=> 'Saisir le texte que vous souhaitez afficher sur la page des dons validés<br />Après avoir reçus un dons avec succès, les membres seront redirigés sur cette page.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Si besoin, Clé de langue à utiliser : <strong>CUSTOM_DONATION_SUCCESS</strong>',
-	'COPY_TO_DONATION_SUCCESS'	=> 'Copier vers Dons validés',
+	'DONATION_SUCCESS'			=> 'Page des dons validés',
+	'DONATION_SUCCESS_EXPLAIN'	=> 'Saisir le texte que vous souhaitez afficher sur la page des dons validés.',
 
 	// Donation Cancel settings
 	'DONATION_CANCEL_SETTINGS'	=> 'Paramètres de la page des dons annulés',
-	'DONATION_CANCEL'			=> 'Texte de la page des dons annulés',
-	'DONATION_CANCEL_EXPLAIN'	=> 'Saisir le texte que vous souhaitez afficher sur la page des dons annulés<br />les membres seront redirigés sur cette page s’ils abandonnent une donnation depuis le site Paypal.<br /><br />Le <strong>BBcode</strong> et les <strong>Clés de langues</strong> sont autorisés<br />Vous pouvez utiliser les BBcodes ou les Clés de langues, mais pas les deux en même temps.<br />Si besoin, Clé de langue à utiliser : <strong>CUSTOM_DONATION_CANCEL</strong>',
-	'COPY_TO_DONATION_CANCEL'	=> 'Copier vers Dons annulés',
+	'DONATION_CANCEL'			=> 'Page des dons annulés',
+	'DONATION_CANCEL_EXPLAIN'	=> 'Saisir le texte que vous souhaitez afficher sur la page des dons annulés.',
 ));
 
 /**
@@ -156,16 +181,20 @@ $lang = array_merge($lang, array(
 	'LOG_ITEM_MOVE_UP'				=> '<strong>Paypal Donation: Déplacement de la %1$s. </strong> %2$s <strong>avant</strong> %3$s',
 	'LOG_ITEM_ENABLED'				=> '<strong>Paypal Donation: %1$s activé(e)</strong><br />» %2$s',
 	'LOG_ITEM_DISABLED'				=> '<strong>Paypal Donation: %1$s désactivé(e)</strong><br />» %2$s',
+	'LOG_STAT_RESET_DATE'			=> '<strong>Paypal Donation: Data d’installation réinitialisée</strong>',
 
 	// Confirm box
-	'CURRENCY_ENABLED'		=> 'Une devise a été activée',
-	'CURRENCY_DISABLED'		=> 'Une devise a été désactivée.',
-	'CURRENCY_ADDED'		=> 'Une nouvelle devise a été ajoutée.',
-	'CURRENCY_UPDATED'		=> 'Une devise a été mise à jour.',
-	'CURRENCY_REMOVED'		=> 'Une devise a été supprimée.',
+	'DONATION_DC_ENABLED'		=> 'Une devise a été activée',
+	'DONATION_DC_DISABLED'		=> 'Une devise a été désactivée.',
+	'DONATION_DC_ADDED'			=> 'Une nouvelle devise a été ajoutée.',
+	'DONATION_DC_UPDATED'		=> 'Une devise a été mise à jour.',
+	'DONATION_DC_REMOVED'		=> 'Une devise a été supprimée.',
+	'DONATION_DP_LANG_ADDED'	=> 'Une langue de page de dons a été ajoutée',
+	'DONATION_DP_LANG_UPDATED'	=> 'Une langue de page de dons a été mise à jour',
+	'DONATION_DP_LANG_REMOVED'	=> 'Une langue de page de dons a été supprimée',
 
 	// Errors
-	'MUST_SELECT_ITEM'		=> 'L’objet sélectionné n’existe pas',
-	'ENTER_CURRENCY_NAME'	=> 'Entrez un nom de devise',
+	'MUST_SELECT_ITEM'			=> 'L’objet sélectionné n’existe pas',
+	'DONATION_DC_ENTER_NAME'	=> 'Entrez un nom de devise',
 ));
 ?>

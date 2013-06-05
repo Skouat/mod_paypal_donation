@@ -14,10 +14,12 @@ Features :
 - Donation received
 - Donation used
 - Goal to reach
-=> Advanced currencies management : Add/remove/enable/disable
+=> Advanced currencies management: Add/remove/enable/disable
 => Backup currency: I hope no, but if you remove or disable all currencies, a Language Key is defined to provide a backup currency. If the language key does not exist, U.S Dollar will be defined as the default currency.
-=> Customize the main donation page, success page and cancel page. You can use BBcode and Language keys.
-=> Automatic redirection to the forum after a successfull/cancelled donations.
+=> Customize the main donation page, success page and cancel page.
+- You can use BBcode.
+- Multi-language customization available through the ACP
+=> Automatic redirection to the forum after a successfull/cancelled donation.
 => Define and suggest a default donation value, or use a drop-down list.
 
 Styles :
@@ -29,14 +31,16 @@ All options are manageable from ACP]]></description>
 
 Fonctionnalitées :
 => Paypal Sandbox: Tester le MOD en toute tranquilité
-=> Affichage des Statistiques de don sur la page des dons ainsi qu'en bas de page de l'index du forum.
+=> Affichage des Statistiques de don sur la page des dons ainsi qu’en bas de page de l’index du forum.
 - Bar de progression
 - Dons reçus
 - Dons utilisés
 - Objectif des dons à atteindre
-=> Gestion avancées des devises : Ajout/suppression/activation/désactivation
-=> Devise de secours : En cas de désactivation/suppression de toutes les devises, une clé de langue permet de définir une devise de secours par défaut.
-=> Personnaliser les pages des dons, ainsi que les pages de retour au forum (Validation/annulation de dons). Vous pouvez utiliser les BBcode et les clés de langues.
+=> Gestion avancées des devises: Ajout/suppression/activation/désactivation
+=> Devise de secours: En cas de désactivation/suppression de toutes les devises, une clé de langue permet de définir une devise de secours par défaut.
+=> Personnaliser les pages des dons, ainsi que les pages de retour au forum (Validation/annulation de dons).
+- Vous pouvez utiliser les BBcode.
+- Personnalisation multi-langue disponible via l’ACP
 => Retourner automatiquement vers le forum si la soumission du don a été validé avec succès ou abondonnée.
 => Définir et suggérer une valeur de don par défaut, ou utiliser une liste déroulante.
 
@@ -44,28 +48,14 @@ Styles :
 => Prosilver
 => Subsilver2
 
-Toutes les options sont administrables depuis l'ACP]]></description>
+Toutes les options sont administrables depuis l’ACP]]></description>
 		<author-notes lang="en"><![CDATA[
-This MOD is inspired by the Stoker 4.0's "Paypal Donation MOD 1.0.3".
-By wanting to add to his MOD the management of the currencies, I met to re-code it completely.
-Some displayed features have been kept and improved:
-- Stats displaying
-- Customizable pages with text
-Thanks to Stoker 4.0 to have accepted that I publish this new version of Paypal Donation.
-
 Caution !!!
 To avoid possible conflict with another Paypal Donation MOD, please backup your files and remove-it before to install this MOD.]]>
 		</author-notes>
 		<author-notes lang="fr"><![CDATA[
-Ce module est inspiré de "Paypal Donation MOD 1.0.3" de Stoker 4.0.
-En voulant ajouter à son MOD la gestion des devises, je me suis retrouvé à entièrement le recoder.
-Certaines fonctionnalitées ont été gardées et améliorées:
-- Visualisation des statistiques
-- Personalisation des pages avec du texte
-Merci à Stoker 4.0 d'avoir accepté que je publie cette nouvelle mouture de Paypal Donation.
-
 Attention !!!
-Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichiers et désintallez-le avant d'installer ce MOD.]]>
+Pour éviter des éventuels conflits avec un autre MOD Paypal, sauvegardez vos fichiers et désintallez-le avant d’installer ce MOD.]]>
 		</author-notes>
 		<author-group>
 			<author>
@@ -77,11 +67,9 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 				</contributions-group>
 			</author>
 			<author>
-				<realname><![CDATA[Stoker 4.0]]></realname>
-				<username><![CDATA[Stoker 4.0]]></username>
-				<homepage><![CDATA[http://www.phpbb3bbcodes.com]]></homepage>
+				<username phpbbcom="no"><![CDATA[kristoff k.]]></username>
 				<contributions-group>
-					<contributions status="past" position="Initial MOD Developer"/>
+					<contributions status="current" from="2012-11-13" position="Logo creator"/>
 				</contributions-group>
 			</author>
 			<author>
@@ -94,15 +82,39 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 			</author>
 		</author-group>
 
-		<mod-version>1.0.2</mod-version>
+		<mod-version>1.0.3</mod-version>
 
 		<installation>
 			<level>easy</level>
 			<time>300</time>
-			<target-version>3.0.10</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 
 		<history>
+			<entry>
+				<date>2012-11-26</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change>correct: Cannot add a new currency</change>
+					<change>Add: User permissions</change>
+					<change>Add: Module "Overview"</change>
+					<change>change: Multi-language features for custom donation page are now stored in the database</change>
+					<change>change: some Language keys renamed</change>
+					<change>remove: Language keys for "custom donation pages" are removed (see change below)</change>
+					<change>remove: contrib/add-ons/addon_mod_check_version/ was removed, see the newly added module "Overview" to check the updates</change>
+					<change>minor code change</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Correction: Impossible d’ajouter une nouvelle devise</change>
+					<change>Ajout: Permissions utilisateur</change>
+					<change>Ajout: Module "Général"</change>
+					<change>Modification: La fonctionnalité multi-langue pour la personnalisation des pages de dons est maintenant stockées dans la base de données</change>
+					<change>Modification: Renommage de certaines clés de langues</change>
+					<change>Suppression: Les clés de langues utilser pour personnalisées les pages de dons ont été supprimées (voir ci-dessus)</change>
+					<change>Suppression: contrib/add-ons/addon_mod_check_version/ a été supprimé, voir le nouveau module "Vue d’ensemble" pour contrôler les mises à jour</change>
+					<change>Corrections divers</change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2012-07-15</date>
 				<rev-version>1.0.2</rev-version>
@@ -122,38 +134,38 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 					<change>Change: Code optimisation</change>
 				</changelog>
 				<changelog lang="fr">
-					<change>Correction : Dans la gestion des devises, l'URL redirigeant sur iso.org est incorrect</change>
-					<change>Correction : Les caractères spéciaux sont mal interprétés par Paypal</change>
-					<change>Ajout : Icone donation</change>
-					<change>Ajout : Dans la gestion des devises, le nom des devises est désormais cliquable</change>
-					<change>Ajout : Dans le panneau d'administration, "Donation pages" peut prévisualiser les clés de langue personalisées</change>
-					<change>Ajout : Style Subsilver2</change>
-					<change>Ajout : Permission d'administration</change>
-					<change>Suppression : $config['donation_currency_enable'] n'est plus nécessaire</change>
-					<change>Modification : Dans le Panneau d'administraion le nom des clés de langues des modules "donation_pages" et "currency" ont été changés</change>
-					<change>Modification : Quelques clés de langue ont été modifiées</change>
-					<change>Modification : Amélioration du contrôle de l'installation du MOD sur la page donate.php (seulement disponible pour les fondateurs)</change>
-					<change>Modification : Amélioration de l'installation avec UMIL</change>
-					<change>Modification : Optimisation du code</change>
+					<change>Correction: Dans la gestion des devises, l’URL redirigeant sur iso.org est incorrect</change>
+					<change>Correction: Les caractères spéciaux sont mal interprétés par Paypal</change>
+					<change>Ajout: Icone donation</change>
+					<change>Ajout: Dans la gestion des devises, le nom des devises est désormais cliquable</change>
+					<change>Ajout: Dans le panneau d’administration, "Donation pages" peut prévisualiser les clés de langue personalisées</change>
+					<change>Ajout: Style Subsilver2</change>
+					<change>Ajout: Permission d’administration</change>
+					<change>Suppression: $config['donation_currency_enable'] n’est plus nécessaire</change>
+					<change>Modification: Dans le Panneau d’administraion le nom des clés de langues des modules "donation_pages" et "currency" ont été changés</change>
+					<change>Modification: Quelques clés de langue ont été modifiées</change>
+					<change>Modification: Amélioration du contrôle de l’installation du MOD sur la page donate.php (seulement disponible pour les fondateurs)</change>
+					<change>Modification: Amélioration de l’installation avec UMIL</change>
+					<change>Modification: Optimisation du code</change>
 				</changelog>
 			</entry>
 			<entry>
 				<date>2012-04-14</date>
 				<rev-version>1.0.1</rev-version>
 				<changelog lang="en">
-					<change>Fix : The setting “Sandbox only for founder” does not work</change>
-					<change>Fix : Some code optimisation reported by ABDev (Thanks to him)</change>
+					<change>Fix: The setting “Sandbox only for founder” does not work</change>
+					<change>Fix: Some code optimisation reported by ABDev (Thanks to him)</change>
 					<change>Add: MOD Check version add-on</change>
 					<change>Add: Advanced BBCode Box 3 add-on</change>
 					<change>Add: Update since the new Stocker 4.0's Paypal Donation 1.0.4</change>
 					<change>Other minor code change</change>
 				</changelog>
 				<changelog lang="fr">
-					<change>Correction : Le paramètre “Sandbox pour les fondateurs” ne fonctionne pas</change>
-					<change>Correction : Optimisation du code reporté par ABDev (Merci à lui)</change>
-					<change>Ajout : Contribution pour MOD Check version</change>
-					<change>Ajout : Contribution pour Advanced BBCode Box 3</change>
-					<change>Ajout : Fichier de mise à jour de la version 1.0.4 de Paypal Donation de Stocker 4.0</change>
+					<change>Correction: Le paramètre “Sandbox pour les fondateurs” ne fonctionne pas</change>
+					<change>Correction: Optimisation du code reporté par ABDev (Merci à lui)</change>
+					<change>Ajout: Contribution pour MOD Check version</change>
+					<change>Ajout: Contribution pour Advanced BBCode Box 3</change>
+					<change>Ajout: Fichier de mise à jour de la version 1.0.4 de Paypal Donation de Stocker 4.0</change>
 					<change>Autres changement mineur du code</change>
 				</changelog>
 			</entry>
@@ -171,13 +183,13 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 					<change>Some changed code.</change>
 				</changelog>
 				<changelog lang="fr">
-					<change>Correction : Changement du code selon les directive de codage de phpBB.</change>
-					<change>Correction : Si toutes les devises sont désactivées, la première devise qui est activée ne devient pas la devise par défaut.</change>
-					<change>Correction : Les caractères accentués ne sont pas supportés dans ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
+					<change>Correction: Changement du code selon les directive de codage de phpBB.</change>
+					<change>Correction: Si toutes les devises sont désactivées, la première devise qui est activée ne devient pas la devise par défaut.</change>
+					<change>Correction: Les caractères accentués ne sont pas supportés dans ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
 					<change>Modification: L’utilisation du HTML est remplacé par l’utilisation des BBcode.</change>
-					<change>Ajout : Il est possible de définir une valeur de dons par défaut.</change>
-					<change>Ajout : Possibilité d'autoriser Paypal Sandbox seulement pour les foundateurs du forum.</change>
-					<change>Ajout : Possibilité de remplacer la zone de saisie de donation libre par une liste déroulante.</change>
+					<change>Ajout: Il est possible de définir une valeur de dons par défaut.</change>
+					<change>Ajout: Possibilité d’autoriser Paypal Sandbox seulement pour les foundateurs du forum.</change>
+					<change>Ajout: Possibilité de remplacer la zone de saisie de donation libre par une liste déroulante.</change>
 					<change>Divers changement dans le code.</change>
 				</changelog>
 			</entry>
@@ -193,16 +205,21 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 			</entry>
 		</history>
 		<link-group>
-			<link type="language" href="./contrib/languages/fr.xml" lang="fr">fr_FR</link>
+			<link type="language" href="./contrib/languages/fr.xml" lang="en">French</link>
+			<link type="language" href="./contrib/languages/fr.xml" lang="fr">Français</link>
+			<link type="contrib" href="./contrib/updates/update_102_to_103.xml" lang="en">Paypal Donation Mod update 1.0.2 to 1.0.3</link>
+			<link type="contrib" href="./contrib/updates/update_102_to_103.xml" lang="fr">Mise à jour de Paypal Donation Mod 1.0.2 vers 1.0.3</link>
 			<link type="contrib" href="./contrib/updates/update_101_to_102.xml" lang="en">Paypal Donation Mod update 1.0.1 to 1.0.2</link>
+			<link type="contrib" href="./contrib/updates/update_101_to_102.xml" lang="fr">Mise à jour de Paypal Donation Mod 1.0.1 vers 1.0.2</link>
 			<link type="contrib" href="./contrib/updates/update_100-RC2_to_101.xml" lang="en">Paypal Donation Mod update 1.0.0-RC2 to 1.0.1</link>
+			<link type="contrib" href="./contrib/updates/update_100-RC2_to_101.xml" lang="fr">Mise à jour de Paypal Donation Mod 1.0.0-RC2 vers 1.0.1</link>
 			<link type="contrib" href="./contrib/updates/update_100-RC1_to_100-RC2.xml" lang="en">Paypal Donation Mod update 1.0.0-RC1 to 1.0.0-RC2</link>
-			<link type="contrib" href="./contrib/updates/update_Stoker-4.0-Paypal-Donation-MOD-103_to_Paypal-Donation-MOD-101.xml" lang="en">Update from “Stoker 4.0's Paypal Donation MOD 1.0.3” to “Paypal Donation MOD 1.0.1”</link>
-			<link type="contrib" href="./contrib/updates/update_Stoker-4.0-Paypal-Donation-MOD-104_to_Paypal-Donation-MOD-101.xml" lang="en">Update from “Stoker 4.0's Paypal Donation MOD 1.0.4” to “Paypal Donation MOD 1.0.1”</link>
-			<link type="contrib" href="./contrib/add-ons/addon_mod_check_version/mod_version_check.xml" lang="en">Add-on for “MOD Version Check” MOD</link>
+			<link type="contrib" href="./contrib/updates/update_100-RC1_to_100-RC2.xml" lang="fr">Mise à jour de Paypal Donation Mod 1.0.0-RC1 vers 1.0.0-RC2</link>
 			<link type="contrib" href="./contrib/add-ons/addon_advanced_bbcode_box_3/advanced_bbcode_box_3.xml" lang="en">Add-on for “Advanced BBCode Box 3” MOD</link>
+			<link type="contrib" href="./contrib/add-ons/addon_advanced_bbcode_box_3/advanced_bbcode_box_3.xml" lang="fr">Add-on pour le MOD “Advanced BBCode Box 3”</link>
 			<link type="template" href="./contrib/template/subsilver2/subsilver2.xml" lang="en">Subsilver2</link>
-			<link type="template-lang" href="./contrib/template-lang/subsilver2/fr-subsilver2.xml" lang="fr">Subsilver2 FR</link>
+			<link type="template-lang" href="./contrib/template-lang/subsilver2/fr-subsilver2.xml" lang="en">Subsilver2 French</link>
+			<link type="template-lang" href="./contrib/template-lang/subsilver2/fr-subsilver2.xml" lang="fr">Subsilver2 Français</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -211,7 +228,8 @@ Pour éviter d'éventuel conflit avec un autre MOD Paypal, sauvegardez vos fichi
 			<file from="root/install_donation_mod.php" to="install_donation_mod.php" />
 			<file from="root/adm/style/acp_donation.html" to="adm/style/acp_donation.html" />
 			<file from="root/images/donation/*.*" to="images/donation/*.*" />
-			<file from="root/includes/acp/*.*" to="includes/acp/*.*" />
+			<file from="root/includes/acp/acp_donation.php" to="includes/acp/acp_donation.php" />
+			<file from="root/includes/acp/info/acp_donation.php" to="includes/acp/info/acp_donation.php" />
 			<file from="root/includes/functions_donation.php" to="includes/functions_donation.php" />
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*" />
 			<file from="root/styles/prosilver/imageset/en/donate.gif" to="styles/prosilver/imageset/en/donate.gif" />
@@ -296,7 +314,7 @@ define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
 ]]></find>
 				<action type="after-add"><![CDATA[//-- mod : Paypal Donation --------------------------------------------------------
 //-- add
-	if ((!empty($config['donation_enable']) && !empty($config['donation_account_id'])) || (!empty($config['paypal_sandbox_enable']) && !empty($config['paypal_sandbox_address'])))
+	if ($auth->acl_get('u_pdm_use'))
 	{
 		$template->assign_vars(array(
 			'U_DONATE'			=> append_sid("{$phpbb_root_path}donate.$phpEx"),
@@ -345,7 +363,7 @@ $lang = array_merge($lang, array(
 Run the installer.
 Set the Paypal Donation Mod settings under the .MOD tab.]]></diy-instructions>
 		<diy-instructions lang="fr"><![CDATA[Transféer tous les fichiers.
-Executer le fichier d'installation.
-Définir les paramètres de Paypal Donation Mod depuis l'ACP dans l'onglet ".MOD".]]></diy-instructions>
+Executer le fichier d’installation.
+Définir les paramètres de Paypal Donation Mod depuis l’ACP dans l’onglet ".MOD".]]></diy-instructions>
 	</action-group>
 </mod>

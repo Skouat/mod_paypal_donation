@@ -40,8 +40,111 @@ class acp_donation
 
 		switch ($mode)
 		{
+			case 'overview':
+
+				global $phpbb_admin_path, $auth;
+
+				$this->page_title = 'DONATION_OVERVIEW';
+
+				if ($action)
+				{
+					if (!confirm_box(true))
+					{
+						switch ($action)
+						{
+							case 'date':
+								$confirm = true;
+								$confirm_lang = 'STAT_RESET_DATE_CONFIRM';
+							break;
+
+							default:
+								$confirm = true;
+								$confirm_lang = 'CONFIRM_OPERATION';
+						}
+
+						if ($confirm)
+						{
+							confirm_box(false, $user->lang[$confirm_lang], build_hidden_fields(array(
+								'i'			=> $id,
+								'mode'		=> $mode,
+								'action'	=> $action,
+							)));
+						}
+					}
+					else
+					{
+						switch ($action)
+						{
+
+							case 'date':
+								if (!$auth->acl_get('a_board'))
+								{
+									trigger_error($user->lang['NO_AUTH_OPERATION'] . adm_back_link($this->u_action), E_USER_WARNING);
+								}
+
+								set_config('donation_install_date', time() - 1);
+								add_log('admin', 'LOG_STAT_RESET_DATE');
+							break;
+
+						}
+					}
+				}
+
+				// Check if a new version of this MOD is available
+				$latest_version_info = false;
+				if (($latest_version_info = $this->obtain_latest_version_info(request_var('donation_versioncheck_force', false))) === false)
+				{
+					$template->assign_var('S_DONATION_VERSIONCHECK_FAIL', true);
+				}
+				else
+				{
+					$latest_version_info = explode("\n", $latest_version_info);
+
+					$template->assign_vars(array(
+						'S_DONATION_VERSION_UP_TO_DATE'	=> phpbb_version_compare(trim($latest_version_info[0]), $config['donation_mod_version'], '<='),
+						'U_DONATION_VERSIONCHECK'		=> $latest_version_info[1],
+					));
+				}
+
+				// Check if fsockopen and cURL are available and display it in stats
+				$info_curl = $info_fsockopen = $user->lang['INFO_NOT_DETECTED'];
+				$s_curl = $s_fsockopen = false;
+
+				if (function_exists('fsockopen'))
+				{
+					$info_fsockopen = $user->lang['INFO_DETECTED'];
+					$s_fsockopen = true;
+				}
+
+				if (function_exists('curl_init'))
+				{
+					$info_curl = $user->lang['INFO_DETECTED'];
+					$s_curl = true;
+				}
+
+				$donation_install_date = $user->format_date($config['donation_install_date']);
+
+				$template->assign_vars(array(
+					'DONATION_INSTALL_DATE'		=> $donation_install_date,
+					'DONATION_VERSION'			=> $config['donation_mod_version'],
+					'INFO_CURL'					=> $info_curl,
+					'INFO_FSOCKOPEN'			=> $info_fsockopen,
+
+					'U_DONATION_VERSIONCHECK_FORCE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", 'i=donation&amp;mode=overview&amp;donation_versioncheck_force=1'),
+					'U_ACTION'						=> $this->u_action,
+
+					'S_ACTION_OPTIONS'		=> ($auth->acl_get('a_board')) ? true : false,
+					'S_FSOCKOPEN'			=> $s_fsockopen,
+					'S_CURL'				=> $s_curl,
+					'S_OVERVIEW'			=> $mode,
+				));
+
+			break;
+
 			case 'configuration':
+
 				$user->add_lang('mods/donate');
+
 				$display_vars = array(
 					'title'	=> 'DONATION_CONFIG',
 					'vars'	=> array(
@@ -70,6 +173,7 @@ class acp_donation
 						'legend4'						=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
+
 				if (isset($display_vars['lang']))
 				{
 					$user->add_lang($display_vars['lang']);
@@ -147,7 +251,7 @@ class acp_donation
 					'U_ACTION'			=> $this->u_action,
 				));
 
-				if ( sizeof($error) )
+				if (sizeof($error))
 				{
 					$template->assign_vars(array(
 						'S_ERROR' => true,
@@ -203,130 +307,191 @@ class acp_donation
 
 					unset($display_vars['vars'][$config_key]);
 				}
+
 			break;
 
 			case 'donation_pages':
-				$user->add_lang('mods/donate_custom');
 
-				if (!function_exists('generate_smilies'))
-				{
-					include_once($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
-				}
-
-				if (!function_exists('display_custom_bbcodes'))
-				{
-					include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx);
-				}
-
-				$preview = (isset($_POST['preview'])) ? true : false;
-				$donation_draft = 'donation_draft';
-
-				$donation_pages_vars = utf8_normalize_nfc(request_var('pages', array('' => ''), true));
-
-				if ($submit || $preview)
-				{
-					if (!check_form_key($form_key))
-					{
-						trigger_error($user->lang['FORM_INVALID'] . adm_back_link($this->u_action));
-					}
-				}
-
-				if ($submit)
-				{
-					$uid_text = $bitfield_text = $options_text = ''; // will be modified by generate_text_for_storage
-					$uid_draft = $bitfield_draft = $options_draft = ''; // will be modified by generate_text_for_storage
-					$allow_bbcode = $allow_urls = $allow_smilies = true;
-
-					$sql = 'SELECT item_name FROM ' . DONATION_ITEM_TABLE . " WHERE item_type= 'donation_pages'";
-					$result = $db->sql_query($sql);
-
-					while ($row = $db->sql_fetchrow($result))
-					{
-						$item_name = strtolower($row['item_name']);
-
-						if (array_key_exists($item_name, $donation_pages_vars))
-						{
-							generate_text_for_storage($donation_pages_vars[$item_name], $uid_text, $bitfield_text, $options_text, $allow_bbcode, $allow_urls, $allow_smilies);
-
-							$sql_ary = array(
-								'item_text'						=> $donation_pages_vars[$item_name],
-								'item_text_bbcode_uid'			=> $uid_text,
-								'item_text_bbcode_bitfield'		=> $bitfield_text,
-								'item_text_bbcode_options'		=> (int) $options_text,
-								);
-
-							$sql = 'UPDATE ' . DONATION_ITEM_TABLE . '
-									SET ' . $db->sql_build_array('UPDATE', $sql_ary) . "
-									WHERE item_name = '" . $db->sql_escape($item_name) . "'";
-							$db->sql_query($sql);
-						}
-						unset($item_name);
-					}
-					$db->sql_freeresult($result);
-
-					add_log('admin', 'LOG_DONATION_PAGES_UPDATED');
-
-					trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
-				}
-
-				$draft_preview = '';
-
-				if ($preview)
-				{
-					if (array_key_exists($donation_draft, $donation_pages_vars))
-					{
-						$draft_preview = isset($user->lang[strtoupper($donation_pages_vars[$donation_draft])]) ? $user->lang[strtoupper($donation_pages_vars[$donation_draft])] : $donation_pages_vars[$donation_draft];
-						$draft_preview = $this->preview_announcement($draft_preview);
-					}
-				}
+				global $cache;
 
 				$this->page_title = 'DONATION_DP_CONFIG';
 
-				// Build sql query with alias field
-				$sql = 'SELECT item_name AS donation_title, item_text AS donation_content, item_text_bbcode_uid, item_text_bbcode_bitfield, item_text_bbcode_options
-					FROM ' . DONATION_ITEM_TABLE . "
-					WHERE item_type= 'donation_pages'";
-				$result = $db->sql_query($sql);
+				$item_id = request_var('id', 0);
+				$preview = request_var('preview', false);
+				$add = request_var('add', false);
+				$donation_name = request_var('donation_name', '');
+				$action = $add ? 'add' : ($preview ? 'preview' : $action);
 
-				while ($row = $db->sql_fetchrow($result))
+				// Retrieve available board language
+				$langs = $this->get_languages();
+
+				switch ($action)
 				{
+					case 'add':
+					case 'edit':
+					case 'preview':
+						// okay, show the editor
 
-					if ($row['donation_title'] == 'donation_draft')
-					{
-						$donation_draft_preview = isset($user->lang[strtoupper($row['donation_content'])]) ? $user->lang[strtoupper($row['donation_content'])] : $row['donation_content'];
-						$donation_draft_preview = generate_text_for_display($donation_draft_preview, $row['item_text_bbcode_uid'], $row['item_text_bbcode_bitfield'], $row['item_text_bbcode_options']);
+						if (!function_exists('generate_smilies'))
+						{
+							include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
+						}
 
-						decode_message($row['donation_content'], $row['item_text_bbcode_uid']);
+						if (!function_exists('display_custom_bbcodes'))
+						{
+							include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+						}
+
+						foreach ($langs as $lang => $entry)
+						{
+							$template->assign_block_vars('langs', array(
+								'ISO' => $lang,
+								'NAME' => $entry['name'],
+							));
+						}
+
+						$input_pages = utf8_normalize_nfc(request_var('input_pages', '', true));
+						$input_lang = request_var('lang_iso', '', true);
+
+						$error = array();
+						$dp_preview = false;
+
+						// Initiate donation page data array
+						$dp_data = array(
+							'item_type'					=> 'donation_pages',
+							'item_name'					=> $donation_name,
+							'item_iso_code'				=> $input_lang,
+							'item_text'					=> $input_pages,
+							'item_text_bbcode_uid'		=> '',
+							'item_text_bbcode_bitfield'	=> '',
+						);
+
+						if ($submit || $preview)
+						{
+							if (!class_exists('parse_message'))
+							{
+								include ($phpbb_root_path . 'includes/message_parser.' . $phpEx);
+							}
+
+							$message_parser = new parse_message($input_pages);
+
+							// Allowing Quote BBCode
+							$message_parser->parse(true, true, true, true, true, true, true, true, 'donation_pages');
+
+							if (sizeof($message_parser->warn_msg))
+							{
+								$error[] = implode('<br />', $message_parser->warn_msg);
+							}
+
+							if (!check_form_key($form_key))
+							{
+								$error = 'FORM_INVALID';
+							}
+
+							if (!sizeof($error) && $submit && check_form_key($form_key))
+							{
+								$dp_data = array_merge($dp_data, array(
+									'item_text'					=> (string) $message_parser->message,
+									'item_text_bbcode_uid'		=> (string) $message_parser->bbcode_uid,
+									'item_text_bbcode_bitfield'	=> (string) $message_parser->bbcode_bitfield,
+								));
+
+								if ($this->validate_input($dp_data))
+								{
+									if ($item_id || $item_id = $this->acp_exist_item_data($dp_data))
+									{
+										$this->acp_update_item_data($dp_data, $item_id);
+									}
+									else
+									{
+										$this->acp_add_item_data($dp_data);
+									}
+
+									$item_action = $item_id ? 'UPDATED' : 'ADDED';
+									add_log('admin', 'LOG_ITEM_' . $item_action, $user->lang['MODE_DONATION_PAGES'], $user->lang[strtoupper($dp_data['item_name'])]);
+									trigger_error($user->lang['DONATION_DP_LANG_' . $item_action] . adm_back_link($this->u_action));
+								}
+
+							}
+
+							// Replace "error" strings with their real, localised form
+							$error = preg_replace('#^([A-Z_]+)$#e', "(!empty(\$user->lang['\\1'])) ? \$user->lang['\\1'] : '\\1'", $error);
+
+							if ($preview)
+							{
+								// Now parse it for displaying
+								$dp_preview = $message_parser->format_display(true, true, true, false);
+								unset($message_parser);
+							}
+						}
+
+						if ($item_id && !$preview)
+						{
+							if (!$dp_data = $this->acp_get_item_data($item_id, $mode))
+							{
+								trigger_error($user->lang['FORM_INVALID'] . adm_back_link($this->u_action));
+							}
+						}
+
+						decode_message($dp_data['item_text'], $dp_data['item_text_bbcode_uid']);
+
+						$s_hidden_fields = build_hidden_fields(array(
+							'id'			=> $item_id,
+							'action'		=> $action,
+							'donation_name'	=> $dp_data['item_name'],
+						));
 
 						$template->assign_vars(array(
-							'DONATION_DRAFT_PREVIEW'	=> $draft_preview ? $draft_preview : $donation_draft_preview,
-							'DONATION_DRAFT'			=> $draft_preview ? $donation_pages_vars[$donation_draft] : $row['donation_content'],
-						));
-					}
-					else
-					{
-						decode_message($row['donation_content'], $row['item_text_bbcode_uid']);
+							'DONATION_DRAFT_PREVIEW'	=> $dp_preview,
+							'DONATION_BODY'				=> $dp_data['item_text'],
+							'LANG_ISO'					=> !empty($item_id) ? $dp_data['item_iso_code'] : $input_lang,
 
-						$donation_title = strtoupper($row['donation_title']);
+							'L_DONATION_PAGES_TITLE'			=> !empty($dp_data['item_name']) ? $user->lang[strtoupper($dp_data['item_name'])] : $user->lang[$this->page_title],
+							'L_DONATION_PAGES_TITLE_EXPLAIN'	=> !empty($dp_data['item_name']) ? $user->lang[strtoupper($dp_data['item_name']) . '_EXPLAIN'] : '',
 
-						$template->assign_block_vars('donation_pages', array(
-							'L_ITEM_NAME'						=> $user->lang[$donation_title . '_SETTINGS'],
-							'L_DONATION_PAGES_TITLE'			=> $user->lang[$donation_title],
-							'L_DONATION_PAGES_TITLE_EXPLAIN'	=> $user->lang[$donation_title . '_EXPLAIN'],
-							'L_COPY_TO'							=> $user->lang['COPY_TO_' . $donation_title],
-							'S_DONATION_TYPE'					=> $row['donation_title'],
-							'DONATION_BODY'						=> $row['donation_content'],
+							'S_EDIT_DP'			=> true,
+							'S_HIDDEN_FIELDS'	=> $s_hidden_fields,
 						));
-					}
+
+						// Generate smilies on inline displaying
+						generate_smilies('inline', '');
+
+						// Assigning custom bbcodes
+						display_custom_bbcodes();
+					Break;
+
+					case 'delete':
+						if (!$item_id)
+						{
+							trigger_error($user->lang['MUST_SELECT_ITEM'] . adm_back_link($this->u_action), E_USER_WARNING);
+						}
+
+						$sql = 'SELECT item_name
+							FROM ' . DONATION_ITEM_TABLE . '
+							WHERE item_id = ' . (int) $item_id;
+						$result = $db->sql_query($sql);
+						$row = $db->sql_fetchrow($result);
+						$db->sql_freeresult($result);
+
+							if (confirm_box(true))
+							{
+								$db->sql_query('DELETE FROM ' . DONATION_ITEM_TABLE . ' WHERE item_id = '. (int) $item_id);
+								$cache->destroy('sql', DONATION_ITEM_TABLE);
+								add_log('admin', 'LOG_ITEM_REMOVED', $user->lang[strtoupper($row['item_name'])]);
+								trigger_error($user->lang['DONATION_DP_LANG_REMOVED'] . adm_back_link($this->u_action));
+							}
+							else
+							{
+								confirm_box(false, $user->lang['CONFIRM_OPERATION'], build_hidden_fields(array(
+									'item_id'	=> $item_id,
+									'i'			=> $id,
+									'mode'		=> $mode,
+									'action'	=> $action,
+									))
+								);
+							}
+					break;
 				}
-				$db->sql_freeresult($result);
-
-				// Generate smilies on inline displaying
-				generate_smilies('inline', '');
-
-				// Assigning custom bbcodes
-				display_custom_bbcodes();
-
 				$template->assign_vars(array(
 					'L_TITLE'			=> $user->lang[$this->page_title],
 					'L_TITLE_EXPLAIN'	=> $user->lang[$this->page_title . '_EXPLAIN'],
@@ -335,6 +500,41 @@ class acp_donation
 
 					'U_ACTION'			=> $this->u_action,
 				));
+
+				// Show the list
+				if (!$action || $action === 'delete')
+				{
+					// Template available language
+					foreach ($langs as $lang => $entry)
+					{
+						$template->assign_block_vars('langs', array(
+							'ISO' => $lang,
+							'NAME' => $entry['name'],
+						));
+
+						// Build sql query with alias field
+						$sql = 'SELECT item_id, item_name AS donation_title, item_iso_code AS lang_iso
+							FROM ' . DONATION_ITEM_TABLE . "
+							WHERE item_type = 'donation_pages'
+								AND item_iso_code = '" . $lang . "'";
+						$result = $db->sql_query($sql);
+
+						while ($row = $db->sql_fetchrow($result))
+						{
+							$row['item_id'] = (int) $row['item_id'];
+
+							$template->assign_block_vars('langs.dp_list', array(
+								'DP_TITLE'			=> $user->lang[strtoupper($row['donation_title'])],
+								'DP_LANG'			=> $row['lang_iso'],
+
+								'U_DELETE'			=> $this->u_action . '&amp;action=delete&amp;id=' . $row['item_id'],
+								'U_EDIT'			=> $this->u_action . '&amp;action=edit&amp;id=' . $row['item_id'],
+							));
+						}
+						$db->sql_freeresult($result);
+					}
+				}
+
 			break;
 
 			case 'currency':
@@ -406,12 +606,16 @@ class acp_donation
 							trigger_error($user->lang['MUST_SELECT_ITEM'] . adm_back_link($this->u_action), E_USER_WARNING);
 						}
 
-						$s_hidden_fields = build_hidden_fields(array(
-							'id'			=> $item_id,
-							'action'		=> 'save',
-							));
+						$s_hidden_fields = array('id' => $item_id);
 
 					case 'add':
+						if (empty($s_hidden_fields) || !is_array($s_hidden_fields))
+						{
+							$s_hidden_fields = array();
+						}
+
+						$s_hidden_fields = array_merge($s_hidden_fields, array('action' => 'save',));
+
 						$template->assign_vars(array(
 							'S_EDIT'			=> true,
 							'S_MODE'			=> $mode,
@@ -424,7 +628,7 @@ class acp_donation
 							'ITEM_SYMBOL'		=> isset($currency_ary['item_symbol']) ? $currency_ary['item_symbol'] : utf8_normalize_nfc(request_var('item_symbol', '', true)),
 							'ITEM_ENABLED'		=> isset($currency_ary['item_enable']) ? $currency_ary['item_enable'] : true,
 
-							'S_HIDDEN_FIELDS'	=> isset($s_hidden_fields) ? $s_hidden_fields : '',
+							'S_HIDDEN_FIELDS'	=> build_hidden_fields($s_hidden_fields),
 						));
 						return;
 					break;
@@ -440,7 +644,7 @@ class acp_donation
 						{
 							$trigger_url = !$item_id ? '&amp;action=add' : '&amp;action=edit&amp;id=' . (int) $item_id;
 
-							trigger_error($user->lang['ENTER_CURRENCY_NAME'] . adm_back_link($this->u_action . $trigger_url), E_USER_WARNING);
+							trigger_error($user->lang['DONATION_DC_ENTER_NAME'] . adm_back_link($this->u_action . $trigger_url), E_USER_WARNING);
 						}
 
 						$sql_ary = array(
@@ -470,7 +674,7 @@ class acp_donation
 
 						$item_action = $item_id ? 'UPDATED' : 'ADDED';
 						add_log('admin', 'LOG_ITEM_' . $item_action, $user->lang['MODE_CURRENCY'], $item_name);
-						trigger_error($user->lang['CURRENCY_' . $item_action] . adm_back_link($this->u_action));
+						trigger_error($user->lang['DONATION_DC_' . $item_action] . adm_back_link($this->u_action));
 
 					break;
 
@@ -488,7 +692,7 @@ class acp_donation
 
 							add_log('admin', 'LOG_ITEM_REMOVED', $user->lang['MODE_CURRENCY']);
 
-							trigger_error($user->lang['CURRENCY_REMOVED'] . adm_back_link($this->u_action));
+							trigger_error($user->lang['DONATION_DC_REMOVED'] . adm_back_link($this->u_action));
 						}
 						else
 						{
@@ -562,7 +766,7 @@ class acp_donation
 						$item_action = ($action == 'enable') ? 'ENABLED' : 'DISABLED';
 
 						add_log('admin', 'LOG_ITEM_' . $item_action, $user->lang['MODE_CURRENCY'], $row['item_name']);
-						trigger_error($user->lang['CURRENCY_' . $item_action] . adm_back_link($this->u_action));
+						trigger_error($user->lang['DONATION_DC_' . $item_action] . adm_back_link($this->u_action));
 					break;
 				}
 
@@ -651,19 +855,168 @@ class acp_donation
 	}
 
 	/**
-	* prepares the preview text
+	* Grab an item and bring it into a format the editor understands
 	*/
-	function preview_announcement($text)
+	function acp_get_item_data($item_id, $item_type)
 	{
-		$uid			= $bitfield			= $options	= '';
-		$allow_bbcode	= $allow_smilies	= true;
-		$allow_urls		= false;
-		//lets (mis)use generate_text_for_storage to create some uid, bitfield... for our preview
-		generate_text_for_storage($text, $uid, $bitfield, $options, $allow_bbcode, $allow_urls, $allow_smilies);
-		//now we created it, lets show it
-		$text			= generate_text_for_display($text, $uid, $bitfield, $options);
+		global $db;
 
-		return $text;
+		if ($item_id)
+		{
+			$sql = 'SELECT *
+				FROM ' . DONATION_ITEM_TABLE . '
+				WHERE item_id = ' . $item_id . "
+					AND item_type= '" . $db->sql_escape($item_type) ."'";
+			$result = $db->sql_query($sql);
+			$item = $db->sql_fetchrow($result);
+			$db->sql_freeresult($result);
+
+			if (!$item)
+			{
+				return false;
+			}
+
+			return $item;
+		}
+	}
+
+	/**
+	* Grab item_id if $data match
+	*/
+	function acp_exist_item_data($data)
+	{
+		global $db;
+
+		$sql = 'SELECT item_id
+			FROM ' . DONATION_ITEM_TABLE . "
+			WHERE item_type= '" . $db->sql_escape($data['item_type']) ."'
+				AND item_name = '" . $db->sql_escape($data['item_name']) . "'
+				AND item_iso_code = '" . $db->sql_escape($data['item_iso_code']) . "'";
+		$result = $db->sql_query($sql);
+		$item = $db->sql_fetchrow($result);
+		$db->sql_freeresult($result);
+
+		if (!$item)
+		{
+			return false;
+		}
+		return $item['item_id'];
+	}
+
+	/**
+	* List the installed language packs
+	*/
+	function get_languages()
+	{
+		global $db;
+
+		$sql = 'SELECT *
+			FROM ' . LANG_TABLE;
+		$result = $db->sql_query($sql);
+
+		$langs = array();
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$langs[$row['lang_iso']] = array(
+				'name'	=> $row['lang_local_name'],
+				'id'	=> (int) $row['lang_id'],
+			);
+		}
+		$db->sql_freeresult($result);
+
+		return $langs;
+	}
+
+	/**
+	* Insert an item.
+	* param mixed $data : an array as created from acp_get_item_data
+	*/
+	function acp_add_item_data($data)
+	{
+		global $db, $cache;
+
+		$sql = 'INSERT INTO ' . DONATION_ITEM_TABLE . ' ' . $db->sql_build_array('INSERT', $data);
+		$db->sql_query($sql);
+
+		$cache->destroy('sql', DONATION_ITEM_TABLE);
+	}
+
+	/**
+	* Update an item.
+	* param mixed $data : an array as created from acp_get_item_data
+	*/
+	function acp_update_item_data($data, $item_id)
+	{
+		global $db, $cache;
+
+		$sql = 'UPDATE ' . DONATION_ITEM_TABLE . '
+			SET ' . $db->sql_build_array('UPDATE', $data) . '
+			WHERE item_id = ' . (int) $item_id;
+		$db->sql_query($sql);
+
+		$cache->destroy('sql', DONATION_ITEM_TABLE);
+	}
+
+	/**
+	* Check if the entered data can be inserted/used
+	* param mixed $data : an array as created from acp_get_item_data
+	*/
+	function validate_input($data)
+	{
+		$langs = $this->get_languages();
+
+		if (!isset($data['item_iso_code']) ||
+			!isset($data['item_name']) ||
+			!isset($data['item_text']))
+		{
+			return false;
+		}
+
+		if (!isset($langs[$data['item_iso_code']]) ||
+			!strlen($data['item_name']))
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Obtains the latest version information
+	 *
+	 * @param bool $force_update Ignores cached data. Defaults to false.
+	 * @param bool $warn_fail Trigger a warning if obtaining the latest version information fails. Defaults to false.
+	 * @param int $ttl Cache version information for $ttl seconds. Defaults to 86400 (24 hours).
+	 *
+	 * @return string | false Version info on success, false on failure.
+	 */
+	function obtain_latest_version_info($force_update = false, $warn_fail = false, $ttl = 86400)
+	{
+		global $cache;
+
+		$info = $cache->get('donationversioncheck');
+
+		if ($info === false || $force_update)
+		{
+			$errstr = '';
+			$errno = 0;
+
+			$info = get_remote_file('skouat31.free.fr', '/phpbb', 'paypal_donation_10x.txt', $errstr, $errno);
+
+			if ($info === false)
+			{
+				$cache->destroy('donationversioncheck');
+				if ($warn_fail)
+				{
+					trigger_error($errstr, E_USER_WARNING);
+				}
+				return false;
+			}
+
+			$cache->put('donationversioncheck', $info, $ttl);
+		}
+
+		return $info;
 	}
 }
 ?>
