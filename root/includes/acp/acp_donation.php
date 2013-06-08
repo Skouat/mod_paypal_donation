@@ -39,6 +39,9 @@ class acp_donation
 
 		$submit = (isset($_POST['submit'])) ? true : false;
 
+		// $mode is used in SQL requests, so for extra safety we will use sql_escape()
+		$mode = $db->sql_escape($mode);
+
 		switch ($mode)
 		{
 			case 'overview':
@@ -561,7 +564,7 @@ class acp_donation
 						$sql = 'SELECT item_id, item_name AS donation_title, item_iso_code AS lang_iso
 							FROM ' . DONATION_ITEM_TABLE . "
 							WHERE item_type = '" . $mode . "'
-								AND item_iso_code = '" . $lang . "'";
+								AND item_iso_code = '" . $db->sql_escape($lang) . "'";
 						$result = $db->sql_query($sql);
 
 						while ($row = $db->sql_fetchrow($result))
