@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* permissions_donation.php [English]
+* permissions_donation.php [French]
 *
 * @package Paypal Donation MOD
 * @copyright (c) 2013 Skouat
