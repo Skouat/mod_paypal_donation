@@ -96,7 +96,7 @@ $lang = array_merge($lang, array(
 	// Paypal sandbox settings
 	'SANDBOX_SETTINGS'						=> 'Paypal sandbox settings',
 	'SANDBOX_ENABLE'						=> 'Sandbox testing',
-	'SANDBOX_ENABLE_EXPLAIN'				=> 'Enable this option if you want use Paypal Sandbox instead of Paypal Services.<br />Useful for developers/testers. All the transactions are fictitious.',
+	'SANDBOX_ENABLE_EXPLAIN'				=> 'Enable this option if you want use Paypal Sandbox instead of Paypal services.<br />Useful for developers/testers. All the transactions are fictitious.',
 	'SANDBOX_FOUNDER_ENABLE'				=> 'Sandbox only for founder',
 	'SANDBOX_FOUNDER_ENABLE_EXPLAIN'		=> 'If enabled, Paypal Sandbox will be displayed only by the board founders.',
 	'SANDBOX_ADDRESS'						=> 'PayPal sandbox address',
