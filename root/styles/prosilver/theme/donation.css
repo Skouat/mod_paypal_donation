@@ -59,9 +59,6 @@ img.loader {
 
 /* icon */
 .icon-donate {
-	background-position: 0 50%;
-	background-repeat: no-repeat;
-	background-image: none;
+	background: url("{T_THEME_PATH}/images/icon_donate.gif") 0 50% no-repeat;
 	padding: 1px 0 0 17px;
-	background-image: url("{T_THEME_PATH}/images/icon_donate.gif");
 }
