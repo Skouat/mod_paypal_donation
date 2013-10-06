@@ -111,9 +111,17 @@ switch ($mode)
 			foreach ($donation_arr_value as $value)
 			{
 				$int_value = (int) $value;
+
+				$selected = '';
+
+				if ($config['donation_default_value'] == $int_value)
+				{
+					$selected = ' selected="selected"';
+				}
+
 				if (!empty($int_value) && ($int_value == $value))
 				{
-					$list_donation_value .= '<option value="' . $int_value . '">' . $int_value . '</option>';
+					$list_donation_value .= '<option value="' . $int_value . '"' . $selected . '>' . $int_value . '</option>';
 				}
 			}
 			unset($value);

@@ -101,6 +101,16 @@ Pour éviter des éventuels conflits avec un autre MOD Paypal, sauvegardez vos f
 
 		<history>
 			<entry>
+				<date>2013-10-06</date>
+				<rev-version>1.0.5</rev-version>
+				<changelog lang="en">
+					<change>Change: Now, the link "Make a Donation" is not visible in navbar when the MOD is disabled</change>
+				</changelog>
+				<changelog lang="fr">
+					<change>Modification: Dorénavant, le lien "Faire un don" n’est plus visible si le MOD est désactivé</change>
+				</changelog>
+			</entry>
+			<entry>
 				<date>2013-05-01</date>
 				<rev-version>1.0.4</rev-version>
 				<changelog lang="en">
@@ -354,7 +364,7 @@ define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
 //-- add
 	$template->assign_vars(array(
 		'U_DONATE'			=> $auth->acl_get('u_pdm_use') ? append_sid("{$phpbb_root_path}donate.$phpEx") : '',
-		'S_DONATE_ENABLED'	=> $auth->acl_get('u_pdm_use'),
+		'S_DONATE_ENABLED'	=> $auth->acl_get('u_pdm_use') && !empty($config['donation_enable']),
 	));
 //-- end : Paypal Donation --------------------------------------------------------]]></action>
 			</edit>
