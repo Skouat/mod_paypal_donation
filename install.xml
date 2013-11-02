@@ -114,6 +114,7 @@ Pour éviter des éventuels conflits avec un autre MOD PayPal, sauvegardez vos f
 					<change>Fix: Layout issue in the donation page (thanks to sub60)</change>
 					<change>Change: Add $db->sql_escape() for extra safety</change>
 					<change>Change: CSS improvement (thanks to cabot)</change>
+					<change>Change: Improved detection of fsockopen and cURL</change>
 					<change>Change: The link "Make a Donation" is not visible in navbar when the MOD is disabled</change>
 					<change>Minor Code change</change>
 				</changelog>
@@ -126,6 +127,7 @@ Pour éviter des éventuels conflits avec un autre MOD PayPal, sauvegardez vos f
 					<change>Correction: Problème de mise en page dans les pages de dons (merci à sub60)</change>
 					<change>Modification: Pour plus de sécurité, ajout de $db->sql_escape()</change>
 					<change>Modification: Amélioration du CSS (merci à cabot)</change>
+					<change>Modification: Amélioration de la détection de cURL et fsockopen</change>
 					<change>Modification: Le lien "Faire un don" n’est plus visible si le MOD est désactivé</change>
 					<change>Corrections divers</change>
 				</changelog>
@@ -274,7 +276,7 @@ Pour éviter des éventuels conflits avec un autre MOD PayPal, sauvegardez vos f
 			<link type="language" href="./contrib/languages/fr.xml" lang="en">French</link>
 			<link type="language" href="./contrib/languages/fr.xml" lang="fr">Français</link>
 			<link type="language" href="./contrib/languages/nl_x_formal.xml" lang="en">Dutch (Formal)</link>
-			<link type="language" href="./contrib/languages/nl_x_formal.xml" lang="nl-x-formal">Nederlands Formeel</link>
+			<link type="language" href="./contrib/languages/nl_x_formal.xml" lang="nl_x_formal">Nederlands Formeel</link>
 			<link type="template" href="./contrib/template/subsilver2/subsilver2.xml" lang="en">Subsilver2</link>
 			<link type="template-lang" href="./contrib/template-lang/subsilver2/fr-subsilver2.xml" lang="en">Subsilver2 French</link>
 			<link type="template-lang" href="./contrib/template-lang/subsilver2/fr-subsilver2.xml" lang="fr">Subsilver2 Français</link>

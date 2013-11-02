@@ -20,7 +20,7 @@ if (!defined('IN_PHPBB'))
 class acp_donation
 {
 	var $u_action;
-	private $u_version_check = 'http://skouat31.free.fr';
+	const CHECK_HOST = 'http://skouat31.free.fr';
 
 	function main($id, $mode)
 	{
@@ -155,7 +155,7 @@ class acp_donation
 
 				if (function_exists('fsockopen'))
 				{
-					$url = parse_url($this->u_version_check);
+					$url = parse_url($this::CHECK_HOST);
 
 					$fp = @fsockopen($url['host'], 80);
 
@@ -166,10 +166,10 @@ class acp_donation
 					}
 				}
 
-				if (function_exists('curl_init'))
+				if (function_exists('curl_init') && function_exists('curl_exec'))
 				{
 
-					$ch = curl_init($this->u_version_check);
+					$ch = curl_init($this::CHECK_HOST);
 
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
