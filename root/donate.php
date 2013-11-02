@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -21,8 +21,8 @@ $user->session_begin();
 $auth->acl($user->data);
 $user->setup('mods/donate');
 
-$is_founder = $user->data['user_type'] == USER_FOUNDER;
-$is_authorised = $auth->acl_get('u_pdm_use');
+$is_founder		= $user->data['user_type'] == USER_FOUNDER;
+$is_authorised	= $auth->acl_get('u_pdm_use');
 
 if (!$is_authorised)
 {
@@ -42,7 +42,7 @@ $template->assign_var('MODE', $mode);
 // initiate ppdm class
 $ppdm = new ppdm_main();
 
-// Get predifined vars
+// Get predefined vars
 $ppdm->get_vars();
 
 for($i = 0; $i < sizeof($ppdm->vars); $i++)
@@ -79,11 +79,11 @@ switch ($mode)
 	break;
 
 	default:
-		// Build Paypal return URL
+		// Build PayPal return URL
 		$success_url = append_sid(generate_board_url(true) . $user->page['script_path'] . $user->page['page_name'], 'mode=success');
 		$cancel_url = append_sid(generate_board_url(true) . $user->page['script_path'] . $user->page['page_name'], 'mode=cancel');
 
-		// Retrieve Paypal Sandbox value
+		// Retrieve PayPal Sandbox value
 		if (!empty($config['paypal_sandbox_enable']) && (!empty($config['paypal_sandbox_founder_enable']) && $is_founder || empty($config['paypal_sandbox_founder_enable'])))
 		{
 			$business = $config['paypal_sandbox_address'];

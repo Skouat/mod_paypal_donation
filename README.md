@@ -1,9 +1,9 @@
-###Paypal Donation MOD for phpBB
+###PayPal Donation MOD for phpBB
 
-This MOD add a Paypal Donation page on your site. 
+This MOD add a PayPal Donation page on your site. 
 
 ####*Features :*
-* Safely test this MOD with Paypal Sandbox
+* Safely test this MOD with PayPal Sandbox
 * Displaying Statistics donation on the Donation page and on the bottom of the forum index page :
     * Progress bar
     * Donation received

@@ -4,8 +4,8 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod - French Language]]></title>
-		<title lang="fr"><![CDATA[Paypal Donation Mod - Langue Française]]></title>
+		<title lang="en"><![CDATA[PayPal Donation Mod - French Language]]></title>
+		<title lang="fr"><![CDATA[PayPal Donation Mod - Langue Française]]></title>
 		<description lang="en"><![CDATA[Allows to use the MOD for french boards]]></description>
 		<description lang="fr"><![CDATA[Permet aux forums francophones d'utiliser le MOD]]></description>
 		<author-group>
@@ -64,13 +64,13 @@
 		<open src="language/fr/common.php">
 			<edit>
 				<find><![CDATA[?>]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+				<action type="before-add"><![CDATA[//-- mod : PayPal donation --------------------------------------------------------
 //-- add
 $lang = array_merge($lang, array(
 	'DONATEINDEX'				=> 'Faire un don',
 	'VIEWING_DONATE'			=> 'Consulte la page des dons',
 ));
-//-- end : Paypal donation --------------------------------------------------------
+//-- end : PayPal donation --------------------------------------------------------
 ]]></action>
 			</edit>
 		</open>

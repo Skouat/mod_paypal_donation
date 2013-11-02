@@ -29,10 +29,10 @@
 				<date>2012-11-26</date>
 				<rev-version>1.0.1</rev-version>
 				<changelog lang="en">
-					<change>Changed code in Paypal Donation 1.0.3</change>
+					<change>Changed code in PayPal Donation 1.0.3</change>
 				</changelog>
 				<changelog lang="fr">
-					<change>Changement du code de Paypal Donation 1.0.3</change>
+					<change>Changement du code de PayPal Donation 1.0.3</change>
 				</changelog>
 			</entry>
 			<entry>
@@ -47,7 +47,7 @@
 			</entry>
 		</history>
 		<link-group>
-			<link type="dependency" href="https://www.phpbb.com/customise/db/mod/paypal_donation_mod" lang="en">Paypal Donation MOD</link>
+			<link type="dependency" href="https://www.phpbb.com/customise/db/mod/paypal_donation_mod" lang="en">PayPal Donation MOD</link>
 			<link type="dependency" href="https://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3" lang="en">Advanced BBCode Box 3 3.0.12</link>
 		</link-group>
 	</header>

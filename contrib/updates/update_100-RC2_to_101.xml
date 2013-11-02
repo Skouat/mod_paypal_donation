@@ -4,8 +4,8 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod - Update from 1.0.0-RC2 to 1.0.1]]></title>
-		<title lang="fr"><![CDATA[Paypal Donation Mod - Mise à jour 1.0.0-RC2 vers 1.0.1]]></title>
+		<title lang="en"><![CDATA[PayPal Donation Mod - Update from 1.0.0-RC2 to 1.0.1]]></title>
+		<title lang="fr"><![CDATA[PayPal Donation Mod - Mise à jour 1.0.0-RC2 vers 1.0.1]]></title>
 		<description lang="en"><![CDATA[Allows to update the MOD from 1.0.0-RC2 to 1.0.1]]></description>
 		<description lang="fr"><![CDATA[Permet de mettre à jour le MOD de la version 1.0.0-RC2 à la version 1.0.1]]></description>
 		<author-group>
@@ -36,7 +36,7 @@
 					<change>Fix: Some code optimisation reported by ABDev (Thanks to him)</change>
 					<change>Add: MOD Check version add-on</change>
 					<change>Add: Advanced BBCode Box 3 add-on</change>
-					<change>Add: Update since the new Stocker 4.0's Paypal Donation 1.0.4</change>
+					<change>Add: Update since the new Stocker 4.0's PayPal Donation 1.0.4</change>
 					<change>Other minor code change</change>
 				</changelog>
 				<changelog lang="fr">
@@ -44,7 +44,7 @@
 					<change>Correction: Optimisation du code reporté par ABDev (Merci à lui)</change>
 					<change>Ajout: Contribution pour MOD Check version</change>
 					<change>Ajout: Contribution pour Advanced BBCode Box 3</change>
-					<change>Ajout: Fichier de mise à jour de la version 1.0.4 de Paypal Donation de Stocker 4.0</change>
+					<change>Ajout: Fichier de mise à jour de la version 1.0.4 de PayPal Donation de Stocker 4.0</change>
 					<change>Autres changement mineur du code</change>
 				</changelog>
 			</entry>
@@ -54,20 +54,20 @@
 				<changelog lang="en">
 					<change>Fix: Change code according to the phpBB coding guidelines.</change>
 					<change>Fix: If all currencies are disabled, the first currency that is enabled becomes the default currency.</change>
-					<change>Fix: Characters with accents are not supported in ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
+					<change>Fix: Characters with accents are not supported in ACP >> .MOD >> PayPal Donation >> Donation pages.</change>
 					<change>Change: HTML usage is replaced by BBcode usage.</change>
 					<change>Add: Possibility to define a default donation value.</change>
-					<change>Add: Ability to set Paypal Sandbox only for board founder.</change>
+					<change>Add: Ability to set PayPal Sandbox only for board founder.</change>
 					<change>Add: Ability to replace the paypal textbox by a paypal drop-list.</change>
 					<change>Some changed code.</change>
 				</changelog>
 				<changelog lang="fr">
 					<change>Correction: Changement du code selon les directive de codage de phpBB.</change>
 					<change>Correction: Si toutes les devises sont désactivées, la première devise qui est activée ne devient pas la devise par défaut.</change>
-					<change>Correction: Les caractères accentués ne sont pas supportés dans ACP >> .MOD >> Paypal Donation >> Donation pages.</change>
+					<change>Correction: Les caractères accentués ne sont pas supportés dans ACP >> .MOD >> PayPal Donation >> Donation pages.</change>
 					<change>Modification: L’utilisation du HTML est remplacé par l’utilisation des BBcode.</change>
 					<change>Ajout: Il est possible de définir une valeur de dons par défaut.</change>
-					<change>Ajout: Possibilité d’autoriser Paypal Sandbox seulement pour les foundateurs du forum.</change>
+					<change>Ajout: Possibilité d’autoriser PayPal Sandbox seulement pour les foundateurs du forum.</change>
 					<change>Ajout: Possibilité de remplacer la zone de saisie de donation libre par une liste déroulante.</change>
 					<change>Divers changement dans le code.</change>
 				</changelog>

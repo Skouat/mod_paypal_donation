@@ -3,7 +3,7 @@
 *
 * info_acp_donation.php [English]
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -43,7 +43,7 @@ if (empty($lang) || !is_array($lang))
 * mode: main
 */
 $lang = array_merge($lang, array(
-	'ACP_DONATION_MOD' => 'Paypal Donation',
+	'ACP_DONATION_MOD' => 'PayPal Donation',
 ));
 
 /**
@@ -51,18 +51,18 @@ $lang = array_merge($lang, array(
 */
 $lang = array_merge($lang, array(
 	'DONATION_OVERVIEW'			=> 'Overview',
-	'DONATION_WELCOME'			=> 'Welcome on Paypal Donation MOD',
+	'DONATION_WELCOME'			=> 'Welcome on PayPal Donation MOD',
 	'DONATION_WELCOME_EXPLAIN'	=> '',
 
 	'DONATION_STATS'			=> 'Donation statistics',
-	'DONATION_INSTALL_DATE'		=> 'Install date of <strong>Paypal Donation MOD</strong>',
-	'DONATION_VERSION'			=> '<strong>Paypal Donation</strong> version',
+	'DONATION_INSTALL_DATE'		=> 'Install date of <strong>PayPal Donation MOD</strong>',
+	'DONATION_VERSION'			=> '<strong>PayPal Donation</strong> version',
 
 	'INFO_FSOCKOPEN'			=> 'Fsockopen',
 	'INFO_CURL'					=> 'cURL',
 	'INFO_DETECTED'				=> 'Detected',
 	'INFO_NOT_DETECTED'			=> 'Not detected',
-	'DONATION_VERSION_NOT_UP_TO_DATE_TITLE'	=> 'Your Paypal Donation installation is not up to date.',
+	'DONATION_VERSION_NOT_UP_TO_DATE_TITLE'	=> 'Your PayPal Donation installation is not up to date.',
 
 	'STAT_RESET_DATE'							=> 'Reset MOD Installation date',
 	'STAT_RESET_DATE_EXPLAIN'					=> 'Reset installation affect statistic about the total amount calculation',
@@ -80,10 +80,10 @@ $lang = array_merge($lang, array(
 	'MODE_DONATION_PAGES'			=> 'donation pages',
 
 	// Global Donation settings
-	'DONATION_ENABLE'						=> 'Enable Paypal Donation',
-	'DONATION_ENABLE_EXPLAIN'				=> 'Enable or disable the Paypal Donation MOD',
-	'DONATION_ACCOUNT_ID'					=> 'Paypal account ID',
-	'DONATION_ACCOUNT_ID_EXPLAIN'			=> 'Enter your Paypal email address or Marchant account ID',
+	'DONATION_ENABLE'						=> 'Enable PayPal Donation',
+	'DONATION_ENABLE_EXPLAIN'				=> 'Enable or disable the PayPal Donation MOD',
+	'DONATION_ACCOUNT_ID'					=> 'PayPal account ID',
+	'DONATION_ACCOUNT_ID_EXPLAIN'			=> 'Enter your PayPal email address or Marchant account ID',
 	'DONATION_DEFAULT_CURRENCY'				=> 'Default currency',
 	'DONATION_DEFAULT_CURRENCY_EXPLAIN'		=> 'Define which currency will be selected by default',
 	'DONATION_DEFAULT_VALUE'				=> 'Default donation value',
@@ -93,14 +93,14 @@ $lang = array_merge($lang, array(
 	'DONATION_DROPBOX_VALUE'				=> 'Drop-down value',
 	'DONATION_DROPBOX_VALUE_EXPLAIN'		=> 'Define the numbers you want to see in the drop-down list.<br />Use <strong>comma</strong> (",") <strong>with no space</strong> to separate each values.',
 
-	// Paypal sandbox settings
-	'SANDBOX_SETTINGS'						=> 'Paypal sandbox settings',
+	// PayPal sandbox settings
+	'SANDBOX_SETTINGS'						=> 'PayPal sandbox settings',
 	'SANDBOX_ENABLE'						=> 'Sandbox testing',
-	'SANDBOX_ENABLE_EXPLAIN'				=> 'Enable this option if you want use Paypal Sandbox instead of Paypal services.<br />Useful for developers/testers. All the transactions are fictitious.',
+	'SANDBOX_ENABLE_EXPLAIN'				=> 'Enable this option if you want use PayPal Sandbox instead of PayPal services.<br />Useful for developers/testers. All the transactions are fictitious.',
 	'SANDBOX_FOUNDER_ENABLE'				=> 'Sandbox only for founder',
-	'SANDBOX_FOUNDER_ENABLE_EXPLAIN'		=> 'If enabled, Paypal Sandbox will be displayed only by the board founders.',
+	'SANDBOX_FOUNDER_ENABLE_EXPLAIN'		=> 'If enabled, PayPal Sandbox will be displayed only by the board founders.',
 	'SANDBOX_ADDRESS'						=> 'PayPal sandbox address',
-	'SANDBOX_ADDRESS_EXPLAIN'				=> 'Define here your Paypal Sandbox Sellers e-mail address',
+	'SANDBOX_ADDRESS_EXPLAIN'				=> 'Define here your PayPal Sandbox Sellers e-mail address',
 
 	// Stats Donation settings
 	'DONATION_STATS_SETTINGS'				=> 'Stats donation config',
@@ -173,7 +173,7 @@ $lang = array_merge($lang, array(
 	'DONATION_DC_NAME'				=> 'Currency name',
 	'DONATION_DC_NAME_EXPLAIN'		=> 'Name of the currency.<br />(i.e. Euro)',
 	'DONATION_DC_ISO_CODE'			=> 'ISO 4217 code',
-	'DONATION_DC_ISO_CODE_EXPLAIN'	=> 'Alpabetic code of the currency.<br />More about ISO 4217… refer to the <a href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod/faq/f_746" title="Paypal Donation MOD FAQ">Paypal Donation MOD FAQ</a> (external link)',
+	'DONATION_DC_ISO_CODE_EXPLAIN'	=> 'Alpabetic code of the currency.<br />More about ISO 4217… refer to the <a href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod/faq/f_746" title="PayPal Donation MOD FAQ">PayPal Donation MOD FAQ</a> (external link)',
 	'DONATION_DC_SYMBOL'			=> 'Currency symbol',
 	'DONATION_DC_SYMBOL_EXPLAIN'	=> 'Define the currency symbol.<br />(i.e. € for Euro, $ for U.S. Dollar)',
 	'DONATION_DC_ENABLED'			=> 'Enable currency',
@@ -186,16 +186,16 @@ $lang = array_merge($lang, array(
 */
 $lang = array_merge($lang, array(
 	//logs
-	'LOG_DONATION_UPDATED'			=> '<strong>Paypal Donation: Settings updated.</strong>',
-	'LOG_DONATION_PAGES_UPDATED'	=> '<strong>Paypal Donation: Donation Pages updated.</strong>',
-	'LOG_ITEM_ADDED'				=> '<strong>Paypal Donation: %1$s added</strong><br />» %2$s',
-	'LOG_ITEM_UPDATED'				=> '<strong>Paypal Donation: %1$s updated</strong><br />» %2$s',
-	'LOG_ITEM_REMOVED'				=> '<strong>Paypal Donation: %1$s deleted</strong>',
-	'LOG_ITEM_MOVE_DOWN'			=> '<strong>Paypal Donation: Moved a %1$s. </strong> %2$s <strong>below</strong> %3$s',
-	'LOG_ITEM_MOVE_UP'				=> '<strong>Paypal Donation: Moved a %1$s. </strong> %2$s <strong>above</strong> %3$s',
-	'LOG_ITEM_ENABLED'				=> '<strong>Paypal Donation: %1$s enabled</strong><br />» %2$s',
-	'LOG_ITEM_DISABLED'				=> '<strong>Paypal Donation: %1$s disabled</strong><br />» %2$s',
-	'LOG_STAT_RESET_DATE'			=> '<strong>Paypal Donation: Installation date reset</strong>',
+	'LOG_DONATION_UPDATED'			=> '<strong>PayPal Donation: Settings updated.</strong>',
+	'LOG_DONATION_PAGES_UPDATED'	=> '<strong>PayPal Donation: Donation Pages updated.</strong>',
+	'LOG_ITEM_ADDED'				=> '<strong>PayPal Donation: %1$s added</strong><br />» %2$s',
+	'LOG_ITEM_UPDATED'				=> '<strong>PayPal Donation: %1$s updated</strong><br />» %2$s',
+	'LOG_ITEM_REMOVED'				=> '<strong>PayPal Donation: %1$s deleted</strong>',
+	'LOG_ITEM_MOVE_DOWN'			=> '<strong>PayPal Donation: Moved a %1$s. </strong> %2$s <strong>below</strong> %3$s',
+	'LOG_ITEM_MOVE_UP'				=> '<strong>PayPal Donation: Moved a %1$s. </strong> %2$s <strong>above</strong> %3$s',
+	'LOG_ITEM_ENABLED'				=> '<strong>PayPal Donation: %1$s enabled</strong><br />» %2$s',
+	'LOG_ITEM_DISABLED'				=> '<strong>PayPal Donation: %1$s disabled</strong><br />» %2$s',
+	'LOG_STAT_RESET_DATE'			=> '<strong>PayPal Donation: Installation date reset</strong>',
 
 	// Confirm box
 	'DONATION_DC_ENABLED'		=> 'A currency has been enabled',
