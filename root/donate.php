@@ -33,8 +33,8 @@ $is_authorised	= $auth->acl_get('u_pdm_use');
 donation_check_install($is_founder);
 donation_check_configuration($is_founder, $is_authorised);
 
-// initiate class
-$donate = new donation_main();
+// Instantiate donate class
+$donate = new ppdm_ipn_main();
 
 $donate->page = generate_board_url(true) . $user->page['script_path'] . $user->page['page_name'];
 
@@ -42,16 +42,17 @@ $donate->page = generate_board_url(true) . $user->page['script_path'] . $user->p
 if (!empty($config['paypal_sandbox_enable']) /*&& (!empty($config['paypal_sandbox_founder_enable']) && $is_founder || empty($config['paypal_sandbox_founder_enable']))*/)
 {
 	$donate->business = $config['paypal_sandbox_address'];
-	$donate->u_paypal = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+	$donate->u_paypal = ppdm_ipn_main::SANDBOX_HOST;
 	$donate->use_sandbox = true;
 }
 else
 {
 	$donate->business = $config['donation_account_id'];
-	$donate->u_paypal = 'https://www.paypal.com/cgi-bin/webscr';
+	$donate->u_paypal = ppdm_ipn_main::PAYPAL_HOST;
 	$donate->use_sandbox = false;
 }
 
+// PayPal IPN : validate transaction and processed if verified
 If ($txn_id)
 {
 	$donate->use_log_error = !empty($config['paypal_logging']) ? true : false;
@@ -144,9 +145,17 @@ switch ($mode)
 			foreach ($donation_arr_value as $value)
 			{
 				$int_value = (int) $value;
+
+				$selected = '';
+
+				if ($config['donation_default_value'] == $int_value)
+				{
+					$selected = ' selected="selected"';
+				}
+
 				if (!empty($int_value) && ($int_value == $value))
 				{
-					$list_donation_value .= '<option value="' . $int_value . '">' . $int_value . '</option>';
+					$list_donation_value .= '<option value="' . $int_value . '"' . $selected . '>' . $int_value . '</option>';
 				}
 			}
 			unset($value);

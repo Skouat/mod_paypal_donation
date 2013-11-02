@@ -77,36 +77,49 @@ class ppdm_main
 	}
 }
 
-class donation_main
+class ppdm_ipn_main
 {
-	// Data from transaction
-	private $trans_data = array();
-
-	// Transaction verified (bool)
-	public $verified = false;
-
-	// Sender details
-	public $business = '';
+	/**
+	* Constants
+	*/
+	
+	// PayPal Hosts
+	const PAYPAL_HOST = 'https://www.paypal.com/cgi-bin/webscr';
+	const SANDBOX_HOST = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
 
 	/**
-	* Define the member ID of the sender.
-	* sender_data is set to 1 for anonymous donors. Default 1.
-	*
-	* @var int
+	* Private vars
 	*/
-	public $sender_data = array();
-
-	// PayPal url
-	public $u_paypal = '';
-
-	//Board donation page
-	public $page;
 
 	// PayPal response (VERIFIED or INVALID)
 	private $response = '';
 
 	// PayPal response status (code 200 or other)
 	private $response_status = '';
+
+	// Data from transaction
+	private $trans_data = array();
+
+	/**
+	* Public vars
+	*/
+
+	// Sender details
+	public $business = '';
+
+	//Board donation page
+	public $page;
+
+	/**
+	* Define the member ID of the sender.
+	*/
+	public $sender_data = array();
+
+	// PayPal url
+	public $u_paypal = '';
+
+	// Transaction verified (bool)
+	public $verified = false;
 
 	/**
 	*  If true, the recommended cURL PHP library is used to send the post back 
