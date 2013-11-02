@@ -266,13 +266,14 @@ class ppdm_ipn_main
 		$errstr = '';
 		$errno = 0;
 
+		$parse_url = parse_url($this->u_paypal);
+
 		// post back to PayPal system to validate
-		$header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
+		$header = "POST /cgi-bin/webscr HTTP/1.1\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
+		$header .="Host: " . $parse_url['host'] . "\r\n";
 		$header .= "Content-Length: " . strlen($encoded_data) . "\r\n";
 		$header .= "Connection: Close\r\n\r\n";
-
-		$parse_url = parse_url($this->u_paypal);
 
 		$fp = fsockopen('ssl://' . $parse_url['host'], 443, $errno, $errstr, $this->timeout);
 
