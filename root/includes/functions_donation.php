@@ -307,10 +307,10 @@ class ppdm_ipn_main
 	*
 	* @param  array	$post_data = null
 	* @param  int	$group_id = 0				ID of the donors group
-	* @param  bool	$group_as_default = null	Define the value to set as default the donors group
+	* @param  bool	$group_as_default = false	Define the value to set as default the donors group
 	*
 	*/
-	public function validate_transaction($post_data = null, $group_id = 0, $group_as_default = false )
+	public function validate_transaction($group_id = 0, $group_as_default = false, $post_data = null)
 	{
 		global $user, $db;
 
@@ -339,7 +339,7 @@ class ppdm_ipn_main
 		}
 
 		// Add the cmd=_notify-validate for PayPal
-		$params = 'cmd=_notify-validate&';
+		$params = 'cmd=_notify-validate';
 
 		if (!sizeof($post_data))
 		{
@@ -364,7 +364,7 @@ class ppdm_ipn_main
 		}
 
 		// implode the array into a string URI
-		$params .= implode('&', $values);
+		$params .= '&' . implode('&', $values);
 
 		if ($this->use_curl)
 		{
@@ -725,6 +725,7 @@ class ppdm_ipn_main
 			'payer_status'		=> $this->trans_data['payer_status'],
 			'first_name'		=> $this->trans_data['first_name'],
 			'last_name'			=> $this->trans_data['last_name'],
+			'residence_country'	=> $this->trans_data['residence_country'],
 
 //			'memo'				=> $this->trans_data['memo'],
 		);
@@ -773,6 +774,7 @@ class ppdm_ipn_main
 			'payer_status'		=> '',		// PayPal sender status (verified, unverified?)
 			'first_name'		=> '',		// First name of sender
 			'last_name'			=> '',		// Last name of sender
+			'residence_country'	=> '',		// Residence Country of sender
 
 //			'memo'				=> '',		// Memo sent by the donor
 		);
@@ -781,14 +783,15 @@ class ppdm_ipn_main
 
 		foreach ($data_ary as $key => $default)
 		{
-//			if ($key === 'memo' || $key === 'item_name' || $key === 'item_name' || $key === 'first_name' || $key === 'last_name')
-//			{
-//				$this->trans_data[$key] = utf8_normalize_nfc(request_var($key, $default, true));
-//			}
-//			else
-//			{
+//			if ($key === 'memo' || $key === 'item_name' || $key === 'first_name' || $key === 'last_name')
+			if ($key === 'item_name' || $key === 'first_name' || $key === 'last_name')
+			{
+				$this->trans_data[$key] = utf8_normalize_nfc(request_var($key, $default, true));
+			}
+			else
+			{
 				$this->trans_data[$key] = request_var($key, $default);
-//			}
+			}
 		}
 	}
 
