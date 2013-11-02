@@ -949,6 +949,7 @@ function donation_check_install($is_founder = false)
 
 		// init var
 		$error = false;
+		$error_var_dump = '';
 
 		// let's check if the install is good !
 		$check_vars = array(
@@ -973,6 +974,8 @@ function donation_check_install($is_founder = false)
 			'donation_stats_index_enable',
 			'donation_used',
 			'donation_used_enable',
+			'paypal_ipn_enable',
+			'paypal_ipn_logging',
 			'paypal_sandbox_address',
 			'paypal_sandbox_enable',
 			'paypal_sandbox_founder_enable',
@@ -983,6 +986,7 @@ function donation_check_install($is_founder = false)
 			if (!isset($config[$check_var]))
 			{
 				$error = true;
+				$error_var_dump .= '<pre>' . $check_var . '</pre>';
 			}
 		}
 		unset($check_var);
@@ -1000,7 +1004,7 @@ function donation_check_install($is_founder = false)
 				trigger_error($user->lang['DONATION_INSTALL_MISSING'], E_USER_ERROR);
 			}
 
-			trigger_error($user->lang('DONATION_NOT_INSTALLED', '<a href="' . append_sid($installer) . '">', '</a>'), E_USER_ERROR);
+			trigger_error($user->lang('DONATION_NOT_INSTALLED', $error_var_dump, '<a href="' . append_sid($installer) . '">', '</a>') . ': ' . $original_file, E_USER_ERROR);
 		}
 	}
 }
