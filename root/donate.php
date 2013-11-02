@@ -129,7 +129,7 @@ switch ($mode)
 
 		// Build hidden fields
 		$s_hidden_fields = build_hidden_fields(array(
-			'cmd'			=> '_xclick',
+			'cmd'			=> '_donations',
 			'business'		=> $business,
 			'item_name'		=> $user->lang['DONATION_TITLE_HEAD'] . ' ' . $config['sitename'],
 			'no_shipping'	=> 1,
