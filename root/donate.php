@@ -24,10 +24,10 @@ $user->setup('mods/donate');
 // Request vars
 $mode = request_var('mode', '');
 $is_sandbox_ipn = request_var('test_ipn', false);
-$txn_id = (isset($_POST['txn_id'])) ? true : false;
+$txn_id			= (isset($_POST['txn_id'])) ? true : false;
 
-$is_founder = $user->data['user_type'] == USER_FOUNDER;
-$is_authorised = $auth->acl_get('u_pdm_use');
+$is_founder		= $user->data['user_type'] == USER_FOUNDER;
+$is_authorised	= $auth->acl_get('u_pdm_use');
 
 // Checks that the MOD is fully installed and configured with the prerequisite settings
 donation_check_install($is_founder);
@@ -70,6 +70,7 @@ If ($txn_id)
 		update_known_donors_stats();
 		update_anonymous_donors_stats();
 
+		// update the amount of donation raised
 		$sql = 'SELECT SUM(dd.net_amount) as amount
 			FROM ' . DONATION_DATA_TABLE . " dd
 			WHERE dd.confirmed = 1

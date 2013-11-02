@@ -98,7 +98,7 @@ Pour éviter des éventuels conflits avec un autre MOD PayPal, sauvegardez vos f
 		<installation>
 			<level>easy</level>
 			<time>300</time>
-			<target-version>3.0.11</target-version>
+			<target-version>3.0.12</target-version>
 		</installation>
 
 		<history>
@@ -110,6 +110,7 @@ Pour éviter des éventuels conflits avec un autre MOD PayPal, sauvegardez vos f
 					<change>Add: PM and E-mail notification for founders</change>
 					<change>Add: Donators auto-add to a specific group</change>
 					<change>Add: Transactions log</change>
+					<change>Change: The link "Make a Donation" is not visible in navbar when the MOD is disabled</change>
 					<change>Minor Code change</change>
 				</changelog>
 				<changelog lang="fr">
@@ -117,6 +118,7 @@ Pour éviter des éventuels conflits avec un autre MOD PayPal, sauvegardez vos f
 					<change>Ajout: Notification MP et E-mail pour les fondateurs</change>
 					<change>Ajout: Ajout automatique des donateurs à un group pré-défini</change>
 					<change>Ajout: Journal des transactions</change>
+					<change>Modification: Le lien "Faire un don" n’est plus visible si le MOD est désactivé</change>
 					<change>Corrections divers</change>
 				</changelog>
 			</entry>
@@ -396,7 +398,7 @@ define('DONATION_ITEM_TABLE',			$table_prefix . 'donation_item');
 //-- add
 	$template->assign_vars(array(
 		'U_DONATE'			=> $auth->acl_get('u_pdm_use') ? append_sid("{$phpbb_root_path}donate.$phpEx") : '',
-		'S_DONATE_ENABLED'	=> $auth->acl_get('u_pdm_use'),
+		'S_DONATE_ENABLED'	=> $auth->acl_get('u_pdm_use') && !empty($config['donation_enable']),
 	));
 //-- end : PayPal Donation --------------------------------------------------------]]></action>
 			</edit>
