@@ -57,12 +57,17 @@ If ($txn_id)
 {
 	$donate->use_log_error = !empty($config['paypal_logging']) ? true : false;
 
-	if ($donate->use_log_error || $is_sandbox_ipn)
+	if ($donate->use_log_error)
 	{
 		$donate->log_error('DEBUG:', false, E_USER_NOTICE, $_POST);
 	}
 
-	$donate->validate_transaction(null, (int) $config['donation_donors_group_id'], (bool) $config['donation_group_as_default']);
+	if ($is_sandbox_ipn && $is_founder)
+	{
+		$donate->log_error('DEBUG:', true, E_USER_NOTICE, $_POST);
+	}
+
+	$donate->validate_transaction((int) $config['donation_donors_group_id'], (bool) $config['donation_group_as_default']);
 
 	// update counters and statistics
 	if ($donate->verified)
