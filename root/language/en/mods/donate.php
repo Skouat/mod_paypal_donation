@@ -3,7 +3,7 @@
 *
 * donate.php [English]
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -41,10 +41,10 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	// Notice
 	'DONATION_DISABLED'				=> 'Sorry, the Donation page is currently unavailable.',
-	'DONATION_NOT_INSTALLED'		=> 'Paypal Donation MOD database entries are missing.<br />Please run the %sinstaller%s to make the database changes for the MOD.',
+	'DONATION_NOT_INSTALLED'		=> 'PayPal Donation MOD database entries are missing.<br />Please run the %sinstaller%s to make the database changes for the MOD.',
 	'DONATION_INSTALL_MISSING'		=> 'The installation file seems to be missing. Please check your installation !',
-	'DONATION_ADDRESS_MISSING'		=> 'Sorry, Paypal Donation is enabled but some settings are missing. Please notify the board founder.',
-	'SANDBOX_ADDRESS_MISSING'		=> 'Sorry, Paypal Sandbox is enabled but some settings are missing. Please notify the board founder.',
+	'DONATION_ADDRESS_MISSING'		=> 'Sorry, PayPal Donation is enabled but some settings are missing. Please notify the board founder.',
+	'SANDBOX_ADDRESS_MISSING'		=> 'Sorry, PayPal Sandbox is enabled but some settings are missing. Please notify the board founder.',
 
 	// Error
 	'CURL_ERROR'					=> 'cURL error: ',
@@ -80,8 +80,8 @@ $lang = array_merge($lang, array(
 	'DONATION_TITLE_HEAD'		=> 'Make a Donation to',
 	'DONATION_CANCEL_TITLE'		=> 'Donation Canceled',
 	'DONATION_SUCCESS_TITLE'	=> 'Donation Successfull',
-	'DONATION_CONTACT_PAYPAL'	=> 'Connecting to Paypal - Please Wait…',
-	'SANDBOX_TITLE'				=> 'Test Paypal Donation with Paypal Sandbox',
+	'DONATION_CONTACT_PAYPAL'	=> 'Connecting to PayPal - Please Wait…',
+	'SANDBOX_TITLE'				=> 'Test PayPal Donation with PayPal Sandbox',
 
 	'DONATION_INDEX'			=> 'Donations',
 

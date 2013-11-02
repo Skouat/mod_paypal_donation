@@ -3,7 +3,7 @@
 *
 * donate.php [French]
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -41,17 +41,17 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	// Notice
 	'DONATION_DISABLED'				=> 'Désolé, la page des Dons n’est pas disponible.',
-	'DONATION_NOT_INSTALLED'		=> 'Des entrées dans la base de données pour le MOD <strong>Paypal Donation</strong> sont manquantes.<br />Merci de lancer à nouveau le %sfichier d’installation%s pour corriger le problème.',
+	'DONATION_NOT_INSTALLED'		=> '« PayPal Donation MOD » à besoin des entrées mentionnées ci-dessous pour fonctionner correctement :%1$s<br />Merci de lancer à nouveau le %2$sfichier d’installation%3$s pour corriger le problème.',
 	'DONATION_INSTALL_MISSING'		=> 'Le fichier d’installation semble être manquant. Veuillez vérifier votre installation !',
-	'DONATION_ADDRESS_MISSING'		=> 'Désolé, Paypal Donation est activé mais certains paramètres sont manquants. Merci de contacter l’administrateur du forum.',
-	'SANDBOX_ADDRESS_MISSING'		=> 'Désolé, Paypal Sandbox est activé mais certains paramètres sont manquants. Merci de contacter l’administrateur du forum.',
+	'DONATION_ADDRESS_MISSING'		=> 'Désolé, PayPal Donation est activé mais certains paramètres sont manquants. Merci de contacter l’administrateur du forum.',
+	'SANDBOX_ADDRESS_MISSING'		=> 'Désolé, PayPal Sandbox est activé mais certains paramètres sont manquants. Merci de contacter l’administrateur du forum.',
 
 	// Error
 	'CURL_ERROR'					=> 'Erreur cURL :',
 	'FSOCK_ERROR'					=> 'Erreur fsockopen :',
 	'INVALID_TRANSACTION_RECORD'	=> 'Transaction invalide : ID de transaction non trouvé',
 	'INVALID_RESPONSE_STATUS'		=> 'Statut de réponse non valide : ',
-	'UNEXPECTED_RESPONSE'			=> 'Réponse innatendue de Paypal.',
+	'UNEXPECTED_RESPONSE'			=> 'Réponse innatendue de PayPal.',
 
 	// Image alternative text
 	'IMG_DONATE'			=> 'donation',
@@ -80,8 +80,8 @@ $lang = array_merge($lang, array(
 	'DONATION_TITLE_HEAD'		=> 'Faire un don pour',
 	'DONATION_CANCEL_TITLE'		=> 'Dons Annulés',
 	'DONATION_SUCCESS_TITLE'	=> 'Dons Validés',
-	'DONATION_CONTACT_PAYPAL'	=> 'Connexion à Paypal - Merci de patienter…',
-	'SANDBOX_TITLE'				=> 'Tester Paypal Donation avec Paypal Sandbox',
+	'DONATION_CONTACT_PAYPAL'	=> 'Connexion à PayPal - Merci de patienter…',
+	'SANDBOX_TITLE'				=> 'Tester PayPal Donation avec PayPal Sandbox',
 
 	'DONATION_INDEX'			=> 'Faire un don',
 
@@ -102,7 +102,7 @@ $lang = array_merge($lang, array(
 */
 $lang = array_merge($lang, array(
 	'INSTALL_DONATION_MOD'				=> 'Installer Donation Mod',
-	'INSTALL_DONATION_MOD_CONFIRM'		=> 'Êtes-vous prêt à installer Paypal Donation Mod ?',
+	'INSTALL_DONATION_MOD_CONFIRM'		=> 'Êtes-vous prêt à installer PayPal Donation Mod ?',
 	'INSTALL_DONATION_MOD_WELCOME'		=> 'Changements majeurs depuis la version 1.0.3',
 	'INSTALL_DONATION_MOD_WELCOME_NOTE'	=> 'Les clés de langue utilisées par la fonctionnalité « Donation pages » ont été migrées dans la base de données.
 											<br />Si vous utilisez cette fonctionnalité, sauvegardez vos fichiers de langue avant de mettre à jour le MOD vers cette nouvelle version.
@@ -110,14 +110,14 @@ $lang = array_merge($lang, array(
 											<br />N’oubliez pas de paramètrer cette nouvelle permission en allant dans <strong>ACP >> Permissions >> Permissions globles >> Permissions des utilisateurs</strong>
 											<br />Pour autoriser les invités à faire un don, cochez la case « Sélectionner l’utilisateur invité »',
 
-	'DONATION_MOD'						=> 'Paypal Donation Mod',
-	'DONATION_MOD_EXPLAIN'				=> 'UMIL effectuera automatiquement, dans la base de données, tous les changements nécessaires pour le MOD Paypal Donation.',
+	'DONATION_MOD'						=> 'PayPal Donation Mod',
+	'DONATION_MOD_EXPLAIN'				=> 'UMIL effectuera automatiquement, dans la base de données, tous les changements nécessaires pour le MOD PayPal Donation.',
 
-	'UNINSTALL_DONATION_MOD'			=> 'Désinstaller Paypal Donation Mod',
-	'UNINSTALL_DONATION_MOD_CONFIRM'	=> 'Êtes-vous prêt à désinstaller Paypal Donation Mod ? Tous les réglages et données sauvegardées par ce MOD seront supprimés !',
+	'UNINSTALL_DONATION_MOD'			=> 'Désinstaller PayPal Donation Mod',
+	'UNINSTALL_DONATION_MOD_CONFIRM'	=> 'Êtes-vous prêt à désinstaller PayPal Donation Mod ? Tous les réglages et données sauvegardées par ce MOD seront supprimés !',
 
-	'UPDATE_DONATION_MOD'				=> 'Mettre à jour Paypal Donation Mod',
-	'UPDATE_DONATION_MOD_CONFIRM'		=> 'Êtes-vous prêt à mettre à jour Paypal Donation Mod ?',
+	'UPDATE_DONATION_MOD'				=> 'Mettre à jour PayPal Donation Mod',
+	'UPDATE_DONATION_MOD_CONFIRM'		=> 'Êtes-vous prêt à mettre à jour PayPal Donation Mod ?',
 
 	'UNUSED_LANG_FILES_TRUE'			=> 'Suppression des fichiers non utilisés.',
 	'UNUSED_LANG_FILES_FALSE'			=> 'La suppression des fichiers non utilisés n’est pas nécessaire.',

@@ -3,7 +3,7 @@
 *
 * donate.php [Dutch Formal]
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -41,10 +41,10 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	// Notice
 	'DONATION_DISABLED'				=> 'Helaas, de donatie-pagina is gedeactiveerd.',
-	'DONATION_NOT_INSTALLED'		=> 'Paypal Donatie MOD database gegevens missen.<br />Voer de %sinstaller%s uit om databaseveranderingen voor de MOD te implementeren.',
+	'DONATION_NOT_INSTALLED'		=> 'PayPal Donatie MOD database gegevens missen.<br />Voer de %sinstaller%s uit om databaseveranderingen voor de MOD te implementeren.',
 	'DONATION_INSTALL_MISSING'		=> 'Het installatiebestand lijkt niet te bestaan. Controleer uw installatie!',
-	'DONATION_ADDRESS_MISSING'		=> 'Helaas, de Paypal Donatie module is geactiveerd maar een aantal instellingen nog niet correct; neem contact op met uw forumadministrator.',
-	'SANDBOX_ADDRESS_MISSING'		=> 'Helaas, de Paypal testomgeving is geactiveerd maar een aantal instellingen nog niet correct. Neem contact op met uw forumadministrator.',
+	'DONATION_ADDRESS_MISSING'		=> 'Helaas, de PayPal Donatie module is geactiveerd maar een aantal instellingen nog niet correct; neem contact op met uw forumadministrator.',
+	'SANDBOX_ADDRESS_MISSING'		=> 'Helaas, de PayPal testomgeving is geactiveerd maar een aantal instellingen nog niet correct. Neem contact op met uw forumadministrator.',
 
 	// Image alternative text
 	'IMG_DONATE'			=> 'doneer',
@@ -73,8 +73,8 @@ $lang = array_merge($lang, array(
 	'DONATION_TITLE_HEAD'		=> 'Doneer aan',
 	'DONATION_CANCEL_TITLE'		=> 'Donatie geannuleerd',
 	'DONATION_SUCCESS_TITLE'	=> 'Donatie Succesvol',
-	'DONATION_CONTACT_PAYPAL'	=> 'Verbinden met Paypal - Een moment a.u.b.…',
-	'SANDBOX_TITLE'				=> 'Test Paypal Donatie met Paypal testomgeving',
+	'DONATION_CONTACT_PAYPAL'	=> 'Verbinden met PayPal - Een moment a.u.b.…',
+	'SANDBOX_TITLE'				=> 'Test PayPal Donatie met PayPal testomgeving',
 
 	'DONATION_INDEX'			=> 'Donaties',
 ));

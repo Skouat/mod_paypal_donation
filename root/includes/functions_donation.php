@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -96,16 +96,16 @@ class donation_main
 	*/
 	public $sender_data = array();
 
-	// Paypal url
+	// PayPal url
 	public $u_paypal = '';
 
 	//Board donation page
 	public $page;
 
-	// Paypal response (VERIFIED or INVALID)
+	// PayPal response (VERIFIED or INVALID)
 	private $response = '';
 
-	// Paypal response status (code 200 or other)
+	// PayPal response status (code 200 or other)
 	private $response_status = '';
 
 	/**
@@ -133,7 +133,7 @@ class donation_main
 	public $force_ssl_v3 = true;
 
 	/**
-	 *  If true, the paypal sandbox URI www.sandbox.paypal.com is used for the
+	 *  If true, the PayPal sandbox URI www.sandbox.paypal.com is used for the
 	 *  post back. If false, the live URI www.paypal.com is used. Default false.
 	 *
 	 *  @var boolean
@@ -425,7 +425,7 @@ class donation_main
 
 			if ($anonymous_user)
 			{
-				// if the user is anonymous, check their Paypal email address with all known email hashes
+				// if the user is anonymous, check their PayPal email address with all known email hashes
 				// to determine if the user exists in the database with that email
 				$sql = 'SELECT user_id, username
 						FROM ' . USERS_TABLE . '
@@ -588,7 +588,7 @@ class donation_main
 		// Setup the PM data...
 		$pm_data = array(
 			'from_user_id'		=> ($this->sender_data) ? $this->sender_data['user_id'] : ANONYMOUS,
-			'from_username'		=> 'Paypal',
+			'from_username'		=> 'PayPal',
 			'address_list'		=> array('u' => $address_list),
 			'icon_id'			=> 10,
 			'from_user_ip'		=> $user->ip,
@@ -754,9 +754,9 @@ class donation_main
 			'payment_type'		=> '',		// Payment type
 			'payment_date'		=> '',		// Payment Date/Time EX: '19:08:04 Oct 03, 2007 PDT'
 
-			'payer_id'			=> '',		// Paypal sender ID
-			'payer_email'		=> '',		// Paypal sender email address
-			'payer_status'		=> '',		// Paypal sender status (verified, unverified?)
+			'payer_id'			=> '',		// PayPal sender ID
+			'payer_email'		=> '',		// PayPal sender email address
+			'payer_status'		=> '',		// PayPal sender status (verified, unverified?)
 			'first_name'		=> '',		// First name of sender
 			'last_name'			=> '',		// Last name of sender
 
@@ -867,7 +867,7 @@ function donation_stats_percent($type = '', $multiplicand, $dividend)
 }
 
 /**
-* Paypal donation configuration check.
+* PayPal donation configuration check.
 *
 * @param bool $is_founder = false
 */
@@ -875,15 +875,15 @@ function donation_stats_percent($type = '', $multiplicand, $dividend)
 function donation_check_configuration($is_founder = false, $is_authorised = false)
 {
 	global $config, $user;
-	// Do we have the donation mod enabled and paypal account set ?
+	// Do we have the donation mod enabled and PayPal account set ?
 
-	// Paypal Donation and Paypal Sandbox is disabled
+	// PayPal Donation and PayPal Sandbox is disabled
 	if (empty($config['donation_enable']) && empty($config['paypal_sandbox_enable']))
 	{
 		trigger_error($user->lang['DONATION_DISABLED'], E_USER_NOTICE);
 	}
 
-	// Paypal Donation enabled and Account ID missing
+	// PayPal Donation enabled and Account ID missing
 	if (!empty($config['donation_enable']) && empty($config['paypal_sandbox_enable']) && empty($config['donation_account_id']))
 	{
 			trigger_error($user->lang['DONATION_ADDRESS_MISSING'], E_USER_NOTICE);
@@ -892,20 +892,20 @@ function donation_check_configuration($is_founder = false, $is_authorised = fals
 	// Sandbox is enabled only for founder and $is_founder is false. Or Sandbox is visible for all autorised members
 	if (!empty($config['paypal_sandbox_enable']) && ((!empty($config['paypal_sandbox_founder_enable']) && !$is_founder) || (empty($config['paypal_sandbox_founder_enable']) && $is_authorised)))
 	{
-		// Paypal Donation disabled
+		// PayPal Donation disabled
 		if (empty($config['donation_enable']) && !empty($config['paypal_sandbox_founder_enable']))
 		{
 			trigger_error($user->lang['DONATION_DISABLED'], E_USER_NOTICE);
 		}
 
-		// Paypal Donation enabled and Account ID missing
+		// PayPal Donation enabled and Account ID missing
 		if (!empty($config['donation_enable']) && empty($config['donation_account_id']))
 		{
 			trigger_error($user->lang['DONATION_ADDRESS_MISSING'], E_USER_NOTICE);
 		}
 	}
 
-	// Paypal Sandbox address missing
+	// PayPal Sandbox address missing
 	if (empty($config['paypal_sandbox_address']))
 	{
 		if (!empty($config['paypal_sandbox_enable']) && ((!empty($config['paypal_sandbox_founder_enable']) && $is_founder) || (empty($config['paypal_sandbox_founder_enable']) && $is_authorised)))
@@ -917,7 +917,7 @@ function donation_check_configuration($is_founder = false, $is_authorised = fals
 
 
 /**
-* Paypal donation installation check.
+* PayPal donation installation check.
 *
 * @param bool $is_founder = false
 */

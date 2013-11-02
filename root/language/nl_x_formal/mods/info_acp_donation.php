@@ -3,7 +3,7 @@
 *
 * info_acp_donation.php [Dutch Formal]
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -43,7 +43,7 @@ if (empty($lang) || !is_array($lang))
 * mode: main
 */
 $lang = array_merge($lang, array(
-	'ACP_DONATION_MOD' => 'Paypal Donatie',
+	'ACP_DONATION_MOD' => 'PayPal Donatie',
 ));
 
 /**
@@ -51,18 +51,18 @@ $lang = array_merge($lang, array(
 */
 $lang = array_merge($lang, array(
 	'DONATION_OVERVIEW'			=> 'Overzicht',
-	'DONATION_WELCOME'			=> 'Welkom bij de Paypal Donatie MOD',
+	'DONATION_WELCOME'			=> 'Welkom bij de PayPal Donatie MOD',
 	'DONATION_WELCOME_EXPLAIN'	=> '',
 
 	'DONATION_STATS'			=> 'Donatie statistieken',
-	'DONATION_INSTALL_DATE'		=> 'Installeerdatum van de <strong>Paypal Donatie MOD</strong>',
-	'DONATION_VERSION'			=> '<strong>Paypal Donatie</strong> versie',
+	'DONATION_INSTALL_DATE'		=> 'Installeerdatum van de <strong>PayPal Donatie MOD</strong>',
+	'DONATION_VERSION'			=> '<strong>PayPal Donatie</strong> versie',
 
 	'INFO_FSOCKOPEN'			=> 'Fsockopen',
 	'INFO_CURL'					=> 'cURL',
 	'INFO_DETECTED'				=> 'Gedetecteerd',
 	'INFO_NOT_DETECTED'			=> 'Niet gedetecteerd',
-	'DONATION_VERSION_NOT_UP_TO_DATE_TITLE'	=> 'De Paypal Donatie installatie is niet recent genoeg.',
+	'DONATION_VERSION_NOT_UP_TO_DATE_TITLE'	=> 'De PayPal Donatie installatie is niet recent genoeg.',
 
 	'STAT_RESET_DATE'							=> 'Reset MOD Installatie datum',
 	'STAT_RESET_DATE_EXPLAIN'					=> 'Resetten van de installatie heeft effect op statistieken over de berekening van het volledige bedrag wat is gedoneerd',
@@ -80,10 +80,10 @@ $lang = array_merge($lang, array(
 	'MODE_DONATION_PAGES'			=> 'donatie pagina',
 
 	// Global Donation settings
-	'DONATION_ENABLE'						=> 'Zet Paypal Donatie aan',
-	'DONATION_ENABLE_EXPLAIN'				=> 'Zet de Paypal Donatie MOD aan of uit',
-	'DONATION_ACCOUNT_ID'					=> 'Paypal account ID',
-	'DONATION_ACCOUNT_ID_EXPLAIN'			=> 'Voer hier uw Paypal email-adres of account ID in',
+	'DONATION_ENABLE'						=> 'Zet PayPal Donatie aan',
+	'DONATION_ENABLE_EXPLAIN'				=> 'Zet de PayPal Donatie MOD aan of uit',
+	'DONATION_ACCOUNT_ID'					=> 'PayPal account ID',
+	'DONATION_ACCOUNT_ID_EXPLAIN'			=> 'Voer hier uw PayPal email-adres of account ID in',
 	'DONATION_DEFAULT_CURRENCY'				=> 'Standaard munteenheid',
 	'DONATION_DEFAULT_CURRENCY_EXPLAIN'		=> 'Geef aan welke munteenheid standaard wordt gebruikt',
 	'DONATION_DEFAULT_VALUE'				=> 'Standaard donatie bedrag',
@@ -93,14 +93,14 @@ $lang = array_merge($lang, array(
 	'DONATION_DROPBOX_VALUE'				=> 'Drop-down waarde',
 	'DONATION_DROPBOX_VALUE_EXPLAIN'		=> 'Geef aan welke getallen uw in de drop-down lijst wil hebben, gescheiden door</strong> (",") <strong>zonder spaties om aparte bedragen te scheiden.',
 
-	// Paypal sandbox settings
-	'SANDBOX_SETTINGS'						=> 'Paypal testomgeving instellingen',
+	// PayPal sandbox settings
+	'SANDBOX_SETTINGS'						=> 'PayPal testomgeving instellingen',
 	'SANDBOX_ENABLE'						=> 'Testomgeving aan',
-	'SANDBOX_ENABLE_EXPLAIN'				=> 'Gebruik deze instelling indien u de Paypal testomgeving wil gebruiken i.p.v. Paypal Services.<br />Met name om te testen. Alle transacties zullen niet echt plaatsvinden.',
+	'SANDBOX_ENABLE_EXPLAIN'				=> 'Gebruik deze instelling indien u de PayPal testomgeving wil gebruiken i.p.v. PayPal Services.<br />Met name om te testen. Alle transacties zullen niet echt plaatsvinden.',
 	'SANDBOX_FOUNDER_ENABLE'				=> 'Testomgeving alleen voor forum-administrator',
-	'SANDBOX_FOUNDER_ENABLE_EXPLAIN'		=> 'Indien aangezet zal de Paypal testomgeving alleen zichtbaar zijn voor de forum-administrators.',
+	'SANDBOX_FOUNDER_ENABLE_EXPLAIN'		=> 'Indien aangezet zal de PayPal testomgeving alleen zichtbaar zijn voor de forum-administrators.',
 	'SANDBOX_ADDRESS'						=> 'PayPal testomgeving adres',
-	'SANDBOX_ADDRESS_EXPLAIN'				=> 'Geef hier het Paypal testomgeving verkopers e-mail adres op',
+	'SANDBOX_ADDRESS_EXPLAIN'				=> 'Geef hier het PayPal testomgeving verkopers e-mail adres op',
 
 	// Stats Donation settings
 	'DONATION_STATS_SETTINGS'				=> 'Stats donatie config',
@@ -173,7 +173,7 @@ $lang = array_merge($lang, array(
 	'DONATION_DC_NAME'				=> 'Munteenheid naam',
 	'DONATION_DC_NAME_EXPLAIN'		=> 'Naam van de munteenheid.<br />(i.e. Euro)',
 	'DONATION_DC_ISO_CODE'			=> 'ISO 4217 code',
-	'DONATION_DC_ISO_CODE_EXPLAIN'	=> 'Alfabetische code van de munteenheid.<br />Meer over de ISO 4217 codes… zie <a href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod/faq/f_746" title="Paypal Donatie MOD FAQ">Paypal Donatie MOD FAQ</a> (external link)',
+	'DONATION_DC_ISO_CODE_EXPLAIN'	=> 'Alfabetische code van de munteenheid.<br />Meer over de ISO 4217 codes… zie <a href="http://www.phpbb.com/customise/db/mod/paypal_donation_mod/faq/f_746" title="PayPal Donatie MOD FAQ">PayPal Donatie MOD FAQ</a> (external link)',
 	'DONATION_DC_SYMBOL'			=> 'Munteenheid symbool',
 	'DONATION_DC_SYMBOL_EXPLAIN'	=> 'Definieer het munteenheid symbool.<br />(i.e. € for Euro, $ for U.S. Dollar)',
 	'DONATION_DC_ENABLED'			=> 'Zet munteenheid aan',
@@ -186,16 +186,16 @@ $lang = array_merge($lang, array(
 */
 $lang = array_merge($lang, array(
 	//logs
-	'LOG_DONATION_UPDATED'			=> '<strong>Paypal Donatie: Instellingen vernieuwd.</strong>',
-	'LOG_DONATION_PAGES_UPDATED'	=> '<strong>Paypal Donatie: Donatie Pagina vernieuwd.</strong>',
-	'LOG_ITEM_ADDED'				=> '<strong>Paypal Donatie: %1$s toegevoegd</strong><br />» %2$s',
-	'LOG_ITEM_UPDATED'				=> '<strong>Paypal Donatie: %1$s vernieuwd</strong><br />» %2$s',
-	'LOG_ITEM_REMOVED'				=> '<strong>Paypal Donatie: %1$s gewist</strong>',
-	'LOG_ITEM_MOVE_DOWN'			=> '<strong>Paypal Donatie: Verplaatste %1$s. </strong> %2$s <strong>naar beneden</strong> %3$s',
-	'LOG_ITEM_MOVE_UP'				=> '<strong>Paypal Donatie: Verplaatste %1$s. </strong> %2$s <strong>naar boven</strong> %3$s',
-	'LOG_ITEM_ENABLED'				=> '<strong>Paypal Donatie: %1$s aangezet</strong><br />» %2$s',
-	'LOG_ITEM_DISABLED'				=> '<strong>Paypal Donatie: %1$s uitgezet</strong><br />» %2$s',
-	'LOG_STAT_RESET_DATE'			=> '<strong>Paypal Donatie: Installatie datum reset</strong>',
+	'LOG_DONATION_UPDATED'			=> '<strong>PayPal Donatie: Instellingen vernieuwd.</strong>',
+	'LOG_DONATION_PAGES_UPDATED'	=> '<strong>PayPal Donatie: Donatie Pagina vernieuwd.</strong>',
+	'LOG_ITEM_ADDED'				=> '<strong>PayPal Donatie: %1$s toegevoegd</strong><br />» %2$s',
+	'LOG_ITEM_UPDATED'				=> '<strong>PayPal Donatie: %1$s vernieuwd</strong><br />» %2$s',
+	'LOG_ITEM_REMOVED'				=> '<strong>PayPal Donatie: %1$s gewist</strong>',
+	'LOG_ITEM_MOVE_DOWN'			=> '<strong>PayPal Donatie: Verplaatste %1$s. </strong> %2$s <strong>naar beneden</strong> %3$s',
+	'LOG_ITEM_MOVE_UP'				=> '<strong>PayPal Donatie: Verplaatste %1$s. </strong> %2$s <strong>naar boven</strong> %3$s',
+	'LOG_ITEM_ENABLED'				=> '<strong>PayPal Donatie: %1$s aangezet</strong><br />» %2$s',
+	'LOG_ITEM_DISABLED'				=> '<strong>PayPal Donatie: %1$s uitgezet</strong><br />» %2$s',
+	'LOG_STAT_RESET_DATE'			=> '<strong>PayPal Donatie: Installatie datum reset</strong>',
 
 	// Confirm box
 	'DONATION_DC_ENABLED'		=> 'Munteenheid aangezet',

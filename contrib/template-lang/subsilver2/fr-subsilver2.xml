@@ -4,8 +4,8 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod - Subsilver2 FR]]></title>
-		<title lang="fr"><![CDATA[Paypal Donation Mod - Subsilver2 FR]]></title>
+		<title lang="en"><![CDATA[PayPal Donation Mod - Subsilver2 FR]]></title>
+		<title lang="fr"><![CDATA[PayPal Donation Mod - Subsilver2 FR]]></title>
 		<description lang="en"><![CDATA[French modifications for Subsilver2]]></description>
 		<description lang="fr"><![CDATA[Modifications française pour Subsilver2]]></description>
 		<author-group>

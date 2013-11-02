@@ -4,8 +4,8 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Paypal Donation Mod - Dutch (formal) Language]]></title>
-		<title lang="nl-x-formal"><![CDATA[Paypal Donatie Mod - Nederlands Formeel]]></title>
+		<title lang="en"><![CDATA[PayPal Donation Mod - Dutch (formal) Language]]></title>
+		<title lang="nl-x-formal"><![CDATA[PayPal Donatie Mod - Nederlands Formeel]]></title>
 		<description lang="en"><![CDATA[Allows the use of the MOD on Dutch boards]]></description>
 		<description lang="nl-x-formal"><![CDATA[Voor gebruik van de MOD op Nederlandse forums]]></description>
 		<author-group>
@@ -68,13 +68,13 @@
 		<open src="language/nl_x_formal/common.php">
 			<edit>
 				<find><![CDATA[?>]]></find>
-				<action type="before-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+				<action type="before-add"><![CDATA[//-- mod : PayPal donation --------------------------------------------------------
 //-- add
 $lang = array_merge($lang, array(
 	'DONATEINDEX'				=> 'Doneer',
 	'VIEWING_DONATE'			=> 'Donatie pagina weergeven',
 ));
-//-- end : Paypal donation --------------------------------------------------------
+//-- end : PayPal donation --------------------------------------------------------
 ]]></action>
 			</edit>
 		</open>

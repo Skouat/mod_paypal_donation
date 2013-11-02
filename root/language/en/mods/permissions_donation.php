@@ -3,7 +3,7 @@
 *
 * permissions_donation.php [English]
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 // Adding new category
-$lang['permission_cat']['donation']   = 'Paypal Donation MOD';
+$lang['permission_cat']['donation']   = 'PayPal Donation MOD';
 
 // Adding the permissions
 $lang = array_merge($lang, array(
@@ -47,7 +47,7 @@ $lang = array_merge($lang, array(
 	'acl_u_pdm_use'		=> array('lang' => 'Can make a donation', 'cat' => 'donation'),
 
 	// Admin Permissions
-	'acl_a_pdm_manage'	=> array('lang' => 'Can manage Paypal Donation MOD', 'cat' => 'misc'),
+	'acl_a_pdm_manage'	=> array('lang' => 'Can manage PayPal Donation MOD', 'cat' => 'misc'),
 ));
 
 ?>

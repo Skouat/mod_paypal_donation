@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
@@ -115,7 +115,7 @@ class acp_donation
 								// Count the number of donors based on the user_id, except anonymous. 
 								update_known_donors_stats();
 
-								// Count the number of anonymous users. Based on the Paypal Payer ID
+								// Count the number of anonymous users. Based on the PayPal Payer ID
 								update_anonymous_donors_stats();
 
 								add_log('admin', 'LOG_STAT_RESYNC_DONORSCOUNTS');

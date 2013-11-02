@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Paypal Donation MOD
+* @package PayPal Donation MOD
 * @copyright (c) 2013 Skouat
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -38,7 +38,7 @@ $donate = new donation_main();
 
 $donate->page = generate_board_url(true) . $user->page['script_path'] . $user->page['page_name'];
 
-// Initiate Paypal settings
+// Initiate PayPal settings
 if (!empty($config['paypal_sandbox_enable']) /*&& (!empty($config['paypal_sandbox_founder_enable']) && $is_founder || empty($config['paypal_sandbox_founder_enable']))*/)
 {
 	$donate->business = $config['paypal_sandbox_address'];

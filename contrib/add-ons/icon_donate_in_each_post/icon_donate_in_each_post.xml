@@ -37,7 +37,7 @@
 			</entry>
 		</history>
 		<link-group>
-			<link type="dependency" href="https://www.phpbb.com/customise/db/mod/paypal_donation_mod" lang="en">Paypal Donation MOD</link>
+			<link type="dependency" href="https://www.phpbb.com/customise/db/mod/paypal_donation_mod" lang="en">PayPal Donation MOD</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -45,14 +45,14 @@
 			<edit>
 				<find><![CDATA[					<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->
 				</ul>]]></find>
-				<action type="after-add"><![CDATA[//-- mod : Paypal donation --------------------------------------------------------
+				<action type="after-add"><![CDATA[//-- mod : PayPal donation --------------------------------------------------------
 //-- add
 			<!-- IF S_DONATE_ENABLED -->
 				<ul class="profile-icons">
 					<li class="donate-icon"><a class="donate-icon" href="{U_DONATE}"><span>{L_DONATEINDEX}</span></a></li>
 				</ul>
 			<!-- ENDIF -->
-//-- end : Paypal donation --------------------------------------------------------]]></action>
+//-- end : PayPal donation --------------------------------------------------------]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/theme/colours.css">
