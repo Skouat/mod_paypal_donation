@@ -103,13 +103,17 @@ Pour éviter des éventuels conflits avec un autre MOD PayPal, sauvegardez vos f
 
 		<history>
 			<entry>
-				<date>2012-06-04</date>
+				<date>2013-11-02</date>
 				<rev-version>1.1.0</rev-version>
 				<changelog lang="en">
 					<change>Add: PayPal IPN (Instant Payment Notification)</change>
 					<change>Add: PM and E-mail notification for founders</change>
 					<change>Add: Donators auto-add to a specific group</change>
 					<change>Add: Transactions log</change>
+					<change>Fix: The default value of the donations was incorrect in the dropdown menu</change>
+					<change>Fix: Layout issue in the donation page (thanks to sub60)</change>
+					<change>Change: Add $db->sql_escape() for extra safety</change>
+					<change>Change: CSS improvement (thanks to cabot)</change>
 					<change>Change: The link "Make a Donation" is not visible in navbar when the MOD is disabled</change>
 					<change>Minor Code change</change>
 				</changelog>
@@ -118,6 +122,10 @@ Pour éviter des éventuels conflits avec un autre MOD PayPal, sauvegardez vos f
 					<change>Ajout: Notification MP et E-mail pour les fondateurs</change>
 					<change>Ajout: Ajout automatique des donateurs à un group pré-défini</change>
 					<change>Ajout: Journal des transactions</change>
+					<change>Correction: La valeur par défaut des dons était incorrect dans le menu déroulant</change>
+					<change>Correction: Problème de mise en page dans les pages de dons (merci à sub60)</change>
+					<change>Modification: Pour plus de sécurité, ajout de $db->sql_escape()</change>
+					<change>Modification: Amélioration du CSS (merci à cabot)</change>
 					<change>Modification: Le lien "Faire un don" n’est plus visible si le MOD est désactivé</change>
 					<change>Corrections divers</change>
 				</changelog>

@@ -117,8 +117,8 @@ $lang = array_merge($lang, array(
 
 	// PayPal sandbox settings
 	'SANDBOX_SETTINGS'						=> 'Paramètres PayPal Sandbox',
-	'SANDBOX_ENABLE'						=> 'Tester avec PayPal',
-	'SANDBOX_ENABLE_EXPLAIN'				=> 'Activez cette option si vous voulez utiliser PayPal Sandbox au lieu des Services PayPal.<br />Pratique pour les développeurs/testeurs. Toutes les transactions sont fictives.',
+	'SANDBOX_ENABLE'						=> 'Tester avec PayPal Sandbox',
+	'SANDBOX_ENABLE_EXPLAIN'				=> 'Activez cette option si vous voulez utiliser PayPal Sandbox au lieu des services PayPal.<br />Pratique pour les développeurs/testeurs. Toutes les transactions sont fictives.',
 	'SANDBOX_FOUNDER_ENABLE'				=> 'Sandbox pour les fondateurs',
 	'SANDBOX_FOUNDER_ENABLE_EXPLAIN'		=> 'Si activé, PayPal Sandbox ne sera visible que par les fondateurs du forum.',
 	'SANDBOX_ADDRESS'						=> 'Adresse PayPal Sandbox',
