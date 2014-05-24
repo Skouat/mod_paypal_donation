@@ -50,6 +50,10 @@ $options = array(
 
 // array of versions and actions within each
 $versions = array(
+	'1.0.5' => array(
+		// Nothing changed in this version
+	),
+
 	'1.0.4' => array(
 		// Nothing changed in this version
 	),

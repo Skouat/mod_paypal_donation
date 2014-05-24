@@ -25,7 +25,7 @@ class acp_donation_info
 		return array(
 			'filename'			=> 'acp_donation',
 			'title'				=> 'ACP_DONATION_MOD',
-			'version'			=> '1.0.4',
+			'version'			=> '1.0.5',
 			'modes'		=> array(
 				'overview'			=> array('title' => 'DONATION_OVERVIEW',	'auth' => 'acl_a_pdm_manage', 'cat' => array('ACP_DONATION_MOD')),
 				'configuration'		=> array('title' => 'DONATION_CONFIG',		'auth' => 'acl_a_pdm_manage', 'cat' => array('ACP_DONATION_MOD')),
