@@ -428,7 +428,7 @@ class acp_donation
 
 								if ($this->validate_input($dp_data))
 								{
-									if ($item_id || $item_id = $this->acp_exist_item_data($dp_data))
+									if ($item_id || ($item_id == $this->acp_exist_item_data($dp_data)))
 									{
 										$this->acp_update_item_data($dp_data, $item_id);
 									}
