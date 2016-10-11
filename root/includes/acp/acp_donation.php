@@ -1325,8 +1325,6 @@ class acp_donation
 	{
 		global $db, $user, $auth, $phpEx, $phpbb_root_path, $phpbb_admin_path;
 
-		$topic_id_list = $reportee_id_list = $is_auth = $is_mod = array();
-
 		if (defined('IN_ADMIN'))
 		{
 			$profile_url = append_sid("{$phpbb_admin_path}index.$phpEx", 'i=users&amp;mode=overview');

@@ -25,6 +25,7 @@ $user->setup('mods/donate');
 $mode = request_var('mode', '');
 $is_sandbox_ipn = request_var('test_ipn', false);
 $txn_id			= (isset($_POST['txn_id'])) ? true : false;
+$ipn_track_id	= (isset($_POST['ipn_track_id'])) ? true : false;
 
 $is_founder		= $user->data['user_type'] == USER_FOUNDER;
 $is_authorised	= $auth->acl_get('u_pdm_use');
@@ -39,7 +40,7 @@ $donate = new ppdm_ipn_main();
 $donate->page = generate_board_url(true) . $user->page['script_path'] . $user->page['page_name'];
 
 // Initiate PayPal settings
-if (!empty($config['paypal_sandbox_enable']) /*&& (!empty($config['paypal_sandbox_founder_enable']) && $is_founder || empty($config['paypal_sandbox_founder_enable']))*/)
+if (!empty($config['paypal_sandbox_enable']) && ((!empty($config['paypal_sandbox_founder_enable']) && $is_founder) || (empty($config['paypal_sandbox_founder_enable']) && $is_authorised)))
 {
 	$donate->business = $config['paypal_sandbox_address'];
 	$donate->u_paypal = ppdm_ipn_main::SANDBOX_HOST;
@@ -53,7 +54,7 @@ else
 }
 
 // PayPal IPN : validate transaction and processed if verified
-If ($txn_id)
+If ($txn_id && $ipn_track_id)
 {
 	$donate->use_log_error = !empty($config['paypal_logging']) ? true : false;
 

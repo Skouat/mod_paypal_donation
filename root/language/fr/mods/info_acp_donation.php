@@ -299,7 +299,7 @@ $lang = array_merge($lang, array(
 	'LOG_ITEM_ENABLED'						=> '<strong>PayPal Donation: %1$s activé(e)</strong><br />» %2$s',
 	'LOG_ITEM_DISABLED'						=> '<strong>PayPal Donation: %1$s désactivé(e)</strong><br />» %2$s',
 	'LOG_CLEAR_DONATION_TXN'				=> '<strong>PayPal Donation: Purge du journal des transactions</strong>',
-	'LOG_STAT_RESET_DATE'					=> '<strong>PayPal Donation: Data d’installation réinitialisée</strong>',
+	'LOG_STAT_RESET_DATE'					=> '<strong>PayPal Donation: Date d’installation réinitialisée</strong>',
 	'LOG_STAT_RESYNC_DONORSCOUNTS'			=> '<strong>PayPal Donation: Synchronisation des compteurs de donateurs</strong>',
 	'LOG_STAT_RESYNC_TRANSACTIONSCOUNTS'	=> '<strong>PayPal Donation: Synchronisation des compteurs de transactions</strong>',
 

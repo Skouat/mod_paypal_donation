@@ -127,7 +127,7 @@ $lang = array_merge($lang, array(
 	// IPN settings
 	'IPN_SETTINGS'							=> 'IPN Settings',
 	'PAYPAL_IPN_ENABLE'						=> 'Enable IPN',
-	'PAYPAL_IPN_ENABLE_EXPLAIN'				=> 'Enable this option if you want use Instant Payment Notification of PayPal Services.',
+	'PAYPAL_IPN_ENABLE_EXPLAIN'				=> 'Enable this option if you want use Instant Payment Notification of PayPal services.',
 	'PAYPAL_IPN_LOGGING'					=> 'Log Errors',
 	'PAYPAL_IPN_LOGGING_EXPLAIN'			=> 'Log Errors and Data into /store/transaction.log',
 
